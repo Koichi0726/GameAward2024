@@ -1,0 +1,37 @@
+○関数定義（※必要な時のみ※）
+/// <summary>
+///  関数の説明
+/// </summary>
+/// <param name="引数名">引数の説明</param>
+/// <returns>戻り値の説明</returns>
+※returnsメソッドは結果がboolなどで説明の必要がなければ省略可。
+
+○クラス、名前空間
+class PascalCase
+namespace PascalCase
+
+○列挙体
+enum E_SNAKE_CASE
+
+○ローカル変数
+int camelCase
+
+○メンバ変数
+int m_camelCase
+
+※コレクションやリストの変数名は複数形とします。
+単数形: File file
+複数形: List<File> files, byte[] bytes
+
+○定数
+const int SNAKE_CASE
+
+○コードの欠陥に対してのコメント
+TODO:	後で手を付ける	※大文字は緊急度が高い
+todo:	　　　〃
+FIXME:	既知の不具合があるコード	
+HACK:	綺麗ではない解決策
+XXX:	大きな問題がある(原因不明のバグ・メモリリークなど
+
+基本的には上記のルールで記述し、例外等あれば以下のサイトを参考に記述するようにお願いします。
+https://qiita.com/Ted-HM/items/67eddbe36b88bf2d441d
