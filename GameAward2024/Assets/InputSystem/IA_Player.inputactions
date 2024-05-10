@@ -1,0 +1,67 @@
+{
+    "name": "IA_Player",
+    "maps": [
+        {
+            "name": "Dodge",
+            "id": "520e61ab-4b40-4d26-a25b-9dc1ab3c0ef3",
+            "actions": [
+                {
+                    "name": "L+D",
+                    "type": "Button",
+                    "id": "eda1a122-f2dd-4e72-9271-494b62064c70",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cbaef005-4116-4450-81dd-18932ca84bc3",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L+D",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "One Modifier",
+                    "id": "751afa4e-bf74-4a66-bf3b-0c0b03c14b04",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L+D",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "9a816113-e2d1-4586-8135-2de53a5246bb",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L+D",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "20fdffbe-a762-4da9-b283-91cf8ad18712",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "L+D",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
