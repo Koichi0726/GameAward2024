@@ -48,5 +48,11 @@ public class PlayerMove : MonoBehaviour
         pos += _center;
 
         tr.position = pos;
+
+        // Œü‚«XV
+        if (_updateRotation)
+        {
+            tr.rotation = tr.rotation * angleAxis;
+        }
     }
 }
