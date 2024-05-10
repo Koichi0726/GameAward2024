@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9068701716815233378}
   - component: {fileID: 8741057104515922957}
   - component: {fileID: 4837990995388737876}
+  - component: {fileID: 6586728243262986242}
   m_Layer: 0
   m_Name: TimeGauge
   m_TagString: Untagged
@@ -76,3 +77,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6586728243262986242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820726038010619536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7d7bba5dd488cd4a9fee98a7f156085, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gaugeMaterial: {fileID: 2100000, guid: 976c32d9e4991bb458b6905e7172f1f8, type: 2}
