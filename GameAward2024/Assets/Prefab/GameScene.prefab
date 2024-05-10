@@ -228,6 +228,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 849393068878140723}
     m_Modifications:
+    - target: {fileID: 4815736616897401940, guid: b12d26bef4b345b4b98ddf1eda3a147f, type: 3}
+      propertyPath: m_Name
+      value: TimeGauge
+      objectReference: {fileID: 0}
     - target: {fileID: 6549825387614810311, guid: b12d26bef4b345b4b98ddf1eda3a147f, type: 3}
       propertyPath: m_RootOrder
       value: 3
