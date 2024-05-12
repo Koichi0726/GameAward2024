@@ -14,7 +14,7 @@ namespace GameScene
 		public GameScene.CharacterManager m_characterManager;
 		public GameScene.BackgroundManager m_backgroundManager;
 
-		private void Start()
+		private void Awake()
 		{
 			// マネージャーコンテナを取得
 			TryGetComponent<ManagerContainer>(out m_managerContainer);
