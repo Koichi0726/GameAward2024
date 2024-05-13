@@ -27,7 +27,6 @@ public class PlayerMove : MonoBehaviour
         DashFlag = false;
         _prevPosition = transform.position;
         Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManager‚©‚çQÆo—ˆ‚é‚æ‚¤‚É•ÏX
-        Debug.Log(Enemy);
     }
 
     // Update is called once per frame
