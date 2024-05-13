@@ -61,6 +61,45 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "move",
+            "id": "23527c05-6983-48f3-b7b2-0daae4c7e581",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "f77b5b9c-215c-48b1-97a7-1bb5e289a9a7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "83b8dfa2-c4c1-4be0-acba-a7dd47319383",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dea69904-c119-412d-bbc3-32f0a70592c1",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
