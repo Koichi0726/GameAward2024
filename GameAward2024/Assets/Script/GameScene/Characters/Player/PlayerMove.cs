@@ -103,4 +103,11 @@ public class PlayerMove : MonoBehaviour
         // 次のUpdateで使うための前フレーム位置更新
         _prevPosition = pos;
     }
+
+    public void OnMove()
+    {
+        Debug.Log("MoveIvent");
+    }
 }
+
+
