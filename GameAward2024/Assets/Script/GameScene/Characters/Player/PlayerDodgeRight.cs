@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerDodge : MonoBehaviour
+public class PlayerDodgeRight : MonoBehaviour
 {
-    // Start is called before the first frame update
-
+    //オブジェクト取得
     [SerializeField] GameObject player;
     [SerializeField] GameObject boss;
 
-    private float rotY;
+    //変数宣言
+    private float rotY = 5.0f;  //プレイヤー回転角度
 
-    private Vector3 playerPos;
-    private Vector3 bossPos;
-    private Vector3 distance;
+    private Vector3 playerPos;  //プレイヤー座標
+    private Vector3 bossPos;    //ボス座標
+    private Vector3 distance;   //プレイヤーとボスの距離
 
     void Start()
     {
+        //計算用の変数に格納
         playerPos = player.transform.position;
         bossPos = boss.transform.position;
+
+        //プレイヤーからボスまでの距離を計算
         distance = playerPos - bossPos;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //プレイヤーの回避後の座標を計算
