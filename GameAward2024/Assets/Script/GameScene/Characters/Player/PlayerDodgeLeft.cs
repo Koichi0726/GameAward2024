@@ -5,10 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerDodgeLeft : MonoBehaviour
 {
-    //オブジェクト取得
-    [SerializeField] GameObject player;
-    [SerializeField] GameObject boss;
-
     //変数宣言
     private float rotY = -5.0f;  //プレイヤー回転角度
 
@@ -17,9 +13,9 @@ public class PlayerDodgeLeft : MonoBehaviour
     private Vector3 distance;   //プレイヤーとボスの距離
     void Start()
     {
-        //計算用の変数に格納
-        playerPos = player.transform.position;
-        bossPos = boss.transform.position;
+        //マネージャークラスから取得した座標を計算用の変数に格納
+        playerPos = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.position;
+        bossPos = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_enemy.position;
 
         //プレイヤーからボスまでの距離を計算
         distance = playerPos - bossPos;
