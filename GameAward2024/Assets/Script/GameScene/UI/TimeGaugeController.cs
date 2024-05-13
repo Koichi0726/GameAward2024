@@ -10,7 +10,6 @@ public class TimeGaugeController : MonoBehaviour
 
 	[SerializeField]
 	Material m_gaugeMaterial;
-	float m_gaugeValue = 1.0f;
 	GameTimer m_gameTimer;
 
     // Start is called before the first frame update
@@ -27,10 +26,10 @@ public class TimeGaugeController : MonoBehaviour
 		if (m_gaugeMaterial == null) return;
 
 		//--- ゲージの値を計算(0.0～1.0)
-		m_gaugeValue = m_gameTimer.m_remainTime / m_gameTimer.m_stageLimitTime;
-		m_gaugeValue = Mathf.Clamp(m_gaugeValue, GAUGE_MIN_VALUE, GAUGE_MAX_VALUE);
+		float gaugeValue = m_gameTimer.m_remainTime / m_gameTimer.m_stageLimitTime;
+		gaugeValue = Mathf.Clamp(gaugeValue, GAUGE_MIN_VALUE, GAUGE_MAX_VALUE);
 
 		// TODO:マジックナンバーはScriptableObjectに置き換える
-		m_gaugeMaterial.SetFloat("_GaugeValue", m_gaugeValue);
+		m_gaugeMaterial.SetFloat("_GaugeValue", gaugeValue);
 	}
 }
