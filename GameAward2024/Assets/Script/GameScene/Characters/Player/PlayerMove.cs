@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     // 目標（座標を使用）
-    [SerializeField] private Transform Enemy;      //TODO:CharacterManagerから参照出来るように変更
+    private Transform Enemy;      //TODO:CharacterManagerから参照出来るように変更
 
     // 回転軸
     [SerializeField] private Vector3 _axis = Vector3.up;
@@ -26,6 +26,8 @@ public class PlayerMove : MonoBehaviour
     {
         DashFlag = false;
         _prevPosition = transform.position;
+        Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
+        Debug.Log(Enemy);
     }
 
     // Update is called once per frame

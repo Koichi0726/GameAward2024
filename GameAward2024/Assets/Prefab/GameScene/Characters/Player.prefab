@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2236861419429183809}
   - component: {fileID: 9034247296524307885}
+  - component: {fileID: 4672860481854718524}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -95,6 +96,21 @@ MonoBehaviour:
   m_DefaultActionMap: Dodge
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &4672860481854718524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8688663220882006671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c66395ecb3e5ba4ea7f8bb9568e2a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 0}
+  _axis: {x: 0, y: 1, z: 0}
+  _period: 4
 --- !u!1001 &8195466780480463783
 PrefabInstance:
   m_ObjectHideFlags: 0
