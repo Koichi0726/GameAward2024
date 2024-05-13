@@ -6,7 +6,7 @@ namespace GameScene
 {
 	public class CharacterManager : MonoBehaviour
 	{
-		//public Player m_player;
-		//public Enemy m_enemy;
+		public Transform m_player;
+		public Transform m_enemy;
 	}
 }
