@@ -23,61 +23,61 @@ public class PlayerMove : MonoBehaviour
     // 前フレームのワールド座標
     private Vector3 _prevPosition;
 
+    //プレイヤーの情報
     Transform tr;
+
+    //プレイヤーのポジション
     Vector3 pos;
+
+    //実際に使用する円運動周期
+    float period;   
 
     void Start()
     {
+        Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
         DashFlag = false;
         _prevPosition = transform.position;
-        Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
         tr = transform;
         pos = tr.position;
+        period = 0.0f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //左右の移動がなければ終了する
+        if (period == 0.0) return;
+
         //変数宣言
-        //var tr = transform; //プレイヤーの情報
-        float period;   //実際に使用する円運動周期
         Vector3 _center = Enemy.position;   //回転の中心
         DashFlag = false;   //走っているフラグのリセット
-        //var pos = tr.position;  //プレイヤーのポジション
-
-        //TODO:InputSystemに置き換え
-        //上下の移動
-        //if (Input.GetKey(KeyCode.W))
-        //{//上
-        //    pos.y += _vertical;
-        //}
-        //else if(Input.GetKey(KeyCode.S))
-        //{//下
-        //    pos.y -= _vertical;
-        //}
-
+        
         //上下の移動量を反映
         tr.position = pos;
 
-        //左右の移動（回転移動）
-        if (Input.GetKey(KeyCode.A))
-        {//左
-            period = _period;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {//右
-            period = -_period;
-        }
-        else return;    //移動キー入力がされてなければ終了
+        ////左右の移動（回転移動）
+        //if (Input.GetKey(KeyCode.A))
+        //{//左
+        //    period = _period;
+        //}
+        //else if (Input.GetKey(KeyCode.D))
+        //{//右
+        //    period = -_period;
+        //}
+        //else return;    //移動キー入力がされてなければ終了
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            period /= 2.0f;
-            DashFlag = true;
-        }
+        //if (Input.GetKey(KeyCode.LeftShift))
+        //{
+        //    period /= 2.0f;
+        //    DashFlag = true;
+        //}
+
+        
 
         var angleAxis = Quaternion.AngleAxis(360 / period * Time.deltaTime, _axis);     //クオータニオンの計算
-       
+
+        Debug.Log(angleAxis);
+
         //移動先を算出
         pos -= _center;
         pos = angleAxis * pos;
@@ -105,8 +105,12 @@ public class PlayerMove : MonoBehaviour
             // オブジェクトの回転に反映
             tr.rotation = rotation;
         }
+
         // 次のUpdateで使うための前フレーム位置更新
         _prevPosition = pos;
+
+        //左右の移動量をリセット
+        period = 0.0f;      
     }
 
     public void OnMove()
@@ -116,7 +120,6 @@ public class PlayerMove : MonoBehaviour
 
     public void OnMoveUp()
     {
-        Debug.Log("A");
         pos.y += _vertical;
     }
 
@@ -127,17 +130,18 @@ public class PlayerMove : MonoBehaviour
 
     public void OnMoveLeft()
     {
-        Debug.Log("MoveIvent");
+        period = _period;
     }
 
     public void OnMoveRight()
     {
-        Debug.Log("MoveIvent");
+        period = -_period;
     }
 
     public void OnDash()
     {
-        Debug.Log("MoveIvent");
+        period /= 2.0f;
+        DashFlag = true;
     }
 }
 
