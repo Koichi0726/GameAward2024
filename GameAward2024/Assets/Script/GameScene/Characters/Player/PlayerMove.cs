@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -22,33 +23,38 @@ public class PlayerMove : MonoBehaviour
     // 前フレームのワールド座標
     private Vector3 _prevPosition;
 
+    Transform tr;
+    Vector3 pos;
+
     void Start()
     {
         DashFlag = false;
         _prevPosition = transform.position;
         Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
+        tr = transform;
+        pos = tr.position;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         //変数宣言
-        var tr = transform; //プレイヤーの情報
+        //var tr = transform; //プレイヤーの情報
         float period;   //実際に使用する円運動周期
         Vector3 _center = Enemy.position;   //回転の中心
         DashFlag = false;   //走っているフラグのリセット
-        var pos = tr.position;  //プレイヤーのポジション
+        //var pos = tr.position;  //プレイヤーのポジション
 
         //TODO:InputSystemに置き換え
         //上下の移動
-        if (Input.GetKey(KeyCode.W))
-        {//上
-            pos.y += _vertical;
-        }
-        else if(Input.GetKey(KeyCode.S))
-        {//下
-            pos.y -= _vertical;
-        }
+        //if (Input.GetKey(KeyCode.W))
+        //{//上
+        //    pos.y += _vertical;
+        //}
+        //else if(Input.GetKey(KeyCode.S))
+        //{//下
+        //    pos.y -= _vertical;
+        //}
 
         //上下の移動量を反映
         tr.position = pos;
@@ -104,6 +110,32 @@ public class PlayerMove : MonoBehaviour
     }
 
     public void OnMove()
+    {
+        Debug.Log("MoveIvent");
+    }
+
+    public void OnMoveUp()
+    {
+        Debug.Log("A");
+        pos.y += _vertical;
+    }
+
+    public void OnMoveDown()
+    {
+        pos.y -= _vertical;
+    }
+
+    public void OnMoveLeft()
+    {
+        Debug.Log("MoveIvent");
+    }
+
+    public void OnMoveRight()
+    {
+        Debug.Log("MoveIvent");
+    }
+
+    public void OnDash()
     {
         Debug.Log("MoveIvent");
     }

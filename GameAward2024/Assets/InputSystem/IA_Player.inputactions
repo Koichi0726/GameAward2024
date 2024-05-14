@@ -90,8 +90,8 @@
                     "id": "cf787208-2518-487a-a8d8-38ec7f643f58",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "KeyRepeat(repeatDelay=0.01,repeatInterval=0.01)",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "MoveDown",
@@ -99,7 +99,7 @@
                     "id": "b419a3ee-bd26-4758-83b4-2c73e52b59eb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "KeyRepeat",
                     "initialStateCheck": false
                 },
                 {
@@ -108,16 +108,16 @@
                     "id": "29cb5e7e-a701-4d0d-9569-8b793c65b365",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "KeyRepeat",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MoveLight",
+                    "name": "MoveRight",
                     "type": "Button",
                     "id": "10c51b60-b3f5-486d-a787-2a48e1820a14",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "KeyRepeat",
                     "initialStateCheck": false
                 }
             ],
@@ -228,7 +228,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MoveLight",
+                    "action": "MoveRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
