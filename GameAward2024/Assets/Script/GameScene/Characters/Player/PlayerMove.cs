@@ -50,21 +50,10 @@ public class PlayerMove : MonoBehaviour
 
         //変数宣言
         Vector3 _center = Enemy.position;   //回転の中心
-        DashFlag = false;   //走っているフラグのリセット
+        
         
         //上下の移動量を反映
         tr.position = pos;
-
-        ////左右の移動（回転移動）
-        //if (Input.GetKey(KeyCode.A))
-        //{//左
-        //    period = _period;
-        //}
-        //else if (Input.GetKey(KeyCode.D))
-        //{//右
-        //    period = -_period;
-        //}
-        //else return;    //移動キー入力がされてなければ終了
 
         //if (Input.GetKey(KeyCode.LeftShift))
         //{
@@ -72,11 +61,12 @@ public class PlayerMove : MonoBehaviour
         //    DashFlag = true;
         //}
 
-        
+        if(DashFlag)
+        {
+            period /= 2.0f;
+        }
 
         var angleAxis = Quaternion.AngleAxis(360 / period * Time.deltaTime, _axis);     //クオータニオンの計算
-
-        Debug.Log(angleAxis);
 
         //移動先を算出
         pos -= _center;
@@ -109,8 +99,9 @@ public class PlayerMove : MonoBehaviour
         // 次のUpdateで使うための前フレーム位置更新
         _prevPosition = pos;
 
-        //左右の移動量をリセット
-        period = 0.0f;      
+        //各変数のリセット
+        period = 0.0f;      //左右の移動量をリセット
+        DashFlag = false;   //走っているフラグのリセット
     }
 
     public void OnMove()
@@ -138,10 +129,14 @@ public class PlayerMove : MonoBehaviour
         period = -_period;
     }
 
-    public void OnDash()
+    public void OnDashStart()
     {
-        period /= 2.0f;
         DashFlag = true;
+    }
+
+    public void OnDashEnd()
+    {
+        DashFlag = false;
     }
 }
 
