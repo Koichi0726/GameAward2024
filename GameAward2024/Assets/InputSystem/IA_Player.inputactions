@@ -76,22 +76,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Dush",
-                    "type": "Button",
-                    "id": "16aa430f-e09e-4fff-8da0-d069724719b5",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "MoveUp",
                     "type": "Button",
                     "id": "cf787208-2518-487a-a8d8-38ec7f643f58",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "KeyRepeat(repeatDelay=0.01,repeatInterval=0.01)",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "MoveDown",
@@ -99,7 +90,7 @@
                     "id": "b419a3ee-bd26-4758-83b4-2c73e52b59eb",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "KeyRepeat",
                     "initialStateCheck": false
                 },
                 {
@@ -108,13 +99,31 @@
                     "id": "29cb5e7e-a701-4d0d-9569-8b793c65b365",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "KeyRepeat",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MoveLight",
+                    "name": "MoveRight",
                     "type": "Button",
                     "id": "10c51b60-b3f5-486d-a787-2a48e1820a14",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "KeyRepeat",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DashStart",
+                    "type": "Button",
+                    "id": "16aa430f-e09e-4fff-8da0-d069724719b5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DashEnd",
+                    "type": "Button",
+                    "id": "f4a231c9-fa3d-410d-b963-64d012d69857",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -122,17 +131,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "88474fdb-e6fd-4d7c-ba49-095cd2f4dc8a",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dush",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "Keyboard",
                     "id": "4b16c635-394c-4932-9b40-28843d46ce88",
@@ -228,7 +226,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MoveLight",
+                    "action": "MoveRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5a43548-3c94-41a2-ac80-54aa92444600",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DashEnd",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88474fdb-e6fd-4d7c-ba49-095cd2f4dc8a",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DashStart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
