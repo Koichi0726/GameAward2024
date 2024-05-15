@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using GameScene;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -34,7 +35,8 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
+        //Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
+        Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
         DashFlag = false;
         _prevPosition = transform.position;
         tr = transform;
