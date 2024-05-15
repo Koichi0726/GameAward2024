@@ -46,7 +46,13 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //左右の移動がなければ終了する
-        if (period == 0.0) return;
+        if (period == 0.0)
+        {
+            // 次のUpdateで使うための前フレーム位置更新
+            _prevPosition = pos;
+
+            return;
+        }
 
         //変数宣言
         Vector3 _center = Enemy.position;   //回転の中心
@@ -101,7 +107,7 @@ public class PlayerMove : MonoBehaviour
 
         //各変数のリセット
         period = 0.0f;      //左右の移動量をリセット
-        DashFlag = false;   //走っているフラグのリセット
+        //DashFlag = false;   //走っているフラグのリセット
     }
 
     public void OnMove()
@@ -112,11 +118,13 @@ public class PlayerMove : MonoBehaviour
     public void OnMoveUp()
     {
         pos.y += _vertical;
+        tr.position = pos;
     }
 
     public void OnMoveDown()
     {
         pos.y -= _vertical;
+        tr.position = pos;
     }
 
     public void OnMoveLeft()
@@ -132,11 +140,13 @@ public class PlayerMove : MonoBehaviour
     public void OnDashStart()
     {
         DashFlag = true;
+        Debug.Log("押した");
     }
 
     public void OnDashEnd()
     {
         DashFlag = false;
+        Debug.Log("離した");
     }
 }
 
