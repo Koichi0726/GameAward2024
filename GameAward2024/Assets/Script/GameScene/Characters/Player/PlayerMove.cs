@@ -35,6 +35,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
+        Debug.Log(Enemy);
         DashFlag = false;
         _prevPosition = transform.position;
         tr = transform;
@@ -46,7 +47,13 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //左右の移動がなければ終了する
-        if (period == 0.0) return;
+        if (period == 0.0)
+        {
+            // 次のUpdateで使うための前フレーム位置更新
+            _prevPosition = pos;
+
+            return;
+        }
 
         //変数宣言
         Vector3 _center = Enemy.position;   //回転の中心
@@ -112,11 +119,13 @@ public class PlayerMove : MonoBehaviour
     public void OnMoveUp()
     {
         pos.y += _vertical;
+        tr.position = pos;
     }
 
     public void OnMoveDown()
     {
         pos.y -= _vertical;
+        tr.position = pos;
     }
 
     public void OnMoveLeft()
