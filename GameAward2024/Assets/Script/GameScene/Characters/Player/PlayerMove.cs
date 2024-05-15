@@ -57,15 +57,8 @@ public class PlayerMove : MonoBehaviour
         //•Ï”éŒ¾
         Vector3 _center = Enemy.position;   //‰ñ“]‚Ì’†S
         
-        
         //ã‰º‚ÌˆÚ“®—Ê‚ğ”½‰f
         tr.position = pos;
-
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    period /= 2.0f;
-        //    DashFlag = true;
-        //}
 
         if(DashFlag)
         {
@@ -84,8 +77,6 @@ public class PlayerMove : MonoBehaviour
 
         if(!DashFlag)
         {//•à‚¢‚Ä‚¢‚é
-            //“G‚Ì•ûŒü‚ğŒü‚­
-            //tr.rotation = tr.rotation * angleAxis;
             Vector3 trans = Enemy.position; //“G‚ÌÀ•Wæ“¾
             trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y²¬•ª‚ğ–³Œø‰»
             tr.LookAt(trans);   //“G‚Ì•ûŒü‚É‰ñ“]
@@ -141,14 +132,12 @@ public class PlayerMove : MonoBehaviour
     {
         if (!context.started) return;
         DashFlag = true;
-        Debug.Log("‰Ÿ‚µ‚½");
     }
 
     public void OnDashEnd(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         DashFlag = false;
-        Debug.Log("—£‚µ‚½");
     }
 }
 
