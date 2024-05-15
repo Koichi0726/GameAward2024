@@ -5,17 +5,17 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     MeshRenderer meshRenderer;
-    public Material[] Materials1;   //•ÏX‘O‚Ìƒ}ƒeƒŠƒAƒ‹
-    public Material[] Materials2;   //•ÏXŒã‚Ìƒ}ƒeƒŠƒAƒ‹
-    public GameObject Object;       //“G‚Ì“Š±‚·‚éƒIƒuƒWƒFƒNƒgİ’è—p‚Ì•Ï”
-    public float AttackRate = 5.0f; //“G‚ÌUŒ‚ŠÔŠuİ’è—p‚Ì•Ï”
-    private bool AttackFlag = false;        //UŒ‚‚ÌƒJƒ‰[•ÏX—p‚Ìƒtƒ‰ƒO
+    public Material[] Materials1;   //å¤‰æ›´å‰ã®ãƒãƒ†ãƒªã‚¢ãƒ«
+    public Material[] Materials2;   //å¤‰æ›´å¾Œã®ãƒãƒ†ãƒªã‚¢ãƒ«
+    public GameObject Object;       //æ•µã®æŠ•æ“²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¨­å®šç”¨ã®å¤‰æ•°
+    public float AttackRate = 5.0f; //æ•µã®æ”»æ’ƒé–“éš”è¨­å®šç”¨ã®å¤‰æ•°
+    private bool AttackFlag = false;        //æ”»æ’ƒæ™‚ã®ã‚«ãƒ©ãƒ¼å¤‰æ›´ç”¨ã®ãƒ•ãƒ©ã‚°
 
     // Start is called before the first frame update
     void Start()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        //CreateObj‚ğ3.5•bŒã‚ÉŒÄ‚Ño‚µAˆÈ~‚Í AttackRate •b–ˆ‚ÉÀs
+        //CreateObjã‚’3.5ç§’å¾Œã«å‘¼ã³å‡ºã—ã€ä»¥é™ã¯ AttackRate ç§’æ¯ã«å®Ÿè¡Œ
         InvokeRepeating(nameof(CreateObj), 3.5f, AttackRate);
 
     }
@@ -28,24 +28,23 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    void CreateObj()@// “G‚Ì“Š±‚·‚éƒIƒuƒWƒFƒNƒg‚ğ¶¬‚·‚é
+    void CreateObj()ã€€// æ•µã®æŠ•æ“²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹
     {
         meshRenderer.materials = Materials2;
 
-        //Instantiate( ¶¬‚·‚éƒIƒuƒWƒFƒNƒg,  êŠ, ‰ñ“] );
-        //Œ»İ‚ÍƒGƒlƒ~[‚Ì“ªã‚É¶¬‚·‚é‚æ‚¤‚É‚µ‚Ä‚¢‚Ü‚·
+        //Instantiate( ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ,  å ´æ‰€, å›è»¢ );
+        //ç¾åœ¨ã¯ã‚¨ãƒãƒŸãƒ¼ã®é ­ä¸Šã«ç”Ÿæˆã™ã‚‹ã‚ˆã†ã«ã—ã¦ã„ã¾ã™
         //Instantiate(Object, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2, this.transform.localPosition.z), Quaternion.identity);
 
-        Debug.Log("“G‚©‚ç‚ÌUŒ‚!!");
+        Debug.Log("æ•µã‹ã‚‰ã®æ”»æ’ƒ!!");
         AttackFlag = true;
     }
 
     IEnumerator ATTACKFLAG()
     {
 
-        yield return new WaitForSeconds(1.0f);  //ˆ—‚Ì’x‰„
+        yield return new WaitForSeconds(1.0f);  //å‡¦ç†ã®é…å»¶
         meshRenderer.materials = Materials1;
         AttackFlag = false;
     }
-
 }
