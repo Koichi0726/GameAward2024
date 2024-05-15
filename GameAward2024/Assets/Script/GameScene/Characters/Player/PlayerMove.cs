@@ -137,14 +137,16 @@ public class PlayerMove : MonoBehaviour
         period = -_period;
     }
 
-    public void OnDashStart()
+    public void OnDashStart(InputAction.CallbackContext context)
     {
+        if (!context.started) return;
         DashFlag = true;
         Debug.Log("‰Ÿ‚µ‚½");
     }
 
-    public void OnDashEnd()
+    public void OnDashEnd(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         DashFlag = false;
         Debug.Log("—£‚µ‚½");
     }
