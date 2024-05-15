@@ -35,7 +35,6 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
-        Debug.Log(Enemy);
         DashFlag = false;
         _prevPosition = transform.position;
         tr = transform;
@@ -108,7 +107,7 @@ public class PlayerMove : MonoBehaviour
 
         //各変数のリセット
         period = 0.0f;      //左右の移動量をリセット
-        DashFlag = false;   //走っているフラグのリセット
+        //DashFlag = false;   //走っているフラグのリセット
     }
 
     public void OnMove()
@@ -141,11 +140,13 @@ public class PlayerMove : MonoBehaviour
     public void OnDashStart()
     {
         DashFlag = true;
+        Debug.Log("押した");
     }
 
     public void OnDashEnd()
     {
         DashFlag = false;
+        Debug.Log("離した");
     }
 }
 
