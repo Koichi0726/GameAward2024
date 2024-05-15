@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using GameScene;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -34,7 +35,8 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
+        //Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
+        Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
         DashFlag = false;
         _prevPosition = transform.position;
         tr = transform;
@@ -46,20 +48,19 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //左右の移動がなければ終了する
-        if (period == 0.0) return;
+        if (period == 0.0)
+        {
+            // 次のUpdateで使うための前フレーム位置更新
+            _prevPosition = pos;
+
+            return;
+        }
 
         //変数宣言
         Vector3 _center = Enemy.position;   //回転の中心
         
-        
         //上下の移動量を反映
         tr.position = pos;
-
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    period /= 2.0f;
-        //    DashFlag = true;
-        //}
 
         if(DashFlag)
         {
@@ -78,8 +79,6 @@ public class PlayerMove : MonoBehaviour
 
         if(!DashFlag)
         {//歩いている
-            //敵の方向を向く
-            //tr.rotation = tr.rotation * angleAxis;
             Vector3 trans = Enemy.position; //敵の座標取得
             trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
             tr.LookAt(trans);   //敵の方向に回転
@@ -101,7 +100,7 @@ public class PlayerMove : MonoBehaviour
 
         //各変数のリセット
         period = 0.0f;      //左右の移動量をリセット
-        DashFlag = false;   //走っているフラグのリセット
+        //DashFlag = false;   //走っているフラグのリセット
     }
 
     public void OnMove()
@@ -112,11 +111,13 @@ public class PlayerMove : MonoBehaviour
     public void OnMoveUp()
     {
         pos.y += _vertical;
+        tr.position = pos;
     }
 
     public void OnMoveDown()
     {
         pos.y -= _vertical;
+        tr.position = pos;
     }
 
     public void OnMoveLeft()
@@ -129,13 +130,15 @@ public class PlayerMove : MonoBehaviour
         period = -_period;
     }
 
-    public void OnDashStart()
+    public void OnDashStart(InputAction.CallbackContext context)
     {
+        if (!context.started) return;
         DashFlag = true;
     }
 
-    public void OnDashEnd()
+    public void OnDashEnd(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         DashFlag = false;
     }
 }

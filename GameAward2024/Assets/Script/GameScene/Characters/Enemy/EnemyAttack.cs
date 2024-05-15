@@ -4,44 +4,47 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public GameObject bulletPrefab; // ’e‚ÌƒvƒŒƒnƒu
-    public Transform player;        // ƒvƒŒ[ƒ„[‚ÌTransform
-    public float bulletSpeed;       // ’e‚Ì‘¬“x
-    public float shootInterval;     // ’e‚ğ”­Ë‚·‚éŠÔŠu
-    
-    private float shootTimer;
+    MeshRenderer meshRenderer;
+    public Material[] Materials1;   //å¤‰æ›´å‰ã®ãƒãƒ†ãƒªã‚¢ãƒ«
+    public Material[] Materials2;   //å¤‰æ›´å¾Œã®ãƒãƒ†ãƒªã‚¢ãƒ«
+    public GameObject Object;       //æ•µã®æŠ•æ“²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆè¨­å®šç”¨ã®å¤‰æ•°
+    public float AttackRate = 5.0f; //æ•µã®æ”»æ’ƒé–“éš”è¨­å®šç”¨ã®å¤‰æ•°
+    private bool AttackFlag = false;        //æ”»æ’ƒæ™‚ã®ã‚«ãƒ©ãƒ¼å¤‰æ›´ç”¨ã®ãƒ•ãƒ©ã‚°
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        meshRenderer = GetComponent<MeshRenderer>();
+        //CreateObjã‚’3.5ç§’å¾Œã«å‘¼ã³å‡ºã—ã€ä»¥é™ã¯ AttackRate ç§’æ¯ã«å®Ÿè¡Œ
+        InvokeRepeating(nameof(CreateObj), 3.5f, AttackRate);
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // ƒ^ƒCƒ}[XV
-        shootTimer++;
-
-        // ƒ^ƒCƒ}[‚ª”­ËŠÔŠu‚ğ‰z‚¦‚½‚ç
-        if (shootTimer >= shootInterval)
+        if (AttackFlag == true)
         {
-            // ƒ^ƒCƒ}[ƒŠƒZƒbƒg
-            shootTimer = 0.0f;
-            // ’e”­Ë
-            Shoot();
+            StartCoroutine("ATTACKFLAG");
         }
     }
 
-    void Shoot()
+    void CreateObj()ã€€// æ•µã®æŠ•æ“²ã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ç”Ÿæˆã™ã‚‹
     {
-        // ’e‚ğ¶¬
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        meshRenderer.materials = Materials2;
 
-        // ƒvƒŒ[ƒ„[‚Ö‚Ì•ûŒü‚ğŒvZ
-        Vector3 direction = (player.position - transform.position).normalized;
-        
-        // ’e‚É—Í‚ğ‰Á‚¦‚é
-        bullet.GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+        //Instantiate( ç”Ÿæˆã™ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ,  å ´æ‰€, å›è»¢ );
+        //ç¾åœ¨ã¯ã‚¨ãƒãƒŸãƒ¼ã®é ­ä¸Šã«ç”Ÿæˆã™ã‚‹ã‚ˆã†ã«ã—ã¦ã„ã¾ã™
+        //Instantiate(Object, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2, this.transform.localPosition.z), Quaternion.identity);
+
+        Debug.Log("æ•µã‹ã‚‰ã®æ”»æ’ƒ!!");
+        AttackFlag = true;
+    }
+
+    IEnumerator ATTACKFLAG()
+    {
+
+        yield return new WaitForSeconds(1.0f);  //å‡¦ç†ã®é…å»¶
+        meshRenderer.materials = Materials1;
+        AttackFlag = false;
     }
 }
