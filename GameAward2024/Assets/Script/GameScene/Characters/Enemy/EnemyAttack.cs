@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    MeshRenderer meshRenderer;
+    public Material[] Materials1;   //変更前のマテリアル
+    public Material[] Materials2;   //変更後のマテリアル
     public GameObject Object;       //敵の投擲するオブジェクト設定用の変数
     public float AttackRate = 5.0f; //敵の攻撃間隔設定用の変数
     private bool AttackFlag = false;        //攻撃時のカラー変更用のフラグ
@@ -11,10 +14,9 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        meshRenderer = GetComponent<MeshRenderer>();
         //CreateObjを3.5秒後に呼び出し、以降は AttackRate 秒毎に実行
         InvokeRepeating(nameof(CreateObj), 3.5f, AttackRate);
-
-        this.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_BaseColor", Color.white);
 
     }
 
@@ -28,10 +30,13 @@ public class EnemyAttack : MonoBehaviour
 
     void CreateObj()　// 敵の投擲するオブジェクトを生成する
     {
+        meshRenderer.materials = Materials2;
+
         //Instantiate( 生成するオブジェクト,  場所, 回転 );
         //現在はエネミーの頭上に生成するようにしています
-        //this.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_BaseColor", Color.red); //色を変える
-        Instantiate(Object, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2, this.transform.localPosition.z), Quaternion.identity);
+        //Instantiate(Object, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2, this.transform.localPosition.z), Quaternion.identity);
+
+        Debug.Log("敵からの攻撃!!");
         AttackFlag = true;
     }
 
@@ -39,7 +44,7 @@ public class EnemyAttack : MonoBehaviour
     {
 
         yield return new WaitForSeconds(1.0f);  //処理の遅延
-        //this.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_BaseColor", Color.white);   //色を元に戻す
+        meshRenderer.materials = Materials1;
         AttackFlag = false;
     }
 
