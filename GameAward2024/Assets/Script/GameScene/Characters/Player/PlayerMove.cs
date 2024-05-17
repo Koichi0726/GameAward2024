@@ -76,6 +76,7 @@ public class PlayerMove : MonoBehaviour
         //算出した結果を反映
         tr.position = pos;
 
+        //プレイヤーの体の向きを行動に合わせて調整
         if(!DashFlag)
         {//歩いている
             Vector3 trans = Enemy.position; //敵の座標取得
@@ -101,11 +102,14 @@ public class PlayerMove : MonoBehaviour
         period = 0.0f;      //左右の移動量をリセット
     }
 
-    public void OnMove()
-    {
-        Debug.Log("MoveIvent");
-    }
+    //public void OnMove()
+    //{
+    //    Debug.Log("MoveIvent");
+    //}
 
+    /// <summary>
+    /// 上入力したときの処理関数
+    /// </summary>
     public void OnMoveUp()
     {
         pos.y += _vertical;
@@ -113,6 +117,9 @@ public class PlayerMove : MonoBehaviour
         ActionEntry();
     }
 
+    /// <summary>
+    /// 下入力したときの処理関数
+    /// </summary>
     public void OnMoveDown()
     {
         pos.y -= _vertical;
@@ -120,30 +127,45 @@ public class PlayerMove : MonoBehaviour
         ActionEntry();
     }
 
+    /// <summary>
+    /// 左入力したときの処理関数
+    /// </summary>
     public void OnMoveLeft()
     {
         period = _period;
         ActionEntry();
     }
 
+    /// <summary>
+    /// 右入力したときの処理関数
+    /// </summary>
     public void OnMoveRight()
     {
         period = -_period;
         ActionEntry();
     }
 
+    /// <summary>
+    /// 走り始めた時の処理関数
+    /// </summary>
     public void OnDashStart(InputAction.CallbackContext context)
     {
         if (!context.started) return;
         DashFlag = true;
     }
 
+    /// <summary>
+    /// 走り終わった時の処理関数
+    /// </summary>
     public void OnDashEnd(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         DashFlag = false;
     }
 
+    /// <summary>
+    /// 移動方法に応じてアクションを登録する関数
+    /// </summary>
     private void ActionEntry()
     {
         if(!DashFlag)
