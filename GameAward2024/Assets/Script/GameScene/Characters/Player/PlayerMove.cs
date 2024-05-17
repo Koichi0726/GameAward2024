@@ -15,6 +15,9 @@ public class PlayerMove : MonoBehaviour
     // Šî‘b‰~‰^“®ŽüŠú
     [SerializeField] private float _period = 4;
 
+    //ã‰º‚Ì§ŒÀix:max y:minj
+    [SerializeField] private Vector2 VerticalRemit;
+
     // ã‰º‚ÌˆÚ“®—Ê
     private float _vertical = 0.1f;
 
@@ -31,7 +34,7 @@ public class PlayerMove : MonoBehaviour
     Vector3 pos;
 
     //ŽÀÛ‚ÉŽg—p‚·‚é‰~‰^“®ŽüŠú
-    float period;   
+    float period;
 
     void Start()
     {
@@ -113,6 +116,7 @@ public class PlayerMove : MonoBehaviour
     public void OnMoveUp()
     {
         pos.y += _vertical;
+        if (pos.y > VerticalRemit.x) pos.y = VerticalRemit.x;
         tr.position = pos;
         ActionEntry();
     }
@@ -123,6 +127,7 @@ public class PlayerMove : MonoBehaviour
     public void OnMoveDown()
     {
         pos.y -= _vertical;
+        if (pos.y < VerticalRemit.y) pos.y = VerticalRemit.y;
         tr.position = pos;
         ActionEntry();
     }
