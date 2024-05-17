@@ -6,7 +6,9 @@ namespace GameScene
 {
 	public class UIManager : MonoBehaviour
 	{
-		public PlayerGaugeController m_playerGaugeController;
-		public TimeGaugeController m_timeGaugeController;
+		[field: SerializeField]
+		public PlayerGaugeController m_playerGaugeController { get; private set; }
+		[field: SerializeField]
+		public TimeGaugeController m_timeGaugeController { get; private set; }
 	}
 }

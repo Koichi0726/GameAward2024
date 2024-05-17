@@ -6,7 +6,9 @@ namespace GameScene
 {
 	public class CharacterManager : MonoBehaviour
 	{
-		public Transform m_player;
-		public Transform m_enemy;
+		[field: SerializeField]
+		public Transform m_player { get; private set; }
+		[field: SerializeField]
+		public Transform m_enemy { get; private set; }
 	}
 }

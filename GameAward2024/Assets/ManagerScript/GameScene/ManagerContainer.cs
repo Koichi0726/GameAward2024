@@ -8,11 +8,18 @@ namespace GameScene
 	{
 		static ManagerContainer m_managerContainer;
 
-		public GameScene.GameManager m_gameManager;
-		public GameScene.UIManager m_uiManager;
-		public GameScene.StudioObjectManager m_studioObjectManager;
-		public GameScene.CharacterManager m_characterManager;
-		public GameScene.BackgroundManager m_backgroundManager;
+		[field: SerializeField]
+		public GameScene.GameManager m_gameManager { get; private set; }
+		[field: SerializeField]
+		public GameScene.StudioObjectManager m_studioObjectManager { get; private set; }
+		[field: SerializeField]
+		public GameScene.CharacterManager m_characterManager { get; private set; }
+		[field: SerializeField]
+		public BulletManager m_bulletManger { get; private set; }
+		[field: SerializeField]
+		public GameScene.BackgroundManager m_backgroundManager { get; private set; }
+		[field: SerializeField]
+		public GameScene.UIManager m_uiManager { get; private set; }
 
 		private void Awake()
 		{
