@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using GameScene;
 
 public class PlayerMove : MonoBehaviour
 {
     // 目標（座標を使用）
-    private Transform Enemy;      //TODO:CharacterManagerから参照出来るように変更
+    private Transform Enemy;
 
     // 回転軸
     [SerializeField] private Vector3 _axis = Vector3.up;
@@ -34,7 +35,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
+        Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
         DashFlag = false;
         _prevPosition = transform.position;
         tr = transform;
@@ -46,20 +47,19 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //左右の移動がなければ終了する
-        if (period == 0.0) return;
+        if (period == 0.0)
+        {
+            // 次のUpdateで使うための前フレーム位置更新
+            _prevPosition = pos;
+
+            return;
+        }
 
         //変数宣言
         Vector3 _center = Enemy.position;   //回転の中心
         
-        
         //上下の移動量を反映
         tr.position = pos;
-
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //    period /= 2.0f;
-        //    DashFlag = true;
-        //}
 
         if(DashFlag)
         {
@@ -76,10 +76,9 @@ public class PlayerMove : MonoBehaviour
         //算出した結果を反映
         tr.position = pos;
 
+        //プレイヤーの体の向きを行動に合わせて調整
         if(!DashFlag)
         {//歩いている
-            //敵の方向を向く
-            //tr.rotation = tr.rotation * angleAxis;
             Vector3 trans = Enemy.position; //敵の座標取得
             trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
             tr.LookAt(trans);   //敵の方向に回転
@@ -101,42 +100,82 @@ public class PlayerMove : MonoBehaviour
 
         //各変数のリセット
         period = 0.0f;      //左右の移動量をリセット
-        DashFlag = false;   //走っているフラグのリセット
     }
 
-    public void OnMove()
-    {
-        Debug.Log("MoveIvent");
-    }
+    //public void OnMove()
+    //{
+    //    Debug.Log("MoveIvent");
+    //}
 
+    /// <summary>
+    /// 上入力したときの処理関数
+    /// </summary>
     public void OnMoveUp()
     {
         pos.y += _vertical;
+        tr.position = pos;
+        ActionEntry();
     }
 
+    /// <summary>
+    /// 下入力したときの処理関数
+    /// </summary>
     public void OnMoveDown()
     {
         pos.y -= _vertical;
+        tr.position = pos;
+        ActionEntry();
     }
 
+    /// <summary>
+    /// 左入力したときの処理関数
+    /// </summary>
     public void OnMoveLeft()
     {
         period = _period;
+        ActionEntry();
     }
 
+    /// <summary>
+    /// 右入力したときの処理関数
+    /// </summary>
     public void OnMoveRight()
     {
         period = -_period;
+        ActionEntry();
     }
 
-    public void OnDashStart()
+    /// <summary>
+    /// 走り始めた時の処理関数
+    /// </summary>
+    public void OnDashStart(InputAction.CallbackContext context)
     {
+        if (!context.started) return;
         DashFlag = true;
     }
 
-    public void OnDashEnd()
+    /// <summary>
+    /// 走り終わった時の処理関数
+    /// </summary>
+    public void OnDashEnd(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
         DashFlag = false;
+    }
+
+    /// <summary>
+    /// 移動方法に応じてアクションを登録する関数
+    /// </summary>
+    private void ActionEntry()
+    {
+        if(!DashFlag)
+        {
+            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_MOVE);
+        }
+        else
+        {
+            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_DASH);
+        }
     }
 }
 
