@@ -16,12 +16,13 @@ public class EnemyAttack : MonoBehaviour
     {
         meshRenderer = GetComponent<MeshRenderer>();
         //CreateObjを3.5秒後に呼び出し、以降は AttackRate 秒毎に実行
-        InvokeRepeating(nameof(CreateObj), 3.5f, AttackRate);
 
+        InvokeRepeating(nameof(CreateObj), 3.5f, AttackRate);
     }
 
     void Update()
     {
+        //�A�^�b�N�t���O��true�ɂȂ�����}�e���A���̃J���[��ύX���邽�߂̃R���[�`�����N������
         if (AttackFlag == true)
         {
             StartCoroutine("ATTACKFLAG");
