@@ -54,10 +54,12 @@ public class FadeController : MonoBehaviour
 
 	public void FadeSceneLoad(string sceneName)
 	{
-		StartCoroutine(Fade(sceneName));
+		// フェード中は処理しない
+		if (m_fadeState != E_FADE_STATE.NONE) return;
+		StartCoroutine(Fade(sceneName));	// フェード処理を実行
 	}
 
-	public IEnumerator Fade(string sceneName)
+	IEnumerator Fade(string sceneName)
 	{
 		m_fadeState = E_FADE_STATE.FADE_OUT;	// 状態をフェードアウト中に変更
 		m_fadePlane.enabled = true;  // パネルを有効化
