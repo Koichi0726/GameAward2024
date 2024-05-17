@@ -112,22 +112,26 @@ public class PlayerMove : MonoBehaviour
     {
         pos.y += _vertical;
         tr.position = pos;
+        ActionEntry();
     }
 
     public void OnMoveDown()
     {
         pos.y -= _vertical;
         tr.position = pos;
+        ActionEntry();
     }
 
     public void OnMoveLeft()
     {
         period = _period;
+        ActionEntry();
     }
 
     public void OnMoveRight()
     {
         period = -_period;
+        ActionEntry();
     }
 
     public void OnDashStart(InputAction.CallbackContext context)
@@ -140,6 +144,18 @@ public class PlayerMove : MonoBehaviour
     {
         if (!context.performed) return;
         DashFlag = false;
+    }
+
+    private void ActionEntry()
+    {
+        if(!DashFlag)
+        {
+            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_MOVE);
+        }
+        else
+        {
+            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_DASH);
+        }
     }
 }
 
