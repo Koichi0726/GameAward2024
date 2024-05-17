@@ -7,7 +7,7 @@ using GameScene;
 public class PlayerMove : MonoBehaviour
 {
     // 目標（座標を使用）
-    private Transform Enemy;      //TODO:CharacterManagerから参照出来るように変更
+    private Transform Enemy;
 
     // 回転軸
     [SerializeField] private Vector3 _axis = Vector3.up;
@@ -35,7 +35,6 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        //Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
         Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
         DashFlag = false;
         _prevPosition = transform.position;
@@ -100,7 +99,6 @@ public class PlayerMove : MonoBehaviour
 
         //各変数のリセット
         period = 0.0f;      //左右の移動量をリセット
-        //DashFlag = false;   //走っているフラグのリセット
     }
 
     public void OnMove()
