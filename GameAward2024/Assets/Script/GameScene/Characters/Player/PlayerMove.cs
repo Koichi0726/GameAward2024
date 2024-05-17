@@ -76,6 +76,7 @@ public class PlayerMove : MonoBehaviour
         //算出した結果を反映
         tr.position = pos;
 
+        //プレイヤーの体の向きを行動に合わせて調整
         if(!DashFlag)
         {//歩いている
             Vector3 trans = Enemy.position; //敵の座標取得
