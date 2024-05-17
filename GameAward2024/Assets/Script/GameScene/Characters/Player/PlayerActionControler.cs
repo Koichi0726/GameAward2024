@@ -35,7 +35,6 @@ public class PlayerActionControler : MonoBehaviour
     {
         if (m_actionList.Count == 0)
         {
-            Debug.Log("Ž~‚Ü‚Á‚Ä‚é");
             m_actionValue += DONTMOVE_VALUE;
         }
         else
@@ -45,15 +44,12 @@ public class PlayerActionControler : MonoBehaviour
                 switch (m_actionList[0])
                 {
                     case E_PLAYER_ACTION.E_MOVE:
-                        Debug.Log("“®‚¢‚Ä‚¢‚é");
                         m_actionValue += MOVE_VALUE;
                         break;
                     case E_PLAYER_ACTION.E_DASH:
-                        Debug.Log("‘–‚Á‚Ä‚¢‚é");
                         m_actionValue += DASH_VALUE;
                         break;
                     case E_PLAYER_ACTION.E_AVOID:
-                        Debug.Log("‰ñ”ð");
                         m_actionValue += AVOID_VALUE;
                         break;
                     default:
