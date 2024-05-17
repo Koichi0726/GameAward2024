@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerActionControler : MonoBehaviour
 {
+    //プレイヤーアクションの列挙型
     public enum E_PLAYER_ACTION
     {
-        E_MOVE = 0,
-        E_DASH,
-        E_AVOID,
-        E_MAX,
+        E_MOVE = 0,     //移動
+        E_DASH,         //走る
+        E_AVOID,        //回避
+        E_MAX,          
     }
 
-    const float DONTMOVE_VALUE = -0.3f;
-    const float MOVE_VALUE = 0.1f;
-    const float DASH_VALUE = 0.2f;
-    const float AVOID_VALUE = 0.5f;
+    //ゲージの値を変化させる定数
+    const float STOP_VALUE = -0.3f;     //停止
+    const float MOVE_VALUE = 0.1f;      //移動
+    const float DASH_VALUE = 0.2f;      //走る
+    const float AVOID_VALUE = 0.5f;     //回避
+
+    //ゲーム開始時のゲージの数値の定数
+    const float START_VALUE = 60.0f;
 
     //プレイヤーがなんの動作をしたかを保存するリスト
     static List<E_PLAYER_ACTION> m_actionList;
@@ -26,39 +31,43 @@ public class PlayerActionControler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_actionList = new List<E_PLAYER_ACTION>();
-        m_actionValue = 60;
+        //各種変数初期化
+        m_actionList = new List<E_PLAYER_ACTION>();     //リストの生成
+        m_actionValue = START_VALUE;     //ゲージの数値初期化
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         if (m_actionList.Count == 0)
-        {
-            m_actionValue += DONTMOVE_VALUE;
+        {//フレーム間でアクションを起こしていない ＝ 停止している
+            m_actionValue += STOP_VALUE;        //停止している時
         }
         else
-        {
+        {//フレーム間でアクションを起こしている
             while(m_actionList.Count != 0)
             {
+                //登録されているアクションに応じる数値を追加
                 switch (m_actionList[0])
                 {
-                    case E_PLAYER_ACTION.E_MOVE:
+                    case E_PLAYER_ACTION.E_MOVE:    //移動している時
                         m_actionValue += MOVE_VALUE;
                         break;
-                    case E_PLAYER_ACTION.E_DASH:
+                    case E_PLAYER_ACTION.E_DASH:    //ダッシュしている時
                         m_actionValue += DASH_VALUE;
                         break;
-                    case E_PLAYER_ACTION.E_AVOID:
+                    case E_PLAYER_ACTION.E_AVOID:   //回避している時
                         m_actionValue += AVOID_VALUE;
                         break;
                     default:
                         break;
                 }
+                //処理済みのアクションを削除
                 m_actionList.RemoveAt(0);
             }
         }
 
+        //数値を超えたり下回った時の補正処理
         if(m_actionValue < 0.0f)
         {
             m_actionValue = 0.0f;
@@ -69,11 +78,18 @@ public class PlayerActionControler : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// プレイヤーの起こしたアクションを登録する関数
+    /// </summary>
+    /// <param name="act"> 起こしたアクションの種類 </param>
     public static void AddAction(E_PLAYER_ACTION act)
     {
         m_actionList.Add(act);
     }
 
+    /// <summary>
+    /// 数値取得用のプロパティ
+    /// </summary>
     public static float ActionValue
     {
         get { return m_actionValue; }  //取得用
