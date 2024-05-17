@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8741057104515922957}
   - component: {fileID: 4837990995388737876}
   - component: {fileID: 6586728243262986242}
-  - component: {fileID: 5087987288525837339}
   m_Layer: 0
   m_Name: TimeGauge
   m_TagString: Untagged
@@ -91,15 +90,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gaugeMaterial: {fileID: 2100000, guid: 976c32d9e4991bb458b6905e7172f1f8, type: 2}
---- !u!114 &5087987288525837339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3820726038010619536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d244268c340fbdb46a428a0efe414407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
