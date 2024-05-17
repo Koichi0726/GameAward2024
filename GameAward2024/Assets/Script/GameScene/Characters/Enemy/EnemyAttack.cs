@@ -5,8 +5,9 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] MeshRenderer m_meshRenderer;
-    [Header("デバックで中身を確認する用なので空で大丈夫です"),SerializeField] Material[] m_Materials1;   //変更前のマテリアル
-    [Space(10),SerializeField] Material[] m_Materials2;   //変更後のマテリアル
+    [Header("デバックで中身を確認する用なので空で大丈夫です")]
+    [SerializeField] Material[] m_Materials1;   //変更前のマテリアル
+    [Space(30),SerializeField] Material[] m_Materials2;   //変更後のマテリアル
     [SerializeField] GameObject m_Object;       //敵の投擲するオブジェクト設定用の変数
     [SerializeField] float m_AttackRate = 5.0f; //敵の攻撃間隔設定用の変数
     private bool m_AttackFlag = false;        //攻撃時のカラー変更用のフラグ
@@ -35,7 +36,7 @@ public class EnemyAttack : MonoBehaviour
 
         //Instantiate( 生成するオブジェクト,  場所, 回転 );
         //現在はエネミーの頭上に生成するようにしています
-        //Instantiate(Object, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 2, this.transform.localPosition.z), Quaternion.identity);
+        Instantiate(m_Object, new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + 6, this.transform.localPosition.z), Quaternion.identity);
 
         Debug.Log("敵からの攻撃!!");
         m_AttackFlag = true;
