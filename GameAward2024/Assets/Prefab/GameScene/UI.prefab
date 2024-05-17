@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7afe03db378e64983bd7a740c5182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerGaugeController: {fileID: 222131686034606334}
-  m_timeGaugeController: {fileID: 3222851748382026438}
+  <m_playerGaugeController>k__BackingField: {fileID: 222131686034606334}
+  <m_timeGaugeController>k__BackingField: {fileID: 3222851748382026438}
 --- !u!1001 &3734410809871626228
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -296,10 +296,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c086e11256bcfc644bbfaec8268ba6db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_mainCamera: {fileID: 1713206875255810310}
-  m_directionLight: {fileID: 1713206874964571887}
-  m_volume: {fileID: 5496634547659323660}
-  m_gameTimer: {fileID: 1842488188164348310}
+  <m_mainCamera>k__BackingField: {fileID: 1713206875255810310}
+  <m_directionLight>k__BackingField: {fileID: 1713206874964571887}
+  <m_volume>k__BackingField: {fileID: 5496634547659323660}
+  <m_gameTimer>k__BackingField: {fileID: 1842488188164348310}
 --- !u!1 &8477073982815449793
 GameObject:
   m_ObjectHideFlags: 0
