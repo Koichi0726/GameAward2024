@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1614344317719092821}
   - component: {fileID: 483715366959147356}
   - component: {fileID: -6136604418084445190}
-  - component: {fileID: -1808586674810741754}
+  - component: {fileID: 2328010291997373508}
   m_Layer: 0
   m_Name: Enemybullet
   m_TagString: Untagged
@@ -94,8 +94,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8005834901349947289}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-1808586674810741754
+--- !u!114 &2328010291997373508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8005834901349947289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e71c3a5d78083f4e94abca32a863057, type: 3}
+  m_Script: {fileID: 11500000, guid: cf63acb37c13f6443970552ec38ba78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deleteTime: 1
+  m_bulletSpeed: 10
+  m_trackTimer: 300

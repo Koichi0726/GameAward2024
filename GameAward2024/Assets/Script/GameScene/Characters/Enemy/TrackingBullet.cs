@@ -5,15 +5,18 @@ using GameScene;
 
 public class TrackingBullet : MonoBehaviour
 { 
-    public float bulletSpeed;  // 弾の速度
-    public float trackTimer;   // 追尾の制限時間
-    private Vector3 direction; // 弾の方向
-
-    Transform m_playerTrans;   // プレイヤーの位置
+    public float m_bulletSpeed;       // 弾の速度
+    public float m_trackTimer;        // 追尾の制限時間
+    private Vector3 m_direction;      // 弾の方向
+    private GameObject m_playerObj;   // プレイヤーのゲームオブジェクト
+    private Transform m_playerTrans;  // プレイヤーの位置
 
     // Start is called before the first frame update
     void Start()
     {
+        // プレイヤーのゲームオブジェクトを取得
+        m_playerObj = GameObject.Find("Player");
+
         //プレイヤーのトランスフォーム取得
         CharacterManager characterManager = 
             ManagerContainer.GetManagerContainer().m_characterManager;
@@ -27,14 +30,23 @@ public class TrackingBullet : MonoBehaviour
         Vector3 playerPos = m_playerTrans.position;
 
         // 追尾タイマーを進める
-        trackTimer--;
+        m_trackTimer--;
 
-        if(trackTimer >= 0)
+        if(m_trackTimer >= 0)
         {// プレイヤーへの方向を計算
-            direction = (playerPos - transform.position).normalized;
+            m_direction = (playerPos - transform.position).normalized;
         }
 
         // 弾に力を加える
-        GetComponent<Rigidbody>().velocity = direction * bulletSpeed;
+        GetComponent<Rigidbody>().velocity = m_direction * m_bulletSpeed;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject == m_playerObj)
+        {
+            // プレイヤーに当たったら弾を削除する
+            Destroy(gameObject);
+        }
     }
 }
