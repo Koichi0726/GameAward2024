@@ -4,27 +4,26 @@ using UnityEngine;
 
 public class PlayerGaugeController : MonoBehaviour
 {
-	[SerializeField]
-	Material m_gaugeMaterial;
-	float m_gaugeValue = 1.0f;
-	// Player m_player
+	[SerializeField] Material m_gaugeMaterial;	//ゲージのマテリアル
+	float m_gaugeValue = 0.4f;	//マテリアルに設定する数値
 
     // Start is called before the first frame update
     void Start()
     {
-		// m_player = ManagerContainer.CharacterManager.m_player;
-		//GameScene.ManagerContainer.GetManagerContainer().m_gameManager;
-    }
+		//初期化
+		m_gaugeValue = PlayerActionControler.ActionValue / 100.0f;
+	}
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-		// if(m_player == null) return;
+		//マテリアルが設定されていなかった時終了する
 		if (m_gaugeMaterial == null) return;
 
-		// m_gaugeValue = m_player.m_overheatValue / PlayerSetting.MAX_OVERHEAT_VALUE;
+		//設定する数値を取得して計算
+		m_gaugeValue = PlayerActionControler.ActionValue / 100.0f;
 
-		// TODO:マジックナンバーはScriptableObjectに置き換える
+		//マテリアルに適応
 		m_gaugeMaterial.SetFloat("_GaugeValue", m_gaugeValue);
 	}
 }

@@ -7,13 +7,16 @@ using GameScene;
 public class PlayerMove : MonoBehaviour
 {
     // 目標（座標を使用）
-    private Transform Enemy;      //TODO:CharacterManagerから参照出来るように変更
+    private Transform Enemy;
 
     // 回転軸
     [SerializeField] private Vector3 _axis = Vector3.up;
 
     // 基礎円運動周期
     [SerializeField] private float _period = 4;
+
+    //上下の制限（x:max y:min）
+    [SerializeField] private Vector2 VerticalRemit;
 
     // 上下の移動量
     private float _vertical = 0.1f;
@@ -31,11 +34,10 @@ public class PlayerMove : MonoBehaviour
     Vector3 pos;
 
     //実際に使用する円運動周期
-    float period;   
+    float period;
 
     void Start()
     {
-        //Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
         Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
         DashFlag = false;
         _prevPosition = transform.position;
@@ -77,6 +79,7 @@ public class PlayerMove : MonoBehaviour
         //算出した結果を反映
         tr.position = pos;
 
+        //プレイヤーの体の向きを行動に合わせて調整
         if(!DashFlag)
         {//歩いている
             Vector3 trans = Enemy.position; //敵の座標取得
@@ -100,46 +103,84 @@ public class PlayerMove : MonoBehaviour
 
         //各変数のリセット
         period = 0.0f;      //左右の移動量をリセット
-        //DashFlag = false;   //走っているフラグのリセット
     }
 
-    public void OnMove()
-    {
-        Debug.Log("MoveIvent");
-    }
+    //public void OnMove()
+    //{
+    //    Debug.Log("MoveIvent");
+    //}
 
+    /// <summary>
+    /// 上入力したときの処理関数
+    /// </summary>
     public void OnMoveUp()
     {
         pos.y += _vertical;
+        if (pos.y > VerticalRemit.x) pos.y = VerticalRemit.x;
         tr.position = pos;
+        ActionEntry();
     }
 
+    /// <summary>
+    /// 下入力したときの処理関数
+    /// </summary>
     public void OnMoveDown()
     {
         pos.y -= _vertical;
+        if (pos.y < VerticalRemit.y) pos.y = VerticalRemit.y;
         tr.position = pos;
+        ActionEntry();
     }
 
+    /// <summary>
+    /// 左入力したときの処理関数
+    /// </summary>
     public void OnMoveLeft()
     {
         period = _period;
+        ActionEntry();
     }
 
+    /// <summary>
+    /// 右入力したときの処理関数
+    /// </summary>
     public void OnMoveRight()
     {
         period = -_period;
+        ActionEntry();
     }
 
+    /// <summary>
+    /// 走り始めた時の処理関数
+    /// </summary>
     public void OnDashStart(InputAction.CallbackContext context)
     {
         if (!context.started) return;
         DashFlag = true;
     }
 
+    /// <summary>
+    /// 走り終わった時の処理関数
+    /// </summary>
     public void OnDashEnd(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         DashFlag = false;
+    }
+
+    /// <summary>
+    /// 移動方法に応じてアクションを登録する関数
+    /// </summary>
+    private void ActionEntry()
+    {
+        if(!DashFlag)
+        {
+            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_MOVE);
+        }
+        else
+        {
+            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_DASH);
+        }
     }
 }
 

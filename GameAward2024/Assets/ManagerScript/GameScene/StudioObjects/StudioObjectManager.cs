@@ -10,5 +10,6 @@ namespace GameScene
 		public Camera m_mainCamera;
 		public Light m_directionLight;
 		public Volume m_volume;
+        public GameTimer m_gameTimer;
 	}
 }
