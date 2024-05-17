@@ -7,7 +7,7 @@ using GameScene;
 public class PlayerMove : MonoBehaviour
 {
     // 目標（座標を使用）
-    private Transform Enemy;      //TODO:CharacterManagerから参照出来るように変更
+    private Transform Enemy;
 
     // 回転軸
     [SerializeField] private Vector3 _axis = Vector3.up;
@@ -35,7 +35,6 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        //Enemy = GameObject.Find("Enemy").transform;        //TODO:CharacterManagerから参照出来るように変更
         Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
         DashFlag = false;
         _prevPosition = transform.position;
@@ -100,7 +99,6 @@ public class PlayerMove : MonoBehaviour
 
         //各変数のリセット
         period = 0.0f;      //左右の移動量をリセット
-        //DashFlag = false;   //走っているフラグのリセット
     }
 
     public void OnMove()
@@ -112,22 +110,26 @@ public class PlayerMove : MonoBehaviour
     {
         pos.y += _vertical;
         tr.position = pos;
+        ActionEntry();
     }
 
     public void OnMoveDown()
     {
         pos.y -= _vertical;
         tr.position = pos;
+        ActionEntry();
     }
 
     public void OnMoveLeft()
     {
         period = _period;
+        ActionEntry();
     }
 
     public void OnMoveRight()
     {
         period = -_period;
+        ActionEntry();
     }
 
     public void OnDashStart(InputAction.CallbackContext context)
@@ -140,6 +142,18 @@ public class PlayerMove : MonoBehaviour
     {
         if (!context.performed) return;
         DashFlag = false;
+    }
+
+    private void ActionEntry()
+    {
+        if(!DashFlag)
+        {
+            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_MOVE);
+        }
+        else
+        {
+            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_DASH);
+        }
     }
 }
 
