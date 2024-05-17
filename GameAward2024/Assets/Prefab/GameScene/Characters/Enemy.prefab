@@ -54,7 +54,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 623c1fb000aaf60479c71d6f32d1c314, type: 2}
   - {fileID: 2100000, guid: 623c1fb000aaf60479c71d6f32d1c314, type: 2}
   - {fileID: 2100000, guid: 623c1fb000aaf60479c71d6f32d1c314, type: 2}
-  m_Object: {fileID: 0}
+  m_Object: {fileID: 8005834901349947289, guid: 23a169dda33322b488c3aa622f2993ef, type: 3}
   m_AttackRate: 5
 --- !u!1001 &7696700696099009442
 PrefabInstance:
