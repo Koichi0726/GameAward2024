@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    MeshRenderer meshRenderer;
+    public MeshRenderer meshRenderer;   //変更したいオブジェクトのメッシュレンダラーを設定
     public Material[] Materials1;   //変更前のマテリアル
     public Material[] Materials2;   //変更後のマテリアル
     public GameObject Object;       //敵の投擲するオブジェクト設定用の変数
@@ -14,7 +14,7 @@ public class EnemyAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        //meshRenderer = GetComponent<MeshRenderer>();
         //CreateObjを3.5秒後に呼び出し、以降は AttackRate 秒毎に実行
         InvokeRepeating(nameof(CreateObj), 3.5f, AttackRate);
 
@@ -22,6 +22,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
+        //アタックフラグがtrueになったらマテリアルのカラーを変更するためのコルーチンを起動する
         if (AttackFlag == true)
         {
             StartCoroutine("ATTACKFLAG");
