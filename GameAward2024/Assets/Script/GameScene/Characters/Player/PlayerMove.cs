@@ -6,6 +6,10 @@ using GameScene;
 
 public class PlayerMove : MonoBehaviour
 {
+    //移動速度に関する定数
+    const float VERTICAL_MOVE = 0.1f;       //縦
+    const float HORIZONTAL_MOVE = 4.0f;     //横
+
     // 目標（座標を使用）
     private Transform Enemy;
 
@@ -13,13 +17,16 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Vector3 _axis = Vector3.up;
 
     // 基礎円運動周期
-    [SerializeField] private float _period = 4;
+    [SerializeField] private float _period = HORIZONTAL_MOVE;
+
+    //上下の制限（x:max y:min）
+    [SerializeField] private Vector2 VerticalRemit;
 
     //上下の制限（x:max y:min）
     [SerializeField] private Vector2 VerticalRemit;
 
     // 上下の移動量
-    private float _vertical = 0.1f;
+    private float _vertical = VERTICAL_MOVE;
 
     // 走るフラグ
     private bool DashFlag;
