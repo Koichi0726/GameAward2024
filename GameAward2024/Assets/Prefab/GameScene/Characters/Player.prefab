@@ -14,10 +14,7 @@ GameObject:
   - component: {fileID: 9200249838690360756}
   - component: {fileID: 2585755761997713951}
   - component: {fileID: 331981336549660700}
-  - component: {fileID: 940841556754779659}
-  - component: {fileID: 3620553602502878493}
-  - component: {fileID: 6833489334789228703}
-  - component: {fileID: 8944256190457653769}
+  - component: {fileID: 8616653918852192}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -93,10 +90,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: eda1a122-f2dd-4e72-9271-494b62064c70
-    m_ActionName: Dodge/L+D[/Keyboard/l,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 88c3d8c7-d1d4-436a-9128-91efdfe96cd3
@@ -197,6 +190,70 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f4a231c9-fa3d-410d-b963-64d012d69857
     m_ActionName: Player/DashEnd[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8616653918852192}
+        m_TargetAssemblyTypeName: PlayerDodge, Assembly-CSharp
+        m_MethodName: DodgeRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 75d83220-f4db-4ff0-a1e5-d9fce9b82ab1
+    m_ActionName: Player/DodgeRight[/Keyboard/l,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8616653918852192}
+        m_TargetAssemblyTypeName: PlayerDodge, Assembly-CSharp
+        m_MethodName: DodgeLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4f067f88-780e-4262-a844-34836afc1445
+    m_ActionName: Player/DodgeLeft
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8616653918852192}
+        m_TargetAssemblyTypeName: PlayerDodge, Assembly-CSharp
+        m_MethodName: DodgeFront
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d17db404-ca48-4d6b-9568-1b6c1e2787d5
+    m_ActionName: Player/DodgeFront
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8616653918852192}
+        m_TargetAssemblyTypeName: PlayerDodge, Assembly-CSharp
+        m_MethodName: DodgeBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 387f053c-15f9-427b-9ad5-90d2c56bed3d
+    m_ActionName: Player/DodgeBack
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -231,52 +288,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &940841556754779659
+--- !u!114 &8616653918852192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8688663220882006671}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b3c677b79249147a8c22fb427782b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3620553602502878493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8688663220882006671}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc8b55fa8b7e28243944bf1b556e6cd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6833489334789228703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8688663220882006671}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05acfaa6c4e53fe4b9cc804cc5706721, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8944256190457653769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8688663220882006671}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c11ff454cf2ff2d449858cc78a2692eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3403449027294676149

@@ -2,67 +2,6 @@
     "name": "IA_Player",
     "maps": [
         {
-            "name": "Dodge_LD",
-            "id": "520e61ab-4b40-4d26-a25b-9dc1ab3c0ef3",
-            "actions": [
-                {
-                    "name": "L+D",
-                    "type": "Button",
-                    "id": "eda1a122-f2dd-4e72-9271-494b62064c70",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "cbaef005-4116-4450-81dd-18932ca84bc3",
-                    "path": "<Keyboard>/l",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "L+D",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "751afa4e-bf74-4a66-bf3b-0c0b03c14b04",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "L+D",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "9a816113-e2d1-4586-8135-2de53a5246bb",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "L+D",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "20fdffbe-a762-4da9-b283-91cf8ad18712",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "L+D",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                }
-            ]
-        },
-        {
             "name": "Player",
             "id": "c82b127a-4eb2-49a4-8cb3-ee00041a6274",
             "actions": [
@@ -127,6 +66,42 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DodgeRight",
+                    "type": "Value",
+                    "id": "75d83220-f4db-4ff0-a1e5-d9fce9b82ab1",
+                    "expectedControlType": "Double",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "DodgeLeft",
+                    "type": "Button",
+                    "id": "4f067f88-780e-4262-a844-34836afc1445",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DodgeFront",
+                    "type": "Button",
+                    "id": "d17db404-ca48-4d6b-9568-1b6c1e2787d5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DodgeBack",
+                    "type": "Button",
+                    "id": "387f053c-15f9-427b-9ad5-90d2c56bed3d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -315,6 +290,72 @@
                     "processors": "",
                     "groups": "",
                     "action": "DashStart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Direction",
+                    "id": "ae936897-dd9f-41d7-8821-8ead873466da",
+                    "path": "OneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DodgeRight",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "34e1d6d0-098b-4d3c-aa15-a1724747b0f0",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DodgeRight",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "binding",
+                    "id": "8eeee0de-596e-4beb-b4ae-190de3f72d78",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DodgeRight",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "86024aa5-6185-41f3-9095-a52fb118c26a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DodgeLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d5f97ca-c176-4e10-9431-76ff95ab07e9",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DodgeFront",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "acc23456-bbc9-4f77-af45-84363ca93ca6",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DodgeBack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
