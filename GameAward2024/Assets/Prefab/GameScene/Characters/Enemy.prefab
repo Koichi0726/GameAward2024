@@ -45,17 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8857e58542215b42a2c637584cdc86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 9012187879788064550}
-  Materials1:
+  m_meshRenderer: {fileID: 9012187879788064550}
+  m_Materials1:
   - {fileID: 8748892135801146194, guid: 957fbcbf4013c0443b3248ccde788456, type: 3}
   - {fileID: 5561349426305759274, guid: 957fbcbf4013c0443b3248ccde788456, type: 3}
   - {fileID: 8368722655750445499, guid: 957fbcbf4013c0443b3248ccde788456, type: 3}
-  Materials2:
-  - {fileID: 8368722655750445499, guid: 957fbcbf4013c0443b3248ccde788456, type: 3}
-  - {fileID: 8368722655750445499, guid: 957fbcbf4013c0443b3248ccde788456, type: 3}
-  - {fileID: 8368722655750445499, guid: 957fbcbf4013c0443b3248ccde788456, type: 3}
-  Object: {fileID: 0}
-  AttackRate: 5
+  m_Materials2:
+  - {fileID: 2100000, guid: 623c1fb000aaf60479c71d6f32d1c314, type: 2}
+  - {fileID: 2100000, guid: 623c1fb000aaf60479c71d6f32d1c314, type: 2}
+  - {fileID: 2100000, guid: 623c1fb000aaf60479c71d6f32d1c314, type: 2}
+  m_Object: {fileID: 8005834901349947289, guid: 23a169dda33322b488c3aa622f2993ef, type: 3}
+  m_AttackRate: 5
 --- !u!1001 &7696700696099009442
 PrefabInstance:
   m_ObjectHideFlags: 0

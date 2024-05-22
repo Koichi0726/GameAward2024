@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2686ad5fea1d84eb481a9459bced1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_player: {fileID: 8960592889384489394}
-  m_enemy: {fileID: 3424657306173931510}
+  <m_player>k__BackingField: {fileID: 8960592889384489394}
+  <m_enemy>k__BackingField: {fileID: 3424657306173931510}
 --- !u!1001 &7156367546050744563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2236861419429183809, guid: 21b0fe7fa2517504d9e7d7a6ac26ae02, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7
+      value: -9.78
       objectReference: {fileID: 0}
     - target: {fileID: 2236861419429183809, guid: 21b0fe7fa2517504d9e7d7a6ac26ae02, type: 3}
       propertyPath: m_LocalRotation.w

@@ -7,8 +7,13 @@ namespace GameScene
 {
 	public class StudioObjectManager : MonoBehaviour
 	{
-		public Camera m_mainCamera;
-		public Light m_directionLight;
-		public Volume m_volume;
+		[field: SerializeField]
+		public Camera m_mainCamera { get; private set; }
+		[field: SerializeField]
+		public Light m_directionLight { get; private set; }
+		[field: SerializeField]
+		public Volume m_volume { get; private set; }
+		[field: SerializeField]
+        public GameTimer m_gameTimer { get; private set; }
 	}
 }

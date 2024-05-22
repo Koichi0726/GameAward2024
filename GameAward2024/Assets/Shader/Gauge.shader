@@ -45,6 +45,7 @@ Shader "UI/Unlit/Gauge"
                 // sample the texture
                 float4 color = tex2D(_MainTex, pin.uv);
 				if (pin.uv.y > _GaugeValue) discard;
+				if (color.a <= 0.0f) discard;
 				
                 return color;
             }
