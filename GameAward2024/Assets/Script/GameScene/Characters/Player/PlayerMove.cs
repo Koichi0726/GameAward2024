@@ -22,9 +22,6 @@ public class PlayerMove : MonoBehaviour
     //上下の制限（x:max y:min）
     [SerializeField] private Vector2 VerticalRemit;
 
-    //上下の制限（x:max y:min）
-    [SerializeField] private Vector2 VerticalRemit;
-
     // 上下の移動量
     private float _vertical = VERTICAL_MOVE;
 
