@@ -6,9 +6,8 @@ using GameScene;
 
 public class PlayerMove : MonoBehaviour
 {
-    //移動速度に関する定数
-    const float VERTICAL_MOVE = 0.1f;       //縦
-    const float HORIZONTAL_MOVE = 4.0f;     //横
+    // プレイヤーデータの取得用変数
+    [SerializeField] private PlayerData PData;
 
     // 目標（座標を使用）
     private Transform Enemy;
@@ -17,13 +16,14 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Vector3 _axis = Vector3.up;
 
     // 基礎円運動周期
-    [SerializeField] private float _period = HORIZONTAL_MOVE;
+    [SerializeField] private float _period;
 
-    //上下の制限（x:max y:min）
+    // 上下の制限（x:max y:min）
     [SerializeField] private Vector2 VerticalRemit;
 
+
     // 上下の移動量
-    private float _vertical = VERTICAL_MOVE;
+    private float _vertical;
 
     // 走るフラグ
     private bool DashFlag;
@@ -31,18 +31,20 @@ public class PlayerMove : MonoBehaviour
     // 前フレームのワールド座標
     private Vector3 _prevPosition;
 
-    //プレイヤーの情報
+    // プレイヤーの情報
     Transform tr;
 
-    //プレイヤーのポジション
+    // プレイヤーのポジション
     Vector3 pos;
 
-    //実際に使用する円運動周期
+    // 実際に使用する円運動周期
     float period;
 
     void Start()
     {
         Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
+        _period = PData.HORIZONTAL_MOVE_SPEED;
+        _vertical = PData.VERTICAL_MOVE_SPEED;
         DashFlag = false;
         _prevPosition = transform.position;
         tr = transform;
@@ -179,11 +181,11 @@ public class PlayerMove : MonoBehaviour
     {
         if(!DashFlag)
         {
-            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_MOVE);
+            PlayerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_MOVE);
         }
         else
         {
-            PlayerActionControler.AddAction(PlayerActionControler.E_PLAYER_ACTION.E_DASH);
+            PlayerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_DASH);
         }
     }
 }

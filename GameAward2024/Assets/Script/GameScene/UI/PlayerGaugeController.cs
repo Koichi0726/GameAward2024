@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerGaugeController : MonoBehaviour
 {
 	[SerializeField] Material m_gaugeMaterial;	//ゲージのマテリアル
-	float m_gaugeValue = 0.4f;	//マテリアルに設定する数値
+	float m_gaugeValue;	//マテリアルに設定する数値
 
     // Start is called before the first frame update
     void Start()
