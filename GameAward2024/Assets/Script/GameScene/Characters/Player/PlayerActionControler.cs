@@ -4,26 +4,8 @@ using UnityEngine;
 
 public class PlayerActionControler : MonoBehaviour
 {
-    ////プレイヤーアクションの列挙型
-    //public enum E_PLAYER_ACTION
-    //{
-    //    E_MOVE = 0,     //移動
-    //    E_DASH,         //走る
-    //    E_AVOID,        //回避
-    //    E_MAX,          
-    //}
-
-    ////ゲージの値を変化させる定数
-    //const float STOP_VALUE = -0.3f;     //停止
-    //const float MOVE_VALUE = 0.1f;      //移動
-    //const float DASH_VALUE = 0.2f;      //走る
-    //const float AVOID_VALUE = 0.5f;     //回避
-
-    ////ゲーム開始時のゲージの数値の定数
-    //const float START_VALUE = 60.0f;
-
     // プレイヤーデータの取得用変数
-    [SerializeField] private PlayerData PData;
+    private PlayerData PData;
 
     //プレイヤーがなんの動作をしたかを保存するリスト
     static List<PlayerData.E_PLAYER_ACTION> m_actionList;
@@ -35,6 +17,7 @@ public class PlayerActionControler : MonoBehaviour
     void Start()
     {
         //各種変数初期化
+        PData = PlayerDataParam.data;
         m_actionList = new List<PlayerData.E_PLAYER_ACTION>();     //リストの生成
         m_actionValue = PData.START_GAUGE_VALUE;     //ゲージの数値初期化
     }
