@@ -14,31 +14,70 @@ public class PlayerData : ScriptableObject
 		E_MAX,
 	}
 
-	[field: Header("初期化用")]
+	[Header("初期化用")]
 	//--- ゲーム開始時のゲージの数値の定数
-	[field: SerializeField]
-	public float START_GAUGE_VALUE { get; private set; } = 60.0f;
+	[SerializeField]
+	float m_startGaugeValue = 60.0f;
+	public float START_GAUGE_VALUE => m_startGaugeValue;
 
-	[field: Space(10)]
-	[field: Header("プレイヤーパラメータ")]
-	[field: SerializeField]
-	public float VERTICAL_MOVE_SPEED { get; private set; } = 0.1f;		// 縦の移動速度
-	[field: SerializeField]
-	public float HORIZONTAL_MOVE_SPEED { get; private set; } = 4.0f;    // 横の移動速度
-	[field: SerializeField]
-	public float DODGE_ROT_XZ { get; private set; } = 3.0f;				// 縦の回避時の移動角度
-	[field: SerializeField]
-	public float DODGE_ROT_Y { get; private set; } = 3.0f;              // 横の回避時の移動角度
+	[Space(10)]
+	[Header("プレイヤーパラメータ")]
+	[SerializeField]
+	float m_verticalMoveSpeed = 0.1f;
+	/// <summary>
+	/// 縦の移動速度
+	/// </summary>
+	public float VERTICAL_MOVE_SPEED => m_verticalMoveSpeed;
 
-	[field: Space(10)]
-	[field: Header("その他")]
+	[SerializeField]
+	float m_horizontalMoveSpeed = 4.0f;
+	/// <summary>
+	/// 横の移動速度
+	/// </summary>
+	public float HORIZONTAL_MOVE_SPEED => m_horizontalMoveSpeed;
+
+	[SerializeField]
+	float m_dodgeRotXZ = 3.0f;
+	/// <summary>
+	/// 縦の回避時の移動角度
+	/// </summary>
+	public float DODGE_ROT_XZ => m_dodgeRotXZ;
+
+	[SerializeField]
+	float m_dodgeRotY = 3.0f;
+	/// <summary>
+	/// 横の回避時の移動角度
+	/// </summary>
+	public float DODGE_ROT_Y => m_dodgeRotY;
+
+	[Space(10)]
+	[Header("その他")]
 	//--- ゲージの値を変化させる定数
-	[field: SerializeField]
-	public float STOP_GAUGE_VALUE { get; private set; } = -0.3f;     // 停止
-	[field: SerializeField]
-	public float MOVE_GAUGE_VALUE { get; private set; } = 0.1f;      // 移動
-	[field: SerializeField]
-	public float DASH_GAUGE_VALUE { get; private set; } = 0.2f;      // 走る
-	[field: SerializeField]
-	public float AVOID_GAUGE_VALUE { get; private set; } = 0.5f;     // 回避
+	[SerializeField]
+	float m_stopGaugeValue = -0.3f;
+	/// <summary>
+	/// 停止
+	/// </summary>
+	public float STOP_GAUGE_VALUE => m_stopGaugeValue;
+
+	[SerializeField]
+	float m_moveGaugeValue = 0.1f;
+	/// <summary>
+	/// 移動
+	/// </summary>
+	public float MOVE_GAUGE_VALUE => m_moveGaugeValue;
+
+	[SerializeField]
+	float m_dashGaugeValue = 0.2f;
+	/// <summary>
+	/// 走る
+	/// </summary>
+	public float DASH_GAUGE_VALUE => m_dashGaugeValue;
+
+	[SerializeField]
+	float m_avoidGaugeValue = 0.5f;
+	/// <summary>
+	/// 回避
+	/// </summary>
+	public float AVOID_GAUGE_VALUE => m_avoidGaugeValue;
 }
