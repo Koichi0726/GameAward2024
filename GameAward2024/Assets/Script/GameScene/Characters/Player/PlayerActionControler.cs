@@ -25,7 +25,7 @@ public class PlayerParamCoefficient // プレイヤーに関わる係数
 public class PlayerActionControler : MonoBehaviour
 {
     // プレイヤーデータの取得用変数
-    [SerializeField] private PlayerData PData;
+    private PlayerData PData;
 
     // ゲージの増減を管理する変数
     static private PlayerParamCoefficient m_PParamCoefficient;
@@ -40,6 +40,7 @@ public class PlayerActionControler : MonoBehaviour
     void Start()
     {
         //各種変数初期化
+        PData = PlayerDataParam.data;
         m_PParamCoefficient = new PlayerParamCoefficient();
         m_actionList = new List<PlayerData.E_PLAYER_ACTION>();     //リストの生成
         m_actionValue = PData.START_GAUGE_VALUE;     //ゲージの数値初期化
