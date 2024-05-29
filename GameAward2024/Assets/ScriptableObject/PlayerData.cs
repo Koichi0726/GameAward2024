@@ -54,7 +54,7 @@ public class PlayerData : ScriptableObject
 	[Header("‚»‚Ì‘¼")]
 	//--- ƒQ[ƒW‚Ì’l‚ğ•Ï‰»‚³‚¹‚é’è”
 	[SerializeField]
-	float m_stopGaugeValue = -0.3f;
+	float m_stopGaugeValue = 0.3f;
 	/// <summary>
 	/// ’â~
 	/// </summary>
