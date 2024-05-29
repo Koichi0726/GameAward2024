@@ -109,6 +109,7 @@ public class PlayerMove : MonoBehaviour
 
         //各変数のリセット
         period = 0.0f;      //左右の移動量をリセット
+
     }
 
     //public void OnMove()
