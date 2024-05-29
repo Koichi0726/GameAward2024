@@ -7,7 +7,7 @@ using GameScene;
 public class PlayerMove : MonoBehaviour
 {
     // プレイヤーデータの取得用変数
-    [SerializeField] private PlayerData PData;
+    private PlayerData PData;
 
     // 目標（座標を使用）
     private Transform Enemy;
@@ -42,6 +42,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
+        PData = PlayerDataParam.data;
         Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
         _period = PData.HORIZONTAL_MOVE_SPEED;
         _vertical = PData.VERTICAL_MOVE_SPEED;
