@@ -40,6 +40,8 @@ public class PlayerMove : MonoBehaviour
     // 実際に使用する円運動周期
     float period;
 
+    Vector2 Dir;
+
     void Start()
     {
         PData = PlayerDataParam.data;
@@ -83,8 +85,14 @@ public class PlayerMove : MonoBehaviour
         pos = angleAxis * pos;
         pos += _center;
 
-        //算出した結果を反映
-        tr.position = pos;
+        if(period < 0.0f)
+        {
+            Dir.x = -1.0f;
+        }
+        else
+        {
+            Dir.x = 1.0f;
+        }
 
         //プレイヤーの体の向きを行動に合わせて調整
         if(!DashFlag)
@@ -123,9 +131,14 @@ public class PlayerMove : MonoBehaviour
     public void OnMoveUp()
     {
         pos.y += _vertical;
-        if (pos.y > VerticalRemit.x) pos.y = VerticalRemit.x;
+        if (pos.y > VerticalRemit.x)
+        {
+            pos.y = VerticalRemit.x;
+            return;
+        }
         tr.position = pos;
         ActionEntry();
+        Dir.y = 1.0f;
     }
 
     /// <summary>
@@ -134,9 +147,14 @@ public class PlayerMove : MonoBehaviour
     public void OnMoveDown()
     {
         pos.y -= _vertical;
-        if (pos.y < VerticalRemit.y) pos.y = VerticalRemit.y;
+        if (pos.y < VerticalRemit.y)
+        {
+            pos.y = VerticalRemit.y;
+            return;
+        }
         tr.position = pos;
         ActionEntry();
+        Dir.y = -1.0f;
     }
 
     /// <summary>
