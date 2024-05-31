@@ -56,7 +56,7 @@ public class PlayerAvoid : MonoBehaviour
 
         if (!AvoidFlag) return;
 
-        GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period);
+        GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period, Vector3.up);
 
         Period *= 1.3f;
 

@@ -69,48 +69,61 @@ public class PlayerMove : MonoBehaviour
             return;
         }
 
-        if(DashFlag)
-        {
-            VPeriod /= 2.0f;
-        }
-
-        PlayerCircularRotation(VPeriod);
-
-        if(VPeriod < 0.0f)
-        {
-            Dir.x = -1.0f;
-        }
-        else
-        {
-            Dir.x = 1.0f;
-        }
-
-        PlayerActionControler.PParam.m_moveDirect = Dir.normalized;
-
-        //プレイヤーの体の向きを行動に合わせて調整
-        if(!DashFlag)
-        {//歩いている
-            Vector3 trans = Enemy.position; //敵の座標取得
-            trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
-            tr.LookAt(trans);   //敵の方向に回転
-        }
-        else
-        {//走っている
-            //前フレームからの移動量を計算
-            var delta = pos - _prevPosition;
-
-            // 進行方向（移動量ベクトル）に向くようなクォータニオンを取得
-            var rotation = Quaternion.LookRotation(delta, Vector3.up);
-
-            // オブジェクトの回転に反映
-            tr.rotation = rotation;
-        }
-
         // 次のUpdateで使うための前フレーム位置更新
         _prevPosition = pos;
 
+        if (DashFlag)
+        {
+            VPeriod /= 2.0f;
+            HPeriod /= 2.0f;
+        }
+
+        if (VPeriod != 0.0f) PlayerCircularRotation(VPeriod, this.transform.up);
+        if (HPeriod != 0.0f) PlayerCircularRotation(HPeriod, this.transform.right);
+
+        
+
+        transform.position = pos;
+
+        //if(VPeriod < 0.0f)
+        //{
+        //    Dir.x = -1.0f;
+        //}
+        //else if(VPeriod > 0.0f)
+        //{
+        //    Dir.x = 1.0f;
+        //}
+
+        //Vector3 trans = Enemy.position; //敵の座標取得
+        //trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
+        //tr.LookAt(trans);   //敵の方向に回転
+
+        //PlayerActionControler.PParam.m_moveDirect = Dir.normalized;
+
+        //プレイヤーの体の向きを行動に合わせて調整
+        //if(!DashFlag)
+        //{//歩いている
+        //    Vector3 trans = Enemy.position; //敵の座標取得
+        //    trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
+        //    tr.LookAt(trans);   //敵の方向に回転
+        //}
+        //else
+        //{//走っている
+        //    //前フレームからの移動量を計算
+        //    var delta = pos - _prevPosition;
+
+        //    // 進行方向（移動量ベクトル）に向くようなクォータニオンを取得
+        //    var rotation = Quaternion.LookRotation(delta, Vector3.up);
+
+        //    // オブジェクトの回転に反映
+        //    tr.rotation = rotation;
+        //}
+
+
+
         //各変数のリセット
         VPeriod = 0.0f;      //左右の移動量をリセット
+        HPeriod = 0.0f;      //縦の移動量をリセット
 
     }
 
@@ -124,15 +137,17 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     public void OnMoveUp()
     {
-        pos.y += _vertical;
-        if (pos.y > VerticalRemit.x)
-        {
-            pos.y = VerticalRemit.x;
-            return;
-        }
-        tr.position = pos;
+        //pos.y += _vertical;
+        //if (pos.y > VerticalRemit.x)
+        //{
+        //    pos.y = VerticalRemit.x;
+        //    return;
+        //}
+        //tr.position = pos;
+        //ActionEntry();
+        //Dir.y = 1.0f;
+        HPeriod = _period;
         ActionEntry();
-        Dir.y = 1.0f;
     }
 
     /// <summary>
@@ -140,15 +155,17 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     public void OnMoveDown()
     {
-        pos.y -= _vertical;
-        if (pos.y < VerticalRemit.y)
-        {
-            pos.y = VerticalRemit.y;
-            return;
-        }
-        tr.position = pos;
+        //pos.y -= _vertical;
+        //if (pos.y < VerticalRemit.y)
+        //{
+        //    pos.y = VerticalRemit.y;
+        //    return;
+        //}
+        //tr.position = pos;
+        //ActionEntry();
+        //Dir.y = -1.0f;
+        HPeriod = -_period;
         ActionEntry();
-        Dir.y = -1.0f;
     }
 
     /// <summary>
@@ -202,11 +219,13 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void PlayerCircularRotation(float p)
+    public void PlayerCircularRotation(float p, Vector3 axis)
     {
+        Debug.Log(axis);
+
         //変数宣言
         Vector3 _center = Enemy.position;   //回転の中心
-        var angleAxis = Quaternion.AngleAxis(360 / p * Time.deltaTime, _axis);     //クオータニオンの計算
+        var angleAxis = Quaternion.AngleAxis(360 / p * Time.deltaTime, axis);     //クオータニオンの計算
 
         //移動先を算出
         pos -= _center;
