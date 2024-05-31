@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class PlayerParamCoefficient // プレイヤーに関わる係数
 {
-    public float m_addGaugeValue = 0.0f;// ゲージに加算する変数
-    public float m_subGaugeValue = 0.0f;// ゲージに減算する変数
-    public float m_gaugeUpSpeed = 1.0f;// ゲージの増加スピード
-    public float m_gaugeDownSpeed = 1.0f;// ゲージの減少スピード
-    public float m_moveDirect = 1.0f;// 移動方向の係数
-    public float m_moveSpeed = 1.0f;// 移動速度の係数
+    public float m_addGaugeValue;   // ゲージに加算する変数
+    public float m_subGaugeValue;   // ゲージに減算する変数
+    public float m_gaugeUpSpeed;    // ゲージの増加スピード
+    public float m_gaugeDownSpeed;  // ゲージの減少スピード
+    public Vector2 m_moveDirect;    // 移動方向の係数
+    public float m_moveSpeed;       // 移動速度の係数
 
     public PlayerParamCoefficient()
     {
-        m_addGaugeValue = 0.0f;// ゲージに加算する変数
-        m_subGaugeValue = 0.0f;// ゲージに減算する変数
-        m_gaugeUpSpeed = 1.0f;// ゲージの増加スピード
-        m_gaugeDownSpeed = 1.0f;// ゲージの減少スピード
-        m_moveDirect = 1.0f;// 移動方向の係数
-        m_moveSpeed = 1.0f;// 移動速度の係数
+        m_addGaugeValue = 0.0f;
+        m_subGaugeValue = 0.0f;
+        m_gaugeUpSpeed = 1.0f;
+        m_gaugeDownSpeed = 1.0f;
+        m_moveDirect = new Vector2();
+        m_moveSpeed = 1.0f;
     }
 }
 
