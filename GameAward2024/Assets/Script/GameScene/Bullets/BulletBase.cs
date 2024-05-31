@@ -7,6 +7,8 @@ public class BulletBase : MonoBehaviour
 	[SerializeField]
 	float m_destroyTime;
 	float m_deltaTime = 0.0f;
+    [SerializeField]
+    protected BuffDebuffData m_buffDebuffData;
 
     protected void Update()
     {
