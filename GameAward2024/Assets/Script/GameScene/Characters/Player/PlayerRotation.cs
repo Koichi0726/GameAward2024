@@ -13,14 +13,14 @@ public class PlayerRotation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        // 対象物と自分自身の座標からベクトルを算出
-        Vector3 vector3 = target.transform.position - this.transform.position;
-        //Debug.Log(vector3);
-        // Quaternion(回転値)を取得
-        Quaternion quaternion = Quaternion.LookRotation(vector3);
-        // 算出した回転値をこのゲームオブジェクトのrotationに代入
-        this.transform.rotation = quaternion;
+        //// 対象物と自分自身の座標からベクトルを算出
+        //Vector3 vector3 = target.transform.position - this.transform.position;
+        //// Quaternion(回転値)を取得
+        //Quaternion quaternion = Quaternion.LookRotation(vector3);
+        //// 算出した回転値をこのゲームオブジェクトのrotationに代入
+        //this.transform.rotation = quaternion;
+        this.transform.LookAt(target.transform.position, transform.up);
     }
 }
