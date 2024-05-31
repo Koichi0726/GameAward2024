@@ -10,5 +10,7 @@ namespace GameScene
 		public Transform m_player { get; private set; }
 		[field: SerializeField]
 		public Transform m_enemy { get; private set; }
+		[field: SerializeField]
+		public BuffDebuffHandler m_buffDebuffHandler { get; private set; }
 	}
 }
