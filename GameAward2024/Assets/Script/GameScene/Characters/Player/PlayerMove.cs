@@ -81,9 +81,11 @@ public class PlayerMove : MonoBehaviour
         if (VPeriod != 0.0f) PlayerCircularRotation(VPeriod, this.transform.up);
         if (HPeriod != 0.0f) PlayerCircularRotation(HPeriod, this.transform.right);
 
-        
-
         transform.position = pos;
+
+        //Vector3 trans = Enemy.position; //敵の座標取得
+        //trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
+        //tr.LookAt(trans);   //敵の方向に回転
 
         //if(VPeriod < 0.0f)
         //{
@@ -221,11 +223,13 @@ public class PlayerMove : MonoBehaviour
 
     public void PlayerCircularRotation(float p, Vector3 axis)
     {
-        Debug.Log(axis);
+        Debug.Log("軸：" + axis);
 
         //変数宣言
         Vector3 _center = Enemy.position;   //回転の中心
         var angleAxis = Quaternion.AngleAxis(360 / p * Time.deltaTime, axis);     //クオータニオンの計算
+
+        Debug.Log(angleAxis);
 
         //移動先を算出
         pos -= _center;
