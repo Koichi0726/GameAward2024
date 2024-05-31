@@ -94,6 +94,8 @@ public class PlayerMove : MonoBehaviour
             Dir.x = 1.0f;
         }
 
+        PlayerActionControler.PParam.m_moveDirect = Dir.normalized;
+
         //プレイヤーの体の向きを行動に合わせて調整
         if(!DashFlag)
         {//歩いている
