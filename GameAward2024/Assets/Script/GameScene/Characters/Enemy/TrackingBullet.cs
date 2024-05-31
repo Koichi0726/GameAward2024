@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameScene;
 
-public class TrackingBullet : MonoBehaviour
+public class TrackingBullet : BulletBase
 { 
     public float m_bulletSpeed;       // 弾の速度
     public float m_trackTimer;        // 追尾の制限時間
@@ -45,6 +45,10 @@ public class TrackingBullet : MonoBehaviour
     {
         if (other.gameObject == m_playerObj)
         {
+            // プレイヤーにバフを付与する
+            ManagerContainer.GetManagerContainer().m_characterManager.
+                m_buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, gameObject.name);
+
             // プレイヤーに当たったら弾を削除する
             Destroy(gameObject);
         }
