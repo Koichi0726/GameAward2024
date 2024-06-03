@@ -9,6 +9,7 @@ public class EnemyAttackAnime : StateMachineBehaviour
     
     float m_deltatime;
     Vector3 m_playerTransform;
+    Vector3 m_enemytransform;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,7 +25,8 @@ public class EnemyAttackAnime : StateMachineBehaviour
             GameScene.ManagerContainer.GetManagerContainer().m_characterManager;
         enemypos.m_enemy.forward = m_playerTransform;
 
-        GameScene.ManagerContainer.GetManagerContainer().m_bulletManger.CreateBullet<BulletBase>(m_bulletprefab);
+        m_enemytransform = enemypos.m_enemy.transform.localPosition;
+        GameScene.ManagerContainer.GetManagerContainer().m_bulletManger.CreateBullet<BulletBase>(m_bulletprefab , m_enemytransform);
 
 
     }
