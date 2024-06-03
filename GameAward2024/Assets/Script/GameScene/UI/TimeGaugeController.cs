@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class TimeGaugeController : MonoBehaviour
 {
-	// TODO:ScriptableObjectへ移動
-	const float GAUGE_MAX_VALUE = 1.0f;
-	const float GAUGE_MIN_VALUE = 0.0f;
-
 	[SerializeField]
 	Material m_gaugeMaterial;
 	GameTimer m_gameTimer;
@@ -27,7 +23,7 @@ public class TimeGaugeController : MonoBehaviour
 
 		//--- ゲージの値を計算(0.0～1.0)
 		float gaugeValue = m_gameTimer.m_remainTime / m_gameTimer.m_stageLimitTime;
-		gaugeValue = Mathf.Clamp(gaugeValue, GAUGE_MIN_VALUE, GAUGE_MAX_VALUE);
+		gaugeValue = Mathf.Clamp01(gaugeValue);
 
 		// TODO:マジックナンバーはScriptableObjectに置き換える
 		m_gaugeMaterial.SetFloat("_GaugeValue", gaugeValue);

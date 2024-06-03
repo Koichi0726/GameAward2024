@@ -8,15 +8,11 @@ public class TrackingBullet : BulletBase
     public float m_bulletSpeed;       // 弾の速度
     public float m_trackTimer;        // 追尾の制限時間
     private Vector3 m_direction;      // 弾の方向
-    private GameObject m_playerObj;   // プレイヤーのゲームオブジェクト
     private Transform m_playerTrans;  // プレイヤーの位置
 
     // Start is called before the first frame update
     void Start()
     {
-        // プレイヤーのゲームオブジェクトを取得
-        m_playerObj = GameObject.Find("Player");
-
         //プレイヤーのトランスフォーム取得
         CharacterManager characterManager = 
             ManagerContainer.GetManagerContainer().m_characterManager;
@@ -39,18 +35,5 @@ public class TrackingBullet : BulletBase
 
         // 弾に力を加える
         GetComponent<Rigidbody>().velocity = m_direction * m_bulletSpeed;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == m_playerObj)
-        {
-            // プレイヤーにバフを付与する
-            ManagerContainer.GetManagerContainer().m_characterManager.
-                m_buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, gameObject.name);
-
-            // プレイヤーに当たったら弾を削除する
-            Destroy(gameObject);
-        }
     }
 }

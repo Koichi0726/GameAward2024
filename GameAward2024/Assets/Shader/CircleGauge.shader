@@ -74,7 +74,7 @@ Shader "UI/Unlit/CircleGauge"
 				if (gage <= 0.0f) discard;	// 表示すべき部分か判定
 
 				//--- ゲージの表示部分の色を計算
-				float4 color = tex2D(_MainTex, float2(rad, r * 2.0f));
+				float4 color = tex2D(_MainTex, pin.uv);
 				float4 zero = float4(0.0f, 0.0f, 0.0f, 0.0f);	// 表示なしの色
 				color = lerp(zero, color, gage);				// 表示部分のみ色を設定
 
