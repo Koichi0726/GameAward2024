@@ -17,52 +17,59 @@ public class PlayerAvoid : MonoBehaviour
     private Vector3 dodgeDistance;  //プレイヤーの回避距離計算用
 
     private bool AvoidFlag;
-    private float Period;
+    private Vector2 Period;
 
     // Start is called before the first frame update
     void Start()
     {
-        ////マネージャークラスから取得した座標を計算用の変数に格納
-        //playerPos = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.position;
-        //bossPos = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_enemy.position;
-
-        ////プレイヤーからボスまでの距離を計算
-        //distance = playerPos - bossPos;
-
-        //lateRotXZ = (rotXZ - lateRotXZ) * 0.1f + lateRotXZ;
-        //lateRotY = (rotY - lateRotY) * 0.1f + lateRotY;
-
         AvoidFlag = false;
-        Period = 0.0f;
+        Period = new Vector2();
     }
 
     private void Update()
     {
+        Vector2 dir = PlayerActionControler.PParam.m_moveDirect;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("押した");
             if (!AvoidFlag)
             {
                 AvoidFlag = true;
-                Period = 0.3f;
+                if(dir.x < 0.0f)
+                {
+                    Period.x = -0.3f;
+                }
+                else if(dir.x > 0.0f)
+                {
+                    Period.x = 0.3f;
+                }
+                if (dir.y < 0.0f)
+                {
+                    Period.y = -0.3f;
+                }
+                else if (dir.y > 0.0f)
+                {
+                    Period.y = 0.3f;
+                }
+
             }
+
+            Debug.Log(dir);
         }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-
-
         if (!AvoidFlag) return;
 
-        GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period, Vector3.up);
+        GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period.x, Vector3.up);
 
         Period *= 1.3f;
 
-        if(Period >= 8.0f)
+        if(Period.x >= 8.0f)
         {
-            Period = 0.0f;
+            Period.x = 0.0f;
             AvoidFlag = false;
         }
 

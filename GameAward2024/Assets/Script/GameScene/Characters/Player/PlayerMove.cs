@@ -55,6 +55,7 @@ public class PlayerMove : MonoBehaviour
         pos = tr.position;
         VPeriod = 0.0f;
         HPeriod = 0.0f;
+        Dir = new Vector2(0.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -68,6 +69,8 @@ public class PlayerMove : MonoBehaviour
 
             return;
         }
+
+        Dir = new Vector2(0.0f, 0.0f);
 
         // 次のUpdateで使うための前フレーム位置更新
         _prevPosition = pos;
@@ -83,71 +86,35 @@ public class PlayerMove : MonoBehaviour
 
         transform.position = pos;
 
-        //Vector3 trans = Enemy.position; //敵の座標取得
-        //trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
-        //tr.LookAt(trans);   //敵の方向に回転
+        if (VPeriod < 0.0f)
+        {
+            Dir.x = -1.0f;
+        }
+        else if (VPeriod > 0.0f)
+        {
+            Dir.x = 1.0f;
+        }
+        if (HPeriod < 0.0f)
+        {
+            Dir.y = -1.0f;
+        }
+        else if (HPeriod > 0.0f)
+        {
+            Dir.y = 1.0f;
+        }
 
-        //if(VPeriod < 0.0f)
-        //{
-        //    Dir.x = -1.0f;
-        //}
-        //else if(VPeriod > 0.0f)
-        //{
-        //    Dir.x = 1.0f;
-        //}
-
-        //Vector3 trans = Enemy.position; //敵の座標取得
-        //trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
-        //tr.LookAt(trans);   //敵の方向に回転
-
-        //PlayerActionControler.PParam.m_moveDirect = Dir.normalized;
-
-        //プレイヤーの体の向きを行動に合わせて調整
-        //if(!DashFlag)
-        //{//歩いている
-        //    Vector3 trans = Enemy.position; //敵の座標取得
-        //    trans = new Vector3(trans.x, tr.position.y, trans.z);   //Y軸成分を無効化
-        //    tr.LookAt(trans);   //敵の方向に回転
-        //}
-        //else
-        //{//走っている
-        //    //前フレームからの移動量を計算
-        //    var delta = pos - _prevPosition;
-
-        //    // 進行方向（移動量ベクトル）に向くようなクォータニオンを取得
-        //    var rotation = Quaternion.LookRotation(delta, Vector3.up);
-
-        //    // オブジェクトの回転に反映
-        //    tr.rotation = rotation;
-        //}
-
-
-
+        PlayerActionControler.PParam.m_moveDirect = Dir;
+        
         //各変数のリセット
         VPeriod = 0.0f;      //左右の移動量をリセット
         HPeriod = 0.0f;      //縦の移動量をリセット
-
     }
-
-    //public void OnMove()
-    //{
-    //    Debug.Log("MoveIvent");
-    //}
 
     /// <summary>
     /// 上入力したときの処理関数
     /// </summary>
     public void OnMoveUp()
     {
-        //pos.y += _vertical;
-        //if (pos.y > VerticalRemit.x)
-        //{
-        //    pos.y = VerticalRemit.x;
-        //    return;
-        //}
-        //tr.position = pos;
-        //ActionEntry();
-        //Dir.y = 1.0f;
         HPeriod = _period;
         ActionEntry();
     }
@@ -157,15 +124,6 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     public void OnMoveDown()
     {
-        //pos.y -= _vertical;
-        //if (pos.y < VerticalRemit.y)
-        //{
-        //    pos.y = VerticalRemit.y;
-        //    return;
-        //}
-        //tr.position = pos;
-        //ActionEntry();
-        //Dir.y = -1.0f;
         HPeriod = -_period;
         ActionEntry();
     }
@@ -223,13 +181,9 @@ public class PlayerMove : MonoBehaviour
 
     public void PlayerCircularRotation(float p, Vector3 axis)
     {
-        Debug.Log("軸：" + axis);
-
         //変数宣言
         Vector3 _center = Enemy.position;   //回転の中心
         var angleAxis = Quaternion.AngleAxis(360 / p * Time.deltaTime, axis);     //クオータニオンの計算
-
-        Debug.Log(angleAxis);
 
         //移動先を算出
         pos -= _center;
