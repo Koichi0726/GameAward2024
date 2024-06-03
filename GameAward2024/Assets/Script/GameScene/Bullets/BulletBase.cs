@@ -8,24 +8,19 @@ public class BulletBase : MonoBehaviour
 	[SerializeField]
 	float m_destroyTime;
 	float m_deltaTime = 0.0f;
-    GameObject m_playerObj;
-    [SerializeField]
     protected BuffDebuffData m_buffDebuffData;
-    [SerializeField]
-    protected LayerMask m_playerLayerMask;
 
-    protected void Start()
+    protected virtual void Start()
     {
-        // プレイヤーのゲームオブジェクトを取得
-        //m_playerObj = ManagerContainer.GetManagerContainer().m_characterManager.m_playerData;
+        
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
 		//--- 消滅するまでの時間をカウント
 		if (m_deltaTime < m_destroyTime)
 		{
-			Destroy(this);  // 自身を破壊
+			Destroy(gameObject);  // 自身を破壊
 			return;
 		}
 		m_deltaTime += Time.deltaTime;
@@ -33,14 +28,11 @@ public class BulletBase : MonoBehaviour
 
     protected void OnTriggerEnter(Collider other)
     {
-        if ((m_playerLayerMask.value & (1 << other.gameObject.layer)) > 0)
-        {
-            // プレイヤーにバフを付与する
-            ManagerContainer.GetManagerContainer().m_characterManager.
-                m_buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, gameObject.name);
+        // プレイヤーにバフを付与する
+        ManagerContainer.GetManagerContainer().m_characterManager.
+            m_buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, gameObject.name);
 
-            // プレイヤーに当たったら弾を削除する
-            Destroy(this);
-        }
+        // プレイヤーに当たったら弾を削除する
+        Destroy(gameObject);
     }
 }
