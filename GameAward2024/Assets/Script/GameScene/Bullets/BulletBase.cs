@@ -11,11 +11,13 @@ public class BulletBase : MonoBehaviour
     GameObject m_playerObj;
     [SerializeField]
     protected BuffDebuffData m_buffDebuffData;
+    [SerializeField]
+    protected LayerMask m_playerLayerMask;
 
-    protected void start()
+    protected void Start()
     {
         // プレイヤーのゲームオブジェクトを取得
-        m_playerObj = GameObject.Find("Player");
+        //m_playerObj = ManagerContainer.GetManagerContainer().m_characterManager.m_playerData;
     }
 
     protected void Update()
@@ -31,14 +33,14 @@ public class BulletBase : MonoBehaviour
 
     protected void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == m_playerObj)
+        if ((m_playerLayerMask.value & (1 << other.gameObject.layer)) > 0)
         {
             // プレイヤーにバフを付与する
             ManagerContainer.GetManagerContainer().m_characterManager.
                 m_buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, gameObject.name);
 
             // プレイヤーに当たったら弾を削除する
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 }
