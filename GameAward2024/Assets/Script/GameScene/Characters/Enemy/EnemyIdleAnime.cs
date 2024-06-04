@@ -13,15 +13,15 @@ public class EnemyIdleAnime : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _deltatime = 0.0f;
-        Debug.Log("start");
+        //Debug.Log("start");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // ログ出力
-        Debug.Log("状態:Idle");
-        Debug.Log("経過時間:" + _deltatime + "秒");
+        //Debug.Log("状態:Idle");
+        //Debug.Log("経過時間:" + _deltatime + "秒");
 
         // プレイヤーのトランスフォーム取得
         GameScene.CharacterManager characterManager =

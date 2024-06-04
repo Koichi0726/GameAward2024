@@ -30,8 +30,8 @@ public class EnemyAttackAnime : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // ログ出力
-        Debug.Log("状態:Attack");
-        Debug.Log("経過時間:" + m_deltatime + "秒");
+        //Debug.Log("状態:Attack");
+        //Debug.Log("経過時間:" + m_deltatime + "秒");
 
         // プレイヤーのトランスフォーム取得
         GameScene.CharacterManager characterManager =
