@@ -127,9 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf63acb37c13f6443970552ec38ba78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destroyTime: 0
-  m_playerLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
+  m_destroyTime: 20
   m_bulletSpeed: 10
   m_trackTimer: 300
