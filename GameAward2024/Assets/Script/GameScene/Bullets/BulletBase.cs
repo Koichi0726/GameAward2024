@@ -7,8 +7,7 @@ public class BulletBase : MonoBehaviour
 {
 	[SerializeField]
 	float m_destroyTime;
-	float m_deltaTime = 0.0f;
-    protected BuffDebuffData m_buffDebuffData;
+    protected BuffDebuffData m_buffDebuffData = new BuffDebuffData();
 
     protected virtual void Start()
     {
@@ -18,12 +17,12 @@ public class BulletBase : MonoBehaviour
     protected virtual void Update()
     {
 		//--- 消滅するまでの時間をカウント
-		if (m_deltaTime < m_destroyTime)
+		if (m_destroyTime < 0.0f)
 		{
 			Destroy(gameObject);  // 自身を破壊
 			return;
 		}
-		m_deltaTime += Time.deltaTime;
+        m_destroyTime -= Time.deltaTime;
     }
 
     protected void OnTriggerEnter(Collider other)
