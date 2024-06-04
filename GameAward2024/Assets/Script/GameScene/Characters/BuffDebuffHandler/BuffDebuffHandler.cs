@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class BuffDebuffData
 {
-	public PlayerParamCoefficient m_playerParamCoefficient;
-	public float m_remainingDuration;   // Žc‚èŒø‰ÊŒp‘±ŽžŠÔ
-	public int m_buffDebuffKey;			// Œø‰Ê‚ð”­Šö‚·‚é’e‚Ì–¼‘O
+	public PlayerParamCoefficient m_playerParamCoefficient = new PlayerParamCoefficient();
+	public float m_remainingDuration = 0.0f;   // Žc‚èŒø‰ÊŒp‘±ŽžŠÔ
+	public int m_buffDebuffKey = 0;				// Œø‰Ê‚ð”­Šö‚·‚é’e‚Ì–¼‘O
 }
 
 public class BuffDebuffHandler : MonoBehaviour
