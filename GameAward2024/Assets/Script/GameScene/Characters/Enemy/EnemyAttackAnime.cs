@@ -8,23 +8,18 @@ public class EnemyAttackAnime : StateMachineBehaviour
     [SerializeField] BulletBase m_bulletprefab;
     
     float m_deltatime;
-    Vector3 m_playerTransform;
     Vector3 m_enemytransform;
+    Vector3 m_playertransform;
+    Vector3 m_enemyforward;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         m_deltatime = 0.0f;
-        // プレイヤーのトランスフォーム取得
-        GameScene.CharacterManager characterManager =
-            GameScene.ManagerContainer.GetManagerContainer().m_characterManager;
-        m_playerTransform = characterManager.m_player.position;
 
-        // エネミーがプレイヤーの方を向く
+        // 弾の発射
         GameScene.CharacterManager enemypos =
             GameScene.ManagerContainer.GetManagerContainer().m_characterManager;
-        enemypos.m_enemy.forward = m_playerTransform;
-
         m_enemytransform = enemypos.m_enemy.transform.localPosition;
         GameScene.ManagerContainer.GetManagerContainer().m_bulletManger.CreateBullet<BulletBase>(m_bulletprefab , m_enemytransform);
 
@@ -37,6 +32,14 @@ public class EnemyAttackAnime : StateMachineBehaviour
         // ログ出力
         Debug.Log("状態:Attack");
         Debug.Log("経過時間:" + m_deltatime + "秒");
+
+        // プレイヤーのトランスフォーム取得
+        GameScene.CharacterManager characterManager =
+            GameScene.ManagerContainer.GetManagerContainer().m_characterManager;
+        m_playertransform = characterManager.m_player.position;
+        m_enemytransform = characterManager.m_enemy.position;
+
+        characterManager.m_enemy.forward = m_playertransform;
 
 
         // 1秒経過後にアタックに切り替える
