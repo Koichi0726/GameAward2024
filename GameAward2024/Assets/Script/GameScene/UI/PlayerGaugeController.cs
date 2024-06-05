@@ -1,29 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameScene;
 
 public class PlayerGaugeController : MonoBehaviour
 {
 	[SerializeField] Material m_gaugeMaterial;	//ゲージのマテリアル
-	float m_gaugeValue;	//マテリアルに設定する数値
+	float m_gaugeValue;							//マテリアルに設定する数値
+	PlayerActionControler m_playerActionControler;
 
-    // Start is called before the first frame update
     void Start()
     {
-		//初期化
-		m_gaugeValue = PlayerActionControler.ActionValue / 100.0f;
+		m_playerActionControler = ManagerContainer.instance.characterManager.playerActionController;
+		m_gaugeValue = m_playerActionControler.m_actionValue / PlayerActionControler.MAX_GAUGE_VALUE;
 	}
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-		//マテリアルが設定されていなかった時終了する
+		// マテリアルが設定されていなかった時終了する
 		if (m_gaugeMaterial == null) return;
 
-		//設定する数値を取得して計算
-		m_gaugeValue = PlayerActionControler.ActionValue / 100.0f;
+		// 設定する数値を取得して計算
+		m_gaugeValue = m_playerActionControler.m_actionValue / PlayerActionControler.MAX_GAUGE_VALUE;
 
-		//マテリアルに適応
+		// マテリアルに適応
 		m_gaugeMaterial.SetFloat("_GaugeValue", m_gaugeValue);
 	}
 }
