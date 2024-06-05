@@ -19,9 +19,9 @@ public class EnemyAttackAnime : StateMachineBehaviour
 
         // 弾の発射
         GameScene.CharacterManager enemypos =
-            GameScene.ManagerContainer.GetManagerContainer().m_characterManager;
-        m_enemytransform = enemypos.m_enemy.transform.localPosition;
-        GameScene.ManagerContainer.GetManagerContainer().m_bulletManger.CreateBullet<BulletBase>(m_bulletprefab , m_enemytransform);
+            GameScene.ManagerContainer.instance.characterManager;
+        m_enemytransform = enemypos.enemyTrans.transform.localPosition;
+        GameScene.ManagerContainer.instance.bulletManger.CreateBullet<BulletBase>(m_bulletprefab , m_enemytransform);
 
 
     }
@@ -35,11 +35,11 @@ public class EnemyAttackAnime : StateMachineBehaviour
 
         // プレイヤーのトランスフォーム取得
         GameScene.CharacterManager characterManager =
-            GameScene.ManagerContainer.GetManagerContainer().m_characterManager;
-        m_playertransform = characterManager.m_player.position;
-        m_enemytransform = characterManager.m_enemy.position;
+            GameScene.ManagerContainer.instance.characterManager;
+        m_playertransform = characterManager.playerTrans.position;
+        m_enemytransform = characterManager.enemyTrans.position;
 
-        characterManager.m_enemy.forward = m_playertransform;
+        characterManager.enemyTrans.forward = m_playertransform;
 
 
         // 1秒経過後にアタックに切り替える

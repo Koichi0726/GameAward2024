@@ -6,13 +6,45 @@ namespace GameScene
 {
 	public class CharacterManager : MonoBehaviour
 	{
-		[field: SerializeField]
-		public PlayerData m_playerData { get; private set; }
-		[field: SerializeField]
-		public Transform m_player { get; private set; }
-		[field: SerializeField]
-		public Transform m_enemy { get; private set; }
-		[field: SerializeField]
-		public BuffDebuffHandler m_buffDebuffHandler { get; private set; }
+		[SerializeField]
+		PlayerData m_playerData;
+		/// <summary>
+		/// プレイヤーのデータを取得
+		/// </summary>
+		public PlayerData playerData => m_playerData;
+
+		[SerializeField]
+		Transform m_playerTrans;
+		/// <summary>
+		/// プレイヤーのTransformを取得
+		/// </summary>
+		public Transform playerTrans => m_playerTrans;
+
+		[SerializeField]
+		Transform m_enemyTrans;
+		/// <summary>
+		/// 敵のTransformを取得
+		/// </summary>
+		public Transform enemyTrans => m_enemyTrans;
+
+		[SerializeField]
+		BuffDebuffHandler m_buffDebuffHandler;
+		/// <summary>
+		/// BuffDebuffHandlerを取得
+		/// </summary>
+		public BuffDebuffHandler buffDebuffHandler => m_buffDebuffHandler;
+
+		void Start()
+		{
+			m_playerData.Load();
+			m_playerData.GetDatas();
+		}
+
+		void Update()
+		{
+#if DEVELOPMENT_BUILD
+			m_playerData.GetDatas();
+#endif
+		}
 	}
 }

@@ -3,7 +3,13 @@ guid: 00bb8b059206ca14796fecec84d6bc65
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - <m_gameManager>k__BackingField: {instanceID: 0}
+  - <m_studioObjectManager>k__BackingField: {instanceID: 0}
+  - <m_characterManager>k__BackingField: {instanceID: 0}
+  - <m_bulletManger>k__BackingField: {instanceID: 0}
+  - <m_backgroundManager>k__BackingField: {instanceID: 0}
+  - <m_uiManager>k__BackingField: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

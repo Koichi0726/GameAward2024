@@ -25,11 +25,11 @@ public class EnemyIdleAnime : StateMachineBehaviour
 
         // プレイヤーのトランスフォーム取得
         GameScene.CharacterManager characterManager =
-            GameScene.ManagerContainer.GetManagerContainer().m_characterManager;
-        m_playertransform = characterManager.m_player.position;
-        m_enemytransform = characterManager.m_enemy.position;
+            GameScene.ManagerContainer.instance.characterManager;
+        m_playertransform = characterManager.playerTrans.position;
+        m_enemytransform = characterManager.enemyTrans.position;
 
-        characterManager.m_enemy.forward = m_playertransform;
+        characterManager.enemyTrans.forward = m_playertransform;
 
 
 

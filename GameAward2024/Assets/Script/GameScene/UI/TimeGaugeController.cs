@@ -12,7 +12,7 @@ public class TimeGaugeController : MonoBehaviour
     void Start()
 	{
 		// ゲーム用のタイマーを取得
-		m_gameTimer = GameScene.ManagerContainer.GetManagerContainer().m_studioObjectManager.m_gameTimer;
+		m_gameTimer = GameScene.ManagerContainer.instance.studioObjectManager.gameTimer;
 	}
 
 	// Update is called once per frame
