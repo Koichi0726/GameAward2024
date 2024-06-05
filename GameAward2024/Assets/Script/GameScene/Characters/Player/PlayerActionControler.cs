@@ -40,7 +40,7 @@ public class PlayerActionControler : MonoBehaviour
     void Start()
     {
         //各種変数初期化
-        PData = PlayerDataParam.data;
+        PData = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_playerData;
         m_PParamCoefficient = new PlayerParamCoefficient();
         m_actionList = new List<PlayerData.E_PLAYER_ACTION>();     //リストの生成
         m_actionValue = PData.START_GAUGE_VALUE;     //ゲージの数値初期化
