@@ -45,7 +45,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        PData = PlayerDataParam.data;
+        PData = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_playerData;
         Enemy = ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
         _period = PData.HORIZONTAL_MOVE_SPEED;
         _vertical = PData.VERTICAL_MOVE_SPEED;
