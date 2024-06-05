@@ -4,20 +4,20 @@ using UnityEngine.InputSystem;
 public class KeyRepeatInteraction : IInputInteraction
 {
     // ボタンが最初に押されてからリピート処理が始まるまでの時間[s]
-    public float repeatDelay = 0.01f;
+    public float m_repeatDelay = 0.01f;
 
     // ボタンが押されている間のリピート処理の間隔[s]
-    public float repeatInterval = 0.01f;
+    public float m_repeatInterval = 0.01f;
 
     // ボタンの閾値（0の場合はデフォルト設定値を使用）
-    public float pressPoint = 0;
+    public float m_pressPoint = 0;
 
     // 設定値かデフォルト値の値を格納するフィールド
-    private float PressPointOrDefault => pressPoint > 0 ? pressPoint : InputSystem.settings.defaultButtonPressPoint;
+    private float PressPointOrDefault => m_pressPoint > 0 ? m_pressPoint : InputSystem.settings.defaultButtonPressPoint;
     private float ReleasePointOrDefault => PressPointOrDefault * InputSystem.settings.buttonReleaseThreshold;
 
     // 次のリピート時刻[s]
-    private double _nextRepeatTime;
+    private double m_nextRepeatTime;
 
 #if UNITY_EDITOR
     [UnityEditor.InitializeOnLoadMethod]
@@ -33,7 +33,7 @@ public class KeyRepeatInteraction : IInputInteraction
     public void Process(ref InputInteractionContext context)
     {
         // 設定値のチェック
-        if (repeatDelay <= 0 || repeatInterval <= 0)
+        if (m_repeatDelay <= 0 || m_repeatInterval <= 0)
         {
             Debug.LogError("initialDelayとrepeatIntervalは0より大きい値を設定してください。");
             return;
@@ -42,16 +42,16 @@ public class KeyRepeatInteraction : IInputInteraction
         if (context.timerHasExpired)
         {
             // リピート時刻に達したら再びPerformedに遷移
-            if (context.time >= _nextRepeatTime)
+            if (context.time >= m_nextRepeatTime)
             {
                 // リピート処理の次回実行時刻を設定
-                _nextRepeatTime = context.time + repeatInterval;
+                m_nextRepeatTime = context.time + m_repeatInterval;
 
                 // リピート時の処理
                 context.PerformedAndStayPerformed();
 
                 // 次のリピート時刻にProcessメソッドが呼ばれるようにタイムアウトを設定
-                context.SetTimeout(repeatInterval);
+                context.SetTimeout(m_repeatInterval);
             }
 
             return;
@@ -68,10 +68,10 @@ public class KeyRepeatInteraction : IInputInteraction
                     context.PerformedAndStayPerformed();
 
                     // リピート処理の初回実行時刻を設定
-                    _nextRepeatTime = context.time + repeatDelay;
+                    m_nextRepeatTime = context.time + m_repeatDelay;
 
                     // 次のリピート時刻にProcessメソッドが呼ばれるようにタイムアウトを設定
-                    context.SetTimeout(repeatDelay);
+                    context.SetTimeout(m_repeatDelay);
                 }
 
                 break;
@@ -90,6 +90,6 @@ public class KeyRepeatInteraction : IInputInteraction
 
     public void Reset()
     {
-        _nextRepeatTime = 0;
+        m_nextRepeatTime = 0;
     }
 }
