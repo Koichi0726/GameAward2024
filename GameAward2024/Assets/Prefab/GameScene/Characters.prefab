@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerData: {fileID: 11400000, guid: 40a373d6d4a740141b7122da162549fd, type: 2}
   m_playerTrans: {fileID: 8960592889384489394}
+  m_playerActionController: {fileID: 6736290066318504091}
   m_enemyTrans: {fileID: 3424657306173931510}
   m_buffDebuffHandler: {fileID: 7458265321389384658}
 --- !u!1001 &4474859875880386693
@@ -181,6 +182,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21b0fe7fa2517504d9e7d7a6ac26ae02, type: 3}
+--- !u!114 &6736290066318504091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4480125337628647528, guid: 21b0fe7fa2517504d9e7d7a6ac26ae02, type: 3}
+  m_PrefabInstance: {fileID: 7156367546050744563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36252e4ceb9a7c34eb9e92321387d459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8960592889384489394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2236861419429183809, guid: 21b0fe7fa2517504d9e7d7a6ac26ae02, type: 3}
