@@ -21,6 +21,13 @@ namespace GameScene
 		public Transform playerTrans => m_playerTrans;
 
 		[SerializeField]
+		PlayerActionControler m_playerActionController;
+		/// <summary>
+		/// PlayerActionController‚ðŽæ“¾
+		/// </summary>
+		public PlayerActionControler playerActionController => m_playerActionController;
+
+		[SerializeField]
 		Transform m_enemyTrans;
 		/// <summary>
 		/// “G‚ÌTransform‚ðŽæ“¾
