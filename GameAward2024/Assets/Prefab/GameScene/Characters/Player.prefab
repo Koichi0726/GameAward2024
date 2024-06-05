@@ -281,6 +281,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 387f053c-15f9-427b-9ad5-90d2c56bed3d
     m_ActionName: Player/DodgeBack
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2592966981000201536}
+        m_TargetAssemblyTypeName: PlayerAvoid, Assembly-CSharp
+        m_MethodName: OnAvoid
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 54235710-e10c-4788-8f32-78c3de1f9a72
+    m_ActionName: Player/Avoid[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

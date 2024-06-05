@@ -26,38 +26,6 @@ public class PlayerAvoid : MonoBehaviour
         Period = new Vector2();
     }
 
-    private void Update()
-    {
-        Vector2 dir = PlayerActionControler.PParam.m_moveDirect;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (!AvoidFlag)
-            {
-                AvoidFlag = true;
-                if(dir.x < 0.0f)
-                {
-                    Period.x = -0.3f;
-                }
-                else if(dir.x > 0.0f)
-                {
-                    Period.x = 0.3f;
-                }
-                if (dir.y < 0.0f)
-                {
-                    Period.y = -0.3f;
-                }
-                else if (dir.y > 0.0f)
-                {
-                    Period.y = 0.3f;
-                }
-
-            }
-
-            Debug.Log(dir);
-        }
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -70,7 +38,7 @@ public class PlayerAvoid : MonoBehaviour
 
         Period *= 1.3f;
 
-        if(Period.x >= 8.0f || Period.x <= -8.0f)
+        if (Period.x >= 8.0f || Period.x <= -8.0f)
         {
             Period.x = 0.0f;
         }
@@ -79,7 +47,7 @@ public class PlayerAvoid : MonoBehaviour
             Period.y = 0.0f;
         }
 
-        if(Period.x == 0.0f && Period.y == 0.0f)
+        if (Period.x == 0.0f && Period.y == 0.0f)
         {
             AvoidFlag = false;
         }
@@ -88,6 +56,27 @@ public class PlayerAvoid : MonoBehaviour
 
     public void OnAvoid()
     {
+        Vector2 dir = PlayerActionControler.PParam.m_moveDirect;
 
+        if (!AvoidFlag)
+        {
+            AvoidFlag = true;
+            if (dir.x < 0.0f)
+            {
+                Period.x = -0.3f;
+            }
+            else if (dir.x > 0.0f)
+            {
+                Period.x = 0.3f;
+            }
+            if (dir.y < 0.0f)
+            {
+                Period.y = -0.3f;
+            }
+            else if (dir.y > 0.0f)
+            {
+                Period.y = 0.3f;
+            }
+        }
     }
 }
