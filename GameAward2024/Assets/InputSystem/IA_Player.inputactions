@@ -20,8 +20,8 @@
                     "id": "cf787208-2518-487a-a8d8-38ec7f643f58",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "KeyRepeat(repeatDelay=0.01,repeatInterval=0.01)",
-                    "initialStateCheck": true
+                    "interactions": "KeyRepeat",
+                    "initialStateCheck": false
                 },
                 {
                     "name": "MoveDown",

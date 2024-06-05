@@ -18,11 +18,13 @@ public class BuffDebuffHandler : MonoBehaviour
 
     void Update()
     {
-		foreach(BuffDebuffData data in m_buffDebuffDatas)
+		for(int i = 0; i < m_buffDebuffDatas.Count; ++i)
 		{
+			BuffDebuffData data = m_buffDebuffDatas[i];
+
 			//--- 係数の情報をプレイヤーへ流す
 			PlayerParamCoefficient playerParamCoefficient = PlayerActionControler.PParam;
-			playerParamCoefficient = data.m_playerParamCoefficient;
+			playerParamCoefficient.m_addGaugeValue = data.m_playerParamCoefficient.m_addGaugeValue;
 
 			// 効果の残り時間を減らしていく
 			data.m_remainingDuration -= Time.deltaTime;
@@ -30,8 +32,9 @@ public class BuffDebuffHandler : MonoBehaviour
 			if (data.m_remainingDuration > 0.0f) continue;
 			// 残り時間が0秒になった場合、データを消去
 			m_buffDebuffDatas.Remove(data);
+			--i;
 		}
-    }
+	}
 
 	/// <summary>
 	/// バフ・デバフを追加
