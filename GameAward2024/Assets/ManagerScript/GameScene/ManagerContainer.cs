@@ -7,19 +7,49 @@ namespace GameScene
 	public class ManagerContainer : MonoBehaviour
 	{
 		static ManagerContainer m_managerContainer;
+		/// <summary>
+		/// ManagerContainerを取得
+		/// </summary>
+		public static ManagerContainer instance => m_managerContainer;
 
-		[field: SerializeField]
-		public GameScene.GameManager m_gameManager { get; private set; }
-		[field: SerializeField]
-		public GameScene.StudioObjectManager m_studioObjectManager { get; private set; }
-		[field: SerializeField]
-		public GameScene.CharacterManager m_characterManager { get; private set; }
-		[field: SerializeField]
-		public BulletManager m_bulletManger { get; private set; }
-		[field: SerializeField]
-		public GameScene.BackgroundManager m_backgroundManager { get; private set; }
-		[field: SerializeField]
-		public GameScene.UIManager m_uiManager { get; private set; }
+		[SerializeField]
+		GameManager m_gameManager;
+		/// <summary>
+		/// GameManagerを取得
+		/// </summary>
+		public GameManager gameManager => m_gameManager;
+
+		[SerializeField]
+		StudioObjectManager m_studioObjectManager;
+		/// <summary>
+		/// StudioObjectManagerを取得
+		/// </summary>
+		public StudioObjectManager studioObjectManager => m_studioObjectManager;
+
+		[SerializeField]
+		CharacterManager m_characterManager;
+		/// <summary>
+		/// CharacterManagerを取得
+		/// </summary>
+		public CharacterManager characterManager => m_characterManager;
+
+		[SerializeField]
+		BulletManager m_bulletManger;
+		/// <summary>
+		/// BulletManagerを取得
+		/// </summary>
+		public BulletManager bulletManger => m_bulletManger;
+
+		[SerializeField]
+		BackgroundManager m_backgroundManager;
+		/// <summary>
+		/// BackgroundManagerを取得
+		/// </summary>
+		public BackgroundManager backgroundManager => m_backgroundManager;
+
+		[SerializeField]
+		UIManager m_uiManager;
+		public UIManager uiManager => m_uiManager;
 
 		private void Awake()
 		{
@@ -29,17 +59,8 @@ namespace GameScene
 
 		private void OnDestroy()
 		{
-			// マネージャーコンテナの参照を破棄
+			// マネージャーコンテナを破棄
 			m_managerContainer = null;
-		}
-
-		/// <summary>
-		/// マネージャーコンテナの参照を取得
-		/// </summary>
-		/// <returns>マネージャーコンテナの参照</returns>
-		public static ManagerContainer GetManagerContainer()
-		{
-			return m_managerContainer;
 		}
 	}
 }

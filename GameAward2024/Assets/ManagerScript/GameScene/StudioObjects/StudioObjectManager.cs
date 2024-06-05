@@ -7,13 +7,32 @@ namespace GameScene
 {
 	public class StudioObjectManager : MonoBehaviour
 	{
-		[field: SerializeField]
-		public Camera m_mainCamera { get; private set; }
-		[field: SerializeField]
-		public Light m_directionLight { get; private set; }
-		[field: SerializeField]
-		public Volume m_volume { get; private set; }
-		[field: SerializeField]
-        public GameTimer m_gameTimer { get; private set; }
+		[SerializeField]
+		Camera m_mainCamera;
+		/// <summary>
+		/// メインカメラを取得
+		/// </summary>
+		public Camera mainCamera => m_mainCamera;
+
+		[SerializeField]
+		Light m_directionalLight;
+		/// <summary>
+		/// 平行ライトを取得
+		/// </summary>
+		public Light directionalLight => m_directionalLight;
+
+		[SerializeField]
+		Volume m_volume;
+		/// <summary>
+		/// ボリュームを取得
+		/// </summary>
+		public Volume volume => m_volume;
+
+		[SerializeField]
+		GameTimer m_gameTimer;
+		/// <summary>
+		/// ゲームタイマーを取得
+		/// </summary>
+		public GameTimer gameTimer => m_gameTimer;
 	}
 }
