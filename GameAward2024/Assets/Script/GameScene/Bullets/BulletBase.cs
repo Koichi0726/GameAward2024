@@ -29,7 +29,7 @@ public class BulletBase : MonoBehaviour
     {
         // プレイヤーにバフを付与する
         ManagerContainer.instance.characterManager.
-            buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, gameObject.name);
+            buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, this.GetType().Name);
 
         // プレイヤーに当たったら弾を削除する
         Destroy(gameObject);
