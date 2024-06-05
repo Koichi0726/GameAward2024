@@ -4,27 +4,60 @@ using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameScene;
+
+public class PlayerParamCoefficient // プレイヤーに関わる係数
+{
+	public float m_addGaugeValue = 0.0f;    // ゲージに加算する変数
+	public float m_subGaugeValue = 0.0f;    // ゲージに減算する変数
+	public float m_gaugeUpSpeed = 1.0f;     // ゲージの増加スピード
+	public float m_gaugeDownSpeed = 1.0f;   // ゲージの減少スピード
+	public Vector2 m_moveDirect
+		= new Vector2(1.0f, 1.0f);			// 移動方向の係数
+	public float m_moveSpeed = 1.0f;		// 移動速度の係数
+
+	public void Init()
+	{
+		m_addGaugeValue = m_subGaugeValue = 0.0f;
+		m_gaugeUpSpeed = m_gaugeDownSpeed = 1.0f;
+		m_moveDirect = new Vector2(1.0f, 1.0f);
+		m_moveSpeed = 1.0f;
+	}
+
+	public void InsertData(PlayerParamCoefficient insertData)
+	{
+		m_addGaugeValue		+= insertData.m_addGaugeValue;
+		m_subGaugeValue		+= insertData.m_subGaugeValue;
+		m_gaugeUpSpeed		*= insertData.m_gaugeUpSpeed;
+		m_gaugeDownSpeed	*= insertData.m_gaugeDownSpeed;
+		m_moveDirect		*= insertData.m_moveDirect;
+		m_moveSpeed			*= insertData.m_moveSpeed;
+	}
+}
 
 public class BuffDebuffData
 {
-	public PlayerParamCoefficient m_playerParamCoefficient = new PlayerParamCoefficient();
+	public PlayerParamCoefficient m_paramCoefficient = new PlayerParamCoefficient();
 	public float m_remainingDuration = 0.0f;   // 残り効果継続時間
 	public int m_buffDebuffKey = 0;				// 効果を発揮する弾の名前
 }
 
+[DefaultExecutionOrder(-1)]
 public class BuffDebuffHandler : MonoBehaviour
 {
+	public PlayerParamCoefficient m_paramCoefficient { get; private set; } = new PlayerParamCoefficient();
 	List<BuffDebuffData> m_buffDebuffDatas = new List<BuffDebuffData>();
 
-    void Update()
+	void FixedUpdate()
     {
-		for(int i = 0; i < m_buffDebuffDatas.Count; ++i)
+		m_paramCoefficient.Init();	// 係数の情報をリセット
+
+		for (int i = 0; i < m_buffDebuffDatas.Count; ++i)
 		{
 			BuffDebuffData data = m_buffDebuffDatas[i];
 
-			//--- 係数の情報をプレイヤーへ流す
-			PlayerParamCoefficient playerParamCoefficient = PlayerActionControler.PParam;
-			playerParamCoefficient.m_addGaugeValue = data.m_playerParamCoefficient.m_addGaugeValue;
+			// 係数の情報をプレイヤーへ流す
+			m_paramCoefficient.InsertData(data.m_paramCoefficient);
 
 			// 効果の残り時間を減らしていく
 			data.m_remainingDuration -= Time.deltaTime;
@@ -40,7 +73,7 @@ public class BuffDebuffHandler : MonoBehaviour
 	/// バフ・デバフを追加
 	/// </summary>
 	/// <param name="data">バフ・デバフのデータ</param>
-	/// <param name="bulletName">弾の名前(gameObject.name)</param>
+	/// <param name="bulletName">弾の名前(this.GetType().Name)</param>
 	public void AddBuffDebuff(BuffDebuffData data, string bulletName)
 	{
 		//--- 弾の名前から一意のバフ・デバフのキーを計算
