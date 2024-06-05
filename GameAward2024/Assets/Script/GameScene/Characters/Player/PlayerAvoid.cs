@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class PlayerAvoid : MonoBehaviour
 {
-    //変数宣言
-    private float rotXZ = 3.0f;  //プレイヤー回転角度XZ
-    private float rotY = 0.0f;   //プレイヤー回転角度Y
-    private float lateRotXZ;
-    private float lateRotY;
-    private float radius = -5.0f;
-
-    private Vector3 playerPos;  //プレイヤー座標
-    private Vector3 bossPos;    //ボス座標
-    private Vector3 distance;   //プレイヤーとボスの距離
-    private Vector3 dodgeDistance;  //プレイヤーの回避距離計算用
+    const float AVOID_ANCEMULTI_PLIER = 1.3f;       //回避の速度の減少率（大きいほど速く止まる）
+    const float AVOID_START_VALUE = 0.3f;       //回避の初期値（大きいほど初速が遅い）
+    const float AVOID_RIMIT_VALUE = 8.0f;       //回避の停止する値（大きいほど停止までの動きが伸びる）
 
     private bool AvoidFlag;
     private Vector2 Period;
@@ -36,13 +28,13 @@ public class PlayerAvoid : MonoBehaviour
         if (Period.x != 0.0f) GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period.x, this.transform.up);
         if (Period.y != 0.0f) GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period.y, this.transform.right);
 
-        Period *= 1.3f;
+        Period *= AVOID_ANCEMULTI_PLIER;
 
-        if (Period.x >= 8.0f || Period.x <= -8.0f)
+        if (Period.x >= AVOID_RIMIT_VALUE || Period.x <= -AVOID_RIMIT_VALUE)
         {
             Period.x = 0.0f;
         }
-        if (Period.y >= 8.0f || Period.y <= -8.0f)
+        if (Period.y >= AVOID_RIMIT_VALUE || Period.y <= -AVOID_RIMIT_VALUE)
         {
             Period.y = 0.0f;
         }
@@ -63,19 +55,19 @@ public class PlayerAvoid : MonoBehaviour
             AvoidFlag = true;
             if (dir.x < 0.0f)
             {
-                Period.x = -0.3f;
+                Period.x = -AVOID_START_VALUE;
             }
             else if (dir.x > 0.0f)
             {
-                Period.x = 0.3f;
+                Period.x = AVOID_START_VALUE;
             }
             if (dir.y < 0.0f)
             {
-                Period.y = -0.3f;
+                Period.y = -AVOID_START_VALUE;
             }
             else if (dir.y > 0.0f)
             {
-                Period.y = 0.3f;
+                Period.y = AVOID_START_VALUE;
             }
         }
     }
