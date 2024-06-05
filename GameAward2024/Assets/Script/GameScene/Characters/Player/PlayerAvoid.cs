@@ -63,13 +63,24 @@ public class PlayerAvoid : MonoBehaviour
     {
         if (!AvoidFlag) return;
 
-        GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period.x, Vector3.up);
+        PlayerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_AVOID);
+
+        if (Period.x != 0.0f) GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period.x, this.transform.up);
+        if (Period.y != 0.0f) GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period.y, this.transform.right);
 
         Period *= 1.3f;
 
-        if(Period.x >= 8.0f)
+        if(Period.x >= 8.0f || Period.x <= -8.0f)
         {
             Period.x = 0.0f;
+        }
+        if (Period.y >= 8.0f || Period.y <= -8.0f)
+        {
+            Period.y = 0.0f;
+        }
+
+        if(Period.x == 0.0f && Period.y == 0.0f)
+        {
             AvoidFlag = false;
         }
 
