@@ -6,108 +6,65 @@ using GameScene;
 
 public class PlayerMove : MonoBehaviour
 {
-    // プレイヤーデータの取得用変数
-    private PlayerData PData;
+	const float MAX_DEGREE = Mathf.PI * 2.0f * Mathf.Rad2Deg;
 
-    // 目標（座標を使用）
-    private Transform Enemy;
+	// プレイヤーデータの取得用変数
+	PlayerData m_playerData;
 
-    // 回転軸
-    [SerializeField] private Vector3 _axis = Vector3.up;
+	// プレイヤーパラメータ係数
+	PlayerParamCoefficient m_paramCoefficient;
 
-    // 基礎円運動周期
-    [SerializeField] private float _period;
+	PlayerActionControler m_playerActionControler;
 
-    // 上下の制限（x:max y:min）
-    [SerializeField] private Vector2 VerticalRemit;
-
-    // 上下の移動量
-    private float _vertical;
+	// 目標（座標を使用）
+	Transform m_enemyTrans;
 
     // 走るフラグ
-    private bool DashFlag;
+    bool m_isDash = false;
 
     // 前フレームのワールド座標
-    private Vector3 _prevPosition;
-
-    // プレイヤーの情報
-    Transform tr;
+    Vector3 m_prePos;
 
     // プレイヤーのポジション
-    Vector3 pos;
+    Vector3 m_pos;
 
-    // 実際に使用する円運動周期
-    float VPeriod;
-    float HPeriod;
-
-    //i移動方向を格納
-    Vector2 Dir;
+	// 実際に使用する円運動周期
+	Vector2 m_period = new Vector2();
 
     void Start()
     {
-        PData = GameScene.ManagerContainer.instance.characterManager.playerData;
-        Enemy = ManagerContainer.instance.characterManager.enemyTrans;
-        _period = PData.HORIZONTAL_MOVE_SPEED;
-        _vertical = PData.VERTICAL_MOVE_SPEED;
-        DashFlag = false;
-        _prevPosition = transform.position;
-        tr = transform;
-        pos = tr.position;
-        VPeriod = 0.0f;
-        HPeriod = 0.0f;
-        Dir = new Vector2(0.0f, 0.0f);
+		CharacterManager characterManager = ManagerContainer.instance.characterManager;
+        m_playerData = characterManager.playerData;
+		m_paramCoefficient = characterManager.buffDebuffHandler.m_paramCoefficient;
+		m_playerActionControler = characterManager.playerActionController;
+		m_enemyTrans = characterManager.enemyTrans;
+		m_pos = m_prePos = transform.position;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        //左右の移動がなければ終了する
-        if (VPeriod == 0.0 && HPeriod == 0.0f)
-        {
-            // 次のUpdateで使うための前フレーム位置更新
-            _prevPosition = pos;
-
-            return;
-        }
-
-        Dir = new Vector2(0.0f, 0.0f);
-
         // 次のUpdateで使うための前フレーム位置更新
-        _prevPosition = pos;
+        m_prePos = m_pos;
 
-        if (DashFlag)
-        {
-            VPeriod /= 2.0f;
-            HPeriod /= 2.0f;
-        }
+        //--- 左右左右の移動がなければ終了する
+        if (Mathf.Approximately(m_period.x, 0.0f) && Mathf.Approximately(m_period.y, 0.0f))
+			return;
 
-        if (VPeriod != 0.0f) PlayerCircularRotation(VPeriod, this.transform.up);
-        if (HPeriod != 0.0f) PlayerCircularRotation(HPeriod, this.transform.right);
+		// ダッシュ時
+        if (m_isDash)	m_period /= m_playerData.DASH_MOVE_SPEED_MULTIPLIER;
 
-        transform.position = pos;
+		// 移動速度を適用
+		m_period /= m_paramCoefficient.m_moveSpeed;
+		m_period *= m_paramCoefficient.m_moveDirect;
 
-        if (VPeriod < 0.0f)
-        {
-            Dir.x = -1.0f;
-        }
-        else if (VPeriod > 0.0f)
-        {
-            Dir.x = 1.0f;
-        }
-        if (HPeriod < 0.0f)
-        {
-            Dir.y = -1.0f;
-        }
-        else if (HPeriod > 0.0f)
-        {
-            Dir.y = 1.0f;
-        }
+		//--- 移動処理
+		if (m_period.x != 0.0f) PlayerCircularRotation(m_period.x, this.transform.up);
+        if (m_period.y != 0.0f) PlayerCircularRotation(m_period.y, this.transform.right);
+        transform.position = m_pos;
+		m_paramCoefficient.m_moveDirect = m_period.normalized;
 
-        PlayerActionControler.PParam.m_moveDirect = Dir;
-        
-        //各変数のリセット
-        VPeriod = 0.0f;      //左右の移動量をリセット
-        HPeriod = 0.0f;      //縦の移動量をリセット
+		// 移動量をリセット
+		m_period.x = m_period.y = 0.0f;
     }
 
     /// <summary>
@@ -115,7 +72,7 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     public void OnMoveUp()
     {
-        HPeriod = _period;
+		m_period.y = m_playerData.VERTICAL_MOVE_SPEED;
         ActionEntry();
     }
 
@@ -124,7 +81,7 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     public void OnMoveDown()
     {
-        HPeriod = -_period;
+		m_period.y = -m_playerData.VERTICAL_MOVE_SPEED;
         ActionEntry();
     }
 
@@ -133,7 +90,7 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     public void OnMoveLeft()
     {
-        VPeriod = _period;
+		m_period.x = m_playerData.HORIZONTAL_MOVE_SPEED;
         ActionEntry();
     }
 
@@ -142,7 +99,7 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     public void OnMoveRight()
     {
-        VPeriod = -_period;
+		m_period.x = -m_playerData.HORIZONTAL_MOVE_SPEED;
         ActionEntry();
     }
 
@@ -152,7 +109,7 @@ public class PlayerMove : MonoBehaviour
     public void OnDashStart(InputAction.CallbackContext context)
     {
         if (!context.started) return;
-        DashFlag = true;
+        m_isDash = true;
     }
 
     /// <summary>
@@ -161,7 +118,7 @@ public class PlayerMove : MonoBehaviour
     public void OnDashEnd(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        DashFlag = false;
+        m_isDash = false;
     }
 
     /// <summary>
@@ -169,27 +126,25 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void ActionEntry()
     {
-        if(!DashFlag)
+        if(!m_isDash)
         {
-            PlayerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_MOVE);
+			m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_MOVE);
         }
         else
         {
-            PlayerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_DASH);
+			m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_DASH);
         }
     }
 
     public void PlayerCircularRotation(float p, Vector3 axis)
     {
-        //変数宣言
-        Vector3 _center = Enemy.position;   //回転の中心
-        var angleAxis = Quaternion.AngleAxis(360 / p * Time.deltaTime, axis);     //クオータニオンの計算
+        //--- 変数宣言
+        Vector3 center = m_enemyTrans.position;   //回転の中心
+        var angleAxis = Quaternion.AngleAxis(MAX_DEGREE / p * Time.deltaTime, axis);     //クオータニオンの計算
 
-        //移動先を算出
-        pos -= _center;
-        pos = angleAxis * pos;
-        pos += _center;
+        // 移動先を算出
+        m_pos -= center;
+        m_pos = angleAxis * m_pos;
+        m_pos += center;
     }
 }
-
-

@@ -1,72 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameScene;
 
 public class PlayerAvoid : MonoBehaviour
 {
 	PlayerData m_playerData;
-    private bool AvoidFlag;
-    private Vector2 Period;
+	PlayerParamCoefficient m_paramCoefficient;
+	PlayerActionControler m_playerActionControler;
+	PlayerMove m_playerMove;
+	bool m_isAvoid;
+	Vector2 m_period;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-		m_playerData = GameScene.ManagerContainer.instance.characterManager.playerData;
-        AvoidFlag = false;
-        Period = new Vector2();
-    }
+	void Start()
+	{
+		CharacterManager characterManager = ManagerContainer.instance.characterManager;
+		m_playerActionControler = characterManager.playerActionController;
+		characterManager.playerTrans.TryGetComponent<PlayerMove>(out m_playerMove);
+		m_playerData = characterManager.playerData;
+		m_paramCoefficient = characterManager.buffDebuffHandler.m_paramCoefficient;
+		m_isAvoid = false;
+		m_period = new Vector2();
+	}
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        if (!AvoidFlag) return;
+	void FixedUpdate()
+	{
+		if (!m_isAvoid) return;
 
-        PlayerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_AVOID);
+		m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_AVOID);
 
-        if (Period.x != 0.0f) GameScene.ManagerContainer.instance.characterManager.playerTrans.GetComponent<PlayerMove>().PlayerCircularRotation(Period.x, this.transform.up);
-        if (Period.y != 0.0f) GameScene.ManagerContainer.instance.characterManager.playerTrans.GetComponent<PlayerMove>().PlayerCircularRotation(Period.y, this.transform.right);
+		//--- 回避
+		if (Mathf.Abs(m_period.x) > 0.0f)
+			m_playerMove.PlayerCircularRotation(m_period.x, this.transform.up);
+		if (Mathf.Abs(m_period.y) > 0.0f)
+			m_playerMove.PlayerCircularRotation(m_period.y, this.transform.right);
 
-        Period *= m_playerData.AVOID_ANCEMULTI_PLIER;
+		// 加速させていく
+		m_period *= m_playerData.AVOID_ANCE_MULTIPLIER;
 
-        if (Period.x >= m_playerData.AVOID_RIMIT_VALUE || Period.x <= -m_playerData.AVOID_RIMIT_VALUE)
-        {
-            Period.x = 0.0f;
-        }
-        if (Period.y >= m_playerData.AVOID_RIMIT_VALUE || Period.y <= -m_playerData.AVOID_RIMIT_VALUE)
-        {
-            Period.y = 0.0f;
-        }
+		//--- 回避の限界値で停止させる
+		if (Mathf.Abs(m_period.x) >= m_playerData.AVOID_RIMIT_VALUE)
+			m_period.x = 0.0f;
+		if (Mathf.Abs(m_period.y) >= m_playerData.AVOID_RIMIT_VALUE)
+			m_period.y = 0.0f;
 
-        if (Period.x == 0.0f && Period.y == 0.0f)
-        {
-            AvoidFlag = false;
-        }
+		// 回避の終了を判定
+		m_isAvoid = !(m_period.x == 0.0f && m_period.y == 0.0f);
+	}
 
-    }
+	public void OnAvoid()
+	{
+		if (m_isAvoid) return;
 
-    public void OnAvoid()
-    {
-        Vector2 dir = PlayerActionControler.PParam.m_moveDirect;
+		//--- 回避する方向を計算
+		Vector2 dir = m_paramCoefficient.m_moveDirect;
+		m_period.x = m_playerData.AVOID_START_VALUE * dir.x;
+		m_period.y = m_playerData.AVOID_START_VALUE * dir.y;
 
-        if (!AvoidFlag)
-        {
-            AvoidFlag = true;
-            if (dir.x < 0.0f)
-            {
-                Period.x = -m_playerData.AVOID_START_VALUE;
-            }
-            else if (dir.x > 0.0f)
-            {
-                Period.x = m_playerData.AVOID_START_VALUE;
-            }
-            if (dir.y < 0.0f)
-            {
-                Period.y = -m_playerData.AVOID_START_VALUE;
-            }
-            else if (dir.y > 0.0f)
-            {
-                Period.y = m_playerData.AVOID_START_VALUE;
-            }
-        }
-    }
+		m_isAvoid = true;	// 回避フラグを立てる
+	}
 }

@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class PlayerRotation : MonoBehaviour
 {
-    private Transform target;
+    private Transform m_enemyTrans;
 
-    // Start is called before the first frame update
     void Start()
     {
-        target = GameScene.ManagerContainer.instance.characterManager.enemyTrans;
+        m_enemyTrans = GameScene.ManagerContainer.instance.characterManager.enemyTrans;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        this.transform.LookAt(target.transform.position, transform.up);
+        this.transform.LookAt(m_enemyTrans.transform.position, transform.up);
     }
 }
