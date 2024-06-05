@@ -50,12 +50,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00bb8b059206ca14796fecec84d6bc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <m_gameManager>k__BackingField: {fileID: 2058936844909603708}
-  <m_uiManager>k__BackingField: {fileID: 6421727350961495236}
-  <m_studioObjectManager>k__BackingField: {fileID: 7486910810447636916}
-  <m_characterManager>k__BackingField: {fileID: 1211066300493397109}
-  <m_bulletManger>k__BackingField: {fileID: 7954686115879564520}
-  <m_backgroundManager>k__BackingField: {fileID: 8028754396837105601}
+  m_gameManager: {fileID: 2058936844909603708}
+  m_studioObjectManager: {fileID: 7486910810447636916}
+  m_characterManager: {fileID: 1211066300493397109}
+  m_bulletManger: {fileID: 7954686115879564520}
+  m_backgroundManager: {fileID: 8028754396837105601}
+  m_uiManager: {fileID: 6421727350961495236}
 --- !u!114 &2058936844909603708
 MonoBehaviour:
   m_ObjectHideFlags: 0
