@@ -44,11 +44,17 @@ public class PlayerData : ScriptableObject
 	/// </summary>
 	public float HORIZONTAL_MOVE_SPEED => m_horizontalMoveSpeed;
 
-	float m_avoidAncemultiPlier = 1.3f;
+	float m_dashMoveSpeedMultiplier = 2.0f;
+	/// <summary>
+	/// ダッシュ時の移動速度の乗数
+	/// </summary>
+	public float DASH_MOVE_SPEED_MULTIPLIER => m_dashMoveSpeedMultiplier;
+
+	float m_avoidAnceMultiplier = 1.3f;
 	/// <summary>
 	/// 回避の速度の減少率（大きいほど速く止まる）
 	/// </summary>
-	public float AVOID_ANCEMULTI_PLIER => m_avoidAncemultiPlier;
+	public float AVOID_ANCE_MULTIPLIER => m_avoidAnceMultiplier;
 
 	float m_avoidStartValue = 0.3f;
 	/// <summary>
@@ -108,15 +114,16 @@ public class PlayerData : ScriptableObject
 		var paramDatas = m_csvReader.m_csvDatas;
 
 		//--- 値の吸出し
-		paramDatas[nameof(m_startGaugeValue		)].TryGetData(out m_startGaugeValue);
-		paramDatas[nameof(m_verticalMoveSpeed	)].TryGetData(out m_verticalMoveSpeed);
-		paramDatas[nameof(m_horizontalMoveSpeed	)].TryGetData(out m_horizontalMoveSpeed);
-		paramDatas[nameof(m_avoidAncemultiPlier	)].TryGetData(out m_avoidAncemultiPlier);
-		paramDatas[nameof(m_avoidStartValue		)].TryGetData(out m_avoidStartValue);
-		paramDatas[nameof(m_avoidRimitValue		)].TryGetData(out m_avoidRimitValue);
-		paramDatas[nameof(m_stopGaugeValue		)].TryGetData(out m_stopGaugeValue);
-		paramDatas[nameof(m_moveGaugeValue		)].TryGetData(out m_moveGaugeValue);
-		paramDatas[nameof(m_dashGaugeValue		)].TryGetData(out m_dashGaugeValue);
-		paramDatas[nameof(m_avoidGaugeValue		)].TryGetData(out m_avoidGaugeValue);
+		paramDatas[nameof(m_startGaugeValue			)].TryGetData(out m_startGaugeValue);
+		paramDatas[nameof(m_verticalMoveSpeed		)].TryGetData(out m_verticalMoveSpeed);
+		paramDatas[nameof(m_horizontalMoveSpeed		)].TryGetData(out m_horizontalMoveSpeed);
+		paramDatas[nameof(m_dashMoveSpeedMultiplier	)].TryGetData(out m_dashMoveSpeedMultiplier);
+		paramDatas[nameof(m_avoidAnceMultiplier		)].TryGetData(out m_avoidAnceMultiplier);
+		paramDatas[nameof(m_avoidStartValue			)].TryGetData(out m_avoidStartValue);
+		paramDatas[nameof(m_avoidRimitValue			)].TryGetData(out m_avoidRimitValue);
+		paramDatas[nameof(m_stopGaugeValue			)].TryGetData(out m_stopGaugeValue);
+		paramDatas[nameof(m_moveGaugeValue			)].TryGetData(out m_moveGaugeValue);
+		paramDatas[nameof(m_dashGaugeValue			)].TryGetData(out m_dashGaugeValue);
+		paramDatas[nameof(m_avoidGaugeValue			)].TryGetData(out m_avoidGaugeValue);
 	}
 }

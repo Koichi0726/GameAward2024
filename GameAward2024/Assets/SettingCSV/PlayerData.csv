@@ -2,9 +2,10 @@
 ゲージ初期値,m_startGaugeValue,60
 ,,
 // 移動用パラメータ,,
-垂直方向の移動速度,m_verticalMoveSpeed,0.1
-水平方向の移動速度,m_horizontalMoveSpeed,4
-回避の速度の減少率（大きいほど速く止まる）,m_avoidAncemultiPlier,1.3
+垂直方向の移動速度（x秒で一周する）,m_verticalMoveSpeed,4
+水平方向の移動速度（x秒で一周する）,m_horizontalMoveSpeed,4
+ダッシュ時の移動速度（通常時の移動速度×x）,m_dashMoveSpeedMultiplier,2
+回避の加速度（大きいほど速く止まる）,m_avoidAnceMultiplier,1.3
 回避の初期値（大きいほど初速が遅い）,m_avoidStartValue,0.3
 回避の停止する値（大きいほど停止までの動きが伸びる）,m_avoidRimitValue,8
 ,,
