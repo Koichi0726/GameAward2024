@@ -21,3 +21,4 @@ MonoBehaviour:
   m_moveGaugeValue: 0.1
   m_dashGaugeValue: 0.2
   m_avoidGaugeValue: 0.5
+  m_csvText: {fileID: 4900000, guid: 75c4c48eb37af7243813d592b38e7ece, type: 3}

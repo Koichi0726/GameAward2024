@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class PlayerAvoid : MonoBehaviour
 {
-    const float AVOID_ANCEMULTI_PLIER = 1.3f;       //回避の速度の減少率（大きいほど速く止まる）
-    const float AVOID_START_VALUE = 0.3f;       //回避の初期値（大きいほど初速が遅い）
-    const float AVOID_RIMIT_VALUE = 8.0f;       //回避の停止する値（大きいほど停止までの動きが伸びる）
-
+	PlayerData m_playerData;
     private bool AvoidFlag;
     private Vector2 Period;
 
     // Start is called before the first frame update
     void Start()
     {
+		m_playerData = GameScene.ManagerContainer.instance.characterManager.playerData;
         AvoidFlag = false;
         Period = new Vector2();
     }
@@ -28,13 +26,13 @@ public class PlayerAvoid : MonoBehaviour
         if (Period.x != 0.0f) GameScene.ManagerContainer.instance.characterManager.playerTrans.GetComponent<PlayerMove>().PlayerCircularRotation(Period.x, this.transform.up);
         if (Period.y != 0.0f) GameScene.ManagerContainer.instance.characterManager.playerTrans.GetComponent<PlayerMove>().PlayerCircularRotation(Period.y, this.transform.right);
 
-        Period *= AVOID_ANCEMULTI_PLIER;
+        Period *= m_playerData.AVOID_ANCEMULTI_PLIER;
 
-        if (Period.x >= AVOID_RIMIT_VALUE || Period.x <= -AVOID_RIMIT_VALUE)
+        if (Period.x >= m_playerData.AVOID_RIMIT_VALUE || Period.x <= -m_playerData.AVOID_RIMIT_VALUE)
         {
             Period.x = 0.0f;
         }
-        if (Period.y >= AVOID_RIMIT_VALUE || Period.y <= -AVOID_RIMIT_VALUE)
+        if (Period.y >= m_playerData.AVOID_RIMIT_VALUE || Period.y <= -m_playerData.AVOID_RIMIT_VALUE)
         {
             Period.y = 0.0f;
         }
@@ -55,19 +53,19 @@ public class PlayerAvoid : MonoBehaviour
             AvoidFlag = true;
             if (dir.x < 0.0f)
             {
-                Period.x = -AVOID_START_VALUE;
+                Period.x = -m_playerData.AVOID_START_VALUE;
             }
             else if (dir.x > 0.0f)
             {
-                Period.x = AVOID_START_VALUE;
+                Period.x = m_playerData.AVOID_START_VALUE;
             }
             if (dir.y < 0.0f)
             {
-                Period.y = -AVOID_START_VALUE;
+                Period.y = -m_playerData.AVOID_START_VALUE;
             }
             else if (dir.y > 0.0f)
             {
-                Period.y = AVOID_START_VALUE;
+                Period.y = m_playerData.AVOID_START_VALUE;
             }
         }
     }
