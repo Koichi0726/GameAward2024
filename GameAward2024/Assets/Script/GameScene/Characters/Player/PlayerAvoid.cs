@@ -25,8 +25,8 @@ public class PlayerAvoid : MonoBehaviour
 
         PlayerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_AVOID);
 
-        if (Period.x != 0.0f) GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period.x, this.transform.up);
-        if (Period.y != 0.0f) GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.GetComponent<PlayerMove>().PlayerCircularRotation(Period.y, this.transform.right);
+        if (Period.x != 0.0f) GameScene.ManagerContainer.instance.characterManager.playerTrans.GetComponent<PlayerMove>().PlayerCircularRotation(Period.x, this.transform.up);
+        if (Period.y != 0.0f) GameScene.ManagerContainer.instance.characterManager.playerTrans.GetComponent<PlayerMove>().PlayerCircularRotation(Period.y, this.transform.right);
 
         Period *= AVOID_ANCEMULTI_PLIER;
 

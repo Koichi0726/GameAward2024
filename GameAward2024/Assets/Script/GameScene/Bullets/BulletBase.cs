@@ -28,8 +28,8 @@ public class BulletBase : MonoBehaviour
     protected void OnTriggerEnter(Collider other)
     {
         // プレイヤーにバフを付与する
-        ManagerContainer.GetManagerContainer().m_characterManager.
-            m_buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, gameObject.name);
+        ManagerContainer.instance.characterManager.
+            buffDebuffHandler.AddBuffDebuff(m_buffDebuffData, gameObject.name);
 
         // プレイヤーに当たったら弾を削除する
         Destroy(gameObject);

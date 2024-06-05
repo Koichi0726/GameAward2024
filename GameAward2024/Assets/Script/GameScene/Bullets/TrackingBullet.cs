@@ -17,12 +17,13 @@ public class TrackingBullet : BulletBase
         base.Start();
 
         m_buffDebuffData.m_playerParamCoefficient.m_moveSpeed = 0.4f;
-        m_buffDebuffData.m_remainingDuration = 10.0f;
+		m_buffDebuffData.m_playerParamCoefficient.m_addGaugeValue = 1.25f;
+        m_buffDebuffData.m_remainingDuration = 0.75f;
 
         //プレイヤーのトランスフォーム取得
         CharacterManager characterManager = 
-            ManagerContainer.GetManagerContainer().m_characterManager;
-        m_playerTrans = characterManager.m_player;
+            ManagerContainer.instance.characterManager;
+        m_playerTrans = characterManager.playerTrans;
 
         m_rigidbody = GetComponent<Rigidbody>();
     }

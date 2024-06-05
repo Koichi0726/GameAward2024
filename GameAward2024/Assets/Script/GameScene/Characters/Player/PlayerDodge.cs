@@ -22,8 +22,8 @@ public class PlayerDodge : MonoBehaviour
     void Start()
     {
         //マネージャークラスから取得した座標を計算用の変数に格納
-        playerPos = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_player.position;
-        bossPos = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_enemy.position;
+        playerPos = GameScene.ManagerContainer.instance.characterManager.playerTrans.position;
+        bossPos = GameScene.ManagerContainer.instance.characterManager.enemyTrans.position;
 
         //プレイヤーからボスまでの距離を計算
         distance = playerPos - bossPos;

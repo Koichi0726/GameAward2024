@@ -9,7 +9,7 @@ public class PlayerRotation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        target = GameScene.ManagerContainer.GetManagerContainer().m_characterManager.m_enemy;
+        target = GameScene.ManagerContainer.instance.characterManager.enemyTrans;
     }
 
     // Update is called once per frame

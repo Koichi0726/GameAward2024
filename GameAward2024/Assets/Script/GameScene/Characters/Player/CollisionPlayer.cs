@@ -18,7 +18,7 @@ public class CollisionPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        volume = GameScene.ManagerContainer.GetManagerContainer().m_studioObjectManager.m_volume;
+        volume = GameScene.ManagerContainer.instance.studioObjectManager.volume;
         volume.profile.TryGet(out vignette);
         countdownTimer = displaytime;
         

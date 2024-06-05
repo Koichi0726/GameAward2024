@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameScene;
 
+//--- 参考サイト
+// https://qiita.com/No2DGameNoLife/items/d1497a2f98f95a5194ac
+[DefaultExecutionOrder(1)]  // HACK:プレイヤーの更新より後に実行する為
 public class FollowPlayer : MonoBehaviour
 {
 	[SerializeField]
@@ -16,8 +19,8 @@ public class FollowPlayer : MonoBehaviour
 		m_initialQuaternion = this.transform.rotation;
 
 		//--- プレイヤーの情報を取得
-		CharacterManager characterManager = ManagerContainer.GetManagerContainer().m_characterManager;
-		m_playerTrans = characterManager.m_player;
+		CharacterManager characterManager = ManagerContainer.instance.characterManager;
+		m_playerTrans = characterManager.playerTrans;
 	}
 
 	void Update()
