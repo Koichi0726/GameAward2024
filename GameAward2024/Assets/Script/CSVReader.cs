@@ -85,18 +85,23 @@ public class CSVReader
 			// 1行ずつ取得
 			string line = reader.ReadLine();
 
-			//--- 空行やコメント部分(// コメント内容)を除外
-			if (string.IsNullOrWhiteSpace(line))	continue;
+			//--- コメント部分(// コメント内容)を除外
 			if (line.TrimStart().StartsWith("//"))	continue;
-
+		
 			// 「,」で分割してリスト化
-			List<string> str = new List<string>(line.Split(CSV_SPLIT));
+			List<string> columns = new List<string>(line.Split(CSV_SPLIT));
+
+			//--- 空行を除外
+			bool isNull = false;
+			foreach (string str in columns)
+				isNull |= string.IsNullOrWhiteSpace(str);
+			if (isNull) continue;
 
 			//--- キー(変数名)、変数型、値を文字列で取得
-			str.RemoveAt(0);		// 先頭(パラメータの説明部分)を削除
-			string key = str[0];
-			str.RemoveAt(0);		// キーの部分を削除
-			string value = str[0];
+			columns.RemoveAt(0);		// 先頭(パラメータの説明部分)を削除
+			string key = columns[0];
+			columns.RemoveAt(0);		// キーの部分を削除
+			string value = columns[0];
 
 			// データを追加
 			m_csvDatas.Add(key, new CSVParamData(value));
