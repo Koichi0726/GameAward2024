@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2686ad5fea1d84eb481a9459bced1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <m_playerData>k__BackingField: {fileID: 11400000, guid: 40a373d6d4a740141b7122da162549fd, type: 2}
-  <m_player>k__BackingField: {fileID: 8960592889384489394}
-  <m_enemy>k__BackingField: {fileID: 3424657306173931510}
-  <m_buffDebuffHandler>k__BackingField: {fileID: 7458265321389384658}
+  m_playerData: {fileID: 11400000, guid: 40a373d6d4a740141b7122da162549fd, type: 2}
+  m_playerTrans: {fileID: 8960592889384489394}
+  m_enemyTrans: {fileID: 3424657306173931510}
+  m_buffDebuffHandler: {fileID: 7458265321389384658}
 --- !u!1001 &4474859875880386693
 PrefabInstance:
   m_ObjectHideFlags: 0
