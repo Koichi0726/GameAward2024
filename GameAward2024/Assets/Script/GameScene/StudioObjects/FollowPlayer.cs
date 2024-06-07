@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using GameScene;
 
-//--- 参考サイト
-// https://qiita.com/No2DGameNoLife/items/d1497a2f98f95a5194ac
-[DefaultExecutionOrder(1)]  // HACK:プレイヤーの更新より後に実行する為
+[DefaultExecutionOrder(1)]
 public class FollowPlayer : MonoBehaviour
 {
 	[SerializeField]
