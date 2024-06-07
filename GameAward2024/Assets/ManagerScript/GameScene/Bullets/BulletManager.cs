@@ -4,20 +4,26 @@ using UnityEngine;
 
 namespace GameScene
 {
-	public class BulletManager : MonoBehaviour
+	public class BulletManager : ManagerBase
 	{
+		[SerializeField]
+		BulletDataList m_bulletDataList;
+		/// <summary>
+		/// 敵のデータリストを取得
+		/// </summary>
+		public BulletDataList bulletDataList => m_bulletDataList;
+
 		/// <summary>
 		/// 弾を作成
 		/// </summary>
-		/// <typeparam name="T">BulletBaseを継承したクラスに限定</typeparam>
-		/// <param name="bulletPrefab">弾のプレハブ</param>
+		/// <param name="bulletPrefab">弾の種類を示す列挙定数</param>
 		/// <returns>作成した弾への参照</returns>
-		public T CreateBullet<T>(BulletBase bulletPrefab , Vector3 vector3) where T : BulletBase
+		public BulletBase CreateBullet(BulletDataList.E_BULLET_KIND bulletKind , Vector3 pos)
 		{
-
-			BulletBase bullet = Instantiate(bulletPrefab,vector3 ,Quaternion.identity);	// 弾を作成
-			bullet.transform.SetParent(this.transform);		// 親をBulletManagerに設定
-			return bullet as T;	// 目的のクラスへキャスト
+			BulletBase prefab = m_bulletDataList.GetBulletPrefab(bulletKind);
+			BulletBase bullet = Instantiate(prefab, pos ,Quaternion.identity);	// 弾を作成
+			bullet.transform.SetParent(this.transform);     // 親をBulletManagerに設定
+			return bullet;
 		}
 	}
 }
