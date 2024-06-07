@@ -42,13 +42,13 @@ public class PlayerActionControler : MonoBehaviour
                 //登録されているアクションに応じる数値を追加
                 switch (m_actionList[0])
                 {
-                    case PlayerData.E_PLAYER_ACTION.E_MOVE:    //移動している時
+                    case PlayerData.E_PLAYER_ACTION.MOVE:    //移動している時
                         m_paramCoefficient.m_addGaugeValue += m_playerData.MOVE_GAUGE_VALUE;
                         break;
-                    case PlayerData.E_PLAYER_ACTION.E_DASH:    //ダッシュしている時
+                    case PlayerData.E_PLAYER_ACTION.DASH:    //ダッシュしている時
                         m_paramCoefficient.m_addGaugeValue += m_playerData.DASH_GAUGE_VALUE;
                         break;
-                    case PlayerData.E_PLAYER_ACTION.E_AVOID:   //回避している時
+                    case PlayerData.E_PLAYER_ACTION.AVOID:   //回避している時
                         m_paramCoefficient.m_addGaugeValue += m_playerData.AVOID_GAUGE_VALUE;
                         break;
                     default:
@@ -75,4 +75,14 @@ public class PlayerActionControler : MonoBehaviour
     {
         m_actionList.Add(act);
     }
+
+	/// <summary>
+	/// 移動しているか判定
+	/// </summary>
+	/// <returns>移動フラグ</returns>
+	public bool IsMove()
+	{
+		return m_actionList.Contains(PlayerData.E_PLAYER_ACTION.MOVE) ||
+				m_actionList.Contains(PlayerData.E_PLAYER_ACTION.DASH);
+	}
 }
