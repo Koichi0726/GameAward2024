@@ -128,11 +128,11 @@ public class PlayerMove : MonoBehaviour
     {
         if(!m_isDash)
         {
-			m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_MOVE);
+			m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.MOVE);
         }
         else
         {
-			m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_DASH);
+			m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.DASH);
         }
     }
 
