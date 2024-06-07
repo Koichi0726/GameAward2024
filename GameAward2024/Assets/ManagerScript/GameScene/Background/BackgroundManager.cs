@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameScene
 {
-	public class BackgroundManager : MonoBehaviour
+	public class BackgroundManager : ManagerBase
 	{
 		//public ƒ‚ƒfƒ‹;
 	}

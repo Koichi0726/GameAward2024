@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameScene
 {
-	public class UIManager : MonoBehaviour
+	public class UIManager : ManagerBase
 	{
 		[SerializeField]
 		PlayerGaugeController m_playerGaugeController;

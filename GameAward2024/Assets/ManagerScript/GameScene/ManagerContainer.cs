@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameScene
 {
-	public class ManagerContainer : MonoBehaviour
+	public class ManagerContainer : ManagerBase
 	{
 		static ManagerContainer m_managerContainer;
 		/// <summary>
