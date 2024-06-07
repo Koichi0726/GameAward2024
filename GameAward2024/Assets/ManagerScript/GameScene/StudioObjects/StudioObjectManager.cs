@@ -5,7 +5,7 @@ using UnityEngine.Rendering;
 
 namespace GameScene
 {
-	public class StudioObjectManager : MonoBehaviour
+	public class StudioObjectManager : ManagerBase
 	{
 		[SerializeField]
 		Camera m_mainCamera;
@@ -27,12 +27,5 @@ namespace GameScene
 		/// ボリュームを取得
 		/// </summary>
 		public Volume volume => m_volume;
-
-		[SerializeField]
-		GameTimer m_gameTimer;
-		/// <summary>
-		/// ゲームタイマーを取得
-		/// </summary>
-		public GameTimer gameTimer => m_gameTimer;
 	}
 }
