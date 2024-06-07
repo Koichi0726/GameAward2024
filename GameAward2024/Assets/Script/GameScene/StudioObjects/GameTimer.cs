@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameScene;
 
 public class GameTimer : MonoBehaviour
 {
@@ -10,13 +11,8 @@ public class GameTimer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		// TODO:前シーンのステージ選択を基に引数を指定
-		//int stageNum = 1;
 		// ステージの情報を取得
-		//StageInfo stageInfo = GameScene.ManagerContainer.GetManagerContainer().m_stageInfo;
-		// ステージ毎に設定された制限時間を取得
-		//m_stageLimitTime = stageInfo.GetStageInfo(stageNum).STAGE_LIMIT_TIME;
-		m_stageLimitTime = 10.0f;
+		m_stageLimitTime = ManagerContainer.instance.gameManager.selectStageData.m_stageLimitTime;
 		m_remainTime = m_stageLimitTime;
 	}
 

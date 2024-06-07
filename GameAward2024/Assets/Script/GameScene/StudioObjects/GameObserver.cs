@@ -12,7 +12,7 @@ public class GameObsever : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_gameTimer = GameScene.ManagerContainer.instance.studioObjectManager.gameTimer;
+        m_gameTimer = GameScene.ManagerContainer.instance.gameManager.gameTimer;
         m_fadeController = FadeController.instance;
     }
 
