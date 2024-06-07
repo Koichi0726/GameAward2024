@@ -123,50 +123,123 @@ public class CSVReader
 
 public class CSVParamData
 {
-	const char VECTOR_SPLIT = ' ';
+	const char PARAM_LIST_SPLIT = ' ';
 
-	string m_value;
+	string m_data;
 
-	public CSVParamData(string value)
+	public CSVParamData(string output)
 	{
-		m_value = value;
+		m_data = output;
 	}
 
-	public bool TryGetData(out int value)
+	public bool TryGetData(out int output)
 	{
-		return int.TryParse(m_value, out value);
+		return int.TryParse(m_data, out output);
 	}
 
-	public bool TryGetData(out float value)
+	public bool TryGetData(out float output)
 	{
-		return float.TryParse(m_value, out value);
+		return float.TryParse(m_data, out output);
 	}
 
-	public bool TryGetData(out bool value)
+	public bool TryGetData(out bool output)
 	{
-		return bool.TryParse(m_value, out value);
+		return bool.TryParse(m_data, out output);
 	}
 
-	public bool TryGetData(out string value)
+	public bool TryGetData(out string output)
 	{
-		value = m_value;
+		output = m_data;
 		return true;
 	}
 
-	public bool TryGetData(out Vector3 value)
+	public bool TryGetData(out Vector2 output)
 	{
-		value = new Vector3();
+		output = new Vector2();
 
-		string[] str = m_value.Split(VECTOR_SPLIT);
+		string[] str = m_data.Split(PARAM_LIST_SPLIT);
+		if (str.Length < 2) return false;
+
+		//--- xyzに値を適用していく
+		bool isFail = !float.TryParse(str[0], out output.x);
+		if (isFail) return false;
+		isFail = !float.TryParse(str[1], out output.y);
+		if (isFail) return false;
+
+		return true;
+	}
+
+	public bool TryGetData(out Vector3 output)
+	{
+		output = new Vector3();
+
+		string[] str = m_data.Split(PARAM_LIST_SPLIT);
 		if (str.Length < 3) return false;
 
 		//--- xyzに値を適用していく
-		bool isFail = !float.TryParse(str[0], out value.x);
+		bool isFail = !float.TryParse(str[0], out output.x);
 		if (isFail) return false;
-		isFail = !float.TryParse(str[1], out value.y);
+		isFail = !float.TryParse(str[1], out output.y);
 		if (isFail) return false;
-		isFail = !float.TryParse(str[2], out value.z);
+		isFail = !float.TryParse(str[2], out output.z);
 		if (isFail) return false;
+
+		return true;
+	}
+
+	public bool TryGetData(out List<int> output)
+	{
+		output = new List<int>();
+
+		string[] str = m_data.Split(PARAM_LIST_SPLIT);
+		if (str.Length < 1) return false;
+
+		//--- リストに値を追加していく
+		foreach (string data in str)
+		{
+			int value = 0;
+			bool isFail = !int.TryParse(data, out value);
+			if (isFail) return false;
+			output.Add(value);
+		}
+
+		return true;
+	}
+
+	public bool TryGetData(out List<float> output)
+	{
+		output = new List<float>();
+
+		string[] str = m_data.Split(PARAM_LIST_SPLIT);
+		if (str.Length < 1) return false;
+
+		//--- リストに値を追加していく
+		foreach (string data in str)
+		{
+			float value = 0.0f;
+			bool isFail = !float.TryParse(data, out value);
+			if (isFail) return false;
+			output.Add(value);
+		}
+
+		return true;
+	}
+
+	public bool TryGetData(out List<BulletDataList.E_BULLET_KIND> output)
+	{
+		output = new List<BulletDataList.E_BULLET_KIND>();
+
+		string[] str = m_data.Split(PARAM_LIST_SPLIT);
+		if (str.Length < 1) return false;
+
+		//--- リストに値を追加していく
+		foreach (string data in str)
+		{
+			int value = 0;
+			bool isFail = !int.TryParse(data, out value);
+			if (isFail) return false;
+			output.Add((BulletDataList.E_BULLET_KIND)value);
+		}
 
 		return true;
 	}
