@@ -9,15 +9,15 @@ public class PlayerData : ScriptableObject
 	/// <summary>
 	/// CSVファイルのパス
 	/// </summary>
-	const string CSV_FILE_PATH = "SettingCSV/Player.csv";
+	const string CSV_FILE_PATH = "SettingCSV/PlayerData/Player.csv";
 
 	//--- プレイヤーアクションの列挙型
 	public enum E_PLAYER_ACTION
 	{
-		E_MOVE = 0,     //移動
-		E_DASH,         //走る
-		E_AVOID,        //回避
-		E_MAX,
+		MOVE = 0,     //移動
+		DASH,         //走る
+		AVOID,        //回避
+		MAX,
 	}
 
 	//--------------------
