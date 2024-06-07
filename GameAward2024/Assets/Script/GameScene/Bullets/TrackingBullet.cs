@@ -5,20 +5,17 @@ using GameScene;
 
 public class TrackingBullet : BulletBase
 { 
-    public float m_bulletSpeed;       // 弾の速度
-    public float m_trackTimer;        // 追尾の制限時間
-    private Vector3 m_direction;      // 弾の方向
-    private Transform m_playerTrans;  // プレイヤーの位置
+    float m_bulletSpeed;				// 弾の速度
+    float m_trackTimer;					// 追尾の制限時間
+    private Vector3 m_direction;		// 弾の方向
+    private Transform m_playerTrans;	// プレイヤーの位置
     private Rigidbody m_rigidbody;
 
-    // Start is called before the first frame update
     protected override void Start()
     {
-        base.Start();
+		m_bulletKind = BulletDataList.E_BULLET_KIND.TRACKING;
 
-        m_buffDebuffData.m_playerParamCoefficient.m_moveSpeed = 0.4f;
-		m_buffDebuffData.m_playerParamCoefficient.m_addGaugeValue = 1.25f;
-        m_buffDebuffData.m_remainingDuration = 0.75f;
+        base.Start();
 
         //プレイヤーのトランスフォーム取得
         CharacterManager characterManager = 
@@ -27,8 +24,7 @@ public class TrackingBullet : BulletBase
 
         m_rigidbody = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
+	
     protected override void Update()
     {
         base.Update();
@@ -47,4 +43,13 @@ public class TrackingBullet : BulletBase
         // 弾に力を加える
         m_rigidbody.velocity = m_direction * m_bulletSpeed;
     }
+
+	protected override void SetData(Dictionary<string, CSVParamData> data)
+	{
+		base.SetData(data);
+
+		//--- 値の吸出し
+		data[nameof(m_bulletSpeed	)].TryGetData(out m_bulletSpeed);
+		data[nameof(m_trackTimer	)].TryGetData(out m_trackTimer);
+	}
 }
