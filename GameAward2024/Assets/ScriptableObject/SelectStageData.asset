@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09f8caa5bb640d348b2fd69f4d6ff717, type: 3}
   m_Name: SelectStageData
   m_EditorClassIdentifier: 
+  m_stageLimitTime: 100
+  m_enemyKind: 0
