@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GameScene;
 
 public class TimeGaugeController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class TimeGaugeController : MonoBehaviour
     void Start()
 	{
 		// ゲーム用のタイマーを取得
-		m_gameTimer = GameScene.ManagerContainer.instance.studioObjectManager.gameTimer;
+		m_gameTimer = ManagerContainer.instance.gameManager.gameTimer;
 	}
 
 	// Update is called once per frame

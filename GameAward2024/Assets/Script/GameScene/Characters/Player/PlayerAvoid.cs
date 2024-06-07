@@ -27,7 +27,7 @@ public class PlayerAvoid : MonoBehaviour
 	{
 		if (!m_isAvoid) return;
 
-		m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.E_AVOID);
+		m_playerActionControler.AddAction(PlayerData.E_PLAYER_ACTION.AVOID);
 
 		//--- ‰ñ”ð
 		if (Mathf.Abs(m_period.x) > 0.0f)
@@ -51,11 +51,13 @@ public class PlayerAvoid : MonoBehaviour
 	public void OnAvoid()
 	{
 		if (m_isAvoid) return;
+		if (!m_playerActionControler.IsMove()) return;
 
 		//--- ‰ñ”ð‚·‚é•ûŒü‚ðŒvŽZ
 		Vector2 dir = m_paramCoefficient.m_moveDirect;
 		m_period.x = m_playerData.AVOID_START_VALUE * dir.x;
 		m_period.y = m_playerData.AVOID_START_VALUE * dir.y;
+		m_period /= m_paramCoefficient.m_moveSpeed;
 
 		m_isAvoid = true;	// ‰ñ”ðƒtƒ‰ƒO‚ð—§‚Ä‚é
 	}

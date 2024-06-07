@@ -314,6 +314,7 @@ MonoBehaviour:
   m_directionalLight: {fileID: 1713206874964571887}
   m_volume: {fileID: 5496634547659323660}
   m_gameTimer: {fileID: 1842488188164348310}
+  m_selectStageData: {fileID: 11400000, guid: 41a1c574dff1cec468e94ff68b516baa, type: 2}
 --- !u!1 &8477073982815449793
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,15 +377,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 129478168139192105, guid: 320bb3c23c999704fb3e38b91ad34116, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5707083
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 129478168139192105, guid: 320bb3c23c999704fb3e38b91ad34116, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3594265
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 129478168139192105, guid: 320bb3c23c999704fb3e38b91ad34116, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.2226539
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 129478168139192105, guid: 320bb3c23c999704fb3e38b91ad34116, type: 3}
       propertyPath: m_LocalRotation.w

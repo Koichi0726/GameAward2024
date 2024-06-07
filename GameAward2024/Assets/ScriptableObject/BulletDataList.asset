@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09f8caa5bb640d348b2fd69f4d6ff717, type: 3}
-  m_Name: SelectStageData
+  m_Script: {fileID: 11500000, guid: 49ece21919dad974b980993c39a85279, type: 3}
+  m_Name: BulletDataList
   m_EditorClassIdentifier: 
-  m_stageLimitTime: 100
-  m_enemyKind: 0
+  m_bulletPrefabList:
+  - {fileID: 2328010291997373508, guid: 23a169dda33322b488c3aa622f2993ef, type: 3}
+  m_csvTexts:
+  - {fileID: 4900000, guid: 2f3ad94e195feb040bfca803d552fa44, type: 3}

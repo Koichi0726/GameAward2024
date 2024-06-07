@@ -68,6 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06bc07c3853b5fd4cb12269d3059674f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_gameTimer: {fileID: 3525409889628757942}
+  m_selectStageData: {fileID: 11400000, guid: 41a1c574dff1cec468e94ff68b516baa, type: 2}
 --- !u!1001 &119865818794052959
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -203,6 +205,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3002447803661582193, guid: 3be5263c9679ff4438b5fd5f7cc775a5, type: 3}
   m_PrefabInstance: {fileID: 2989564021933016608}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3525409889628757942 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1842488188164348310, guid: 3be5263c9679ff4438b5fd5f7cc775a5, type: 3}
+  m_PrefabInstance: {fileID: 2989564021933016608}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d244268c340fbdb46a428a0efe414407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7486910810447636916 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5664342050550083476, guid: 3be5263c9679ff4438b5fd5f7cc775a5, type: 3}
