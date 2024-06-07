@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameScene
 {
-	public class CharacterManager : MonoBehaviour
+	public class CharacterManager : ManagerBase
 	{
 		[SerializeField]
 		PlayerData m_playerData;
@@ -28,6 +28,18 @@ namespace GameScene
 		public PlayerActionControler playerActionController => m_playerActionController;
 
 		[SerializeField]
+		EnemyDataList m_enemyDataList;
+		/// <summary>
+		/// “G‚Ìƒf[ƒ^ƒŠƒXƒg‚ğæ“¾
+		/// </summary>
+		public EnemyDataList enemyDataList => m_enemyDataList;
+
+		EnemyBase m_enemyData;
+		/// <summary>
+		/// “G‚Ìî•ñ‚ğæ“¾
+		/// </summary>
+		public EnemyBase enemyData => m_enemyData;
+
 		Transform m_enemyTrans;
 		/// <summary>
 		/// “G‚ÌTransform‚ğæ“¾
@@ -43,6 +55,11 @@ namespace GameScene
 
 		void Start()
 		{
+			//--- “G‚ğì¬
+			EnemyDataList.E_ENEMY_KIND enemyKind = ManagerContainer.instance.gameManager.selectStageData.m_enemyKind;
+			m_enemyData = CreateEnemy(enemyKind, new Vector3(0.0f, 0.0f, 0.0f));
+			m_enemyTrans = m_enemyData.transform;
+
 			m_playerData.Load();
 			m_playerData.GetDatas();
 		}
@@ -52,6 +69,19 @@ namespace GameScene
 #if DEVELOPMENT_BUILD
 			m_playerData.GetDatas();
 #endif
+		}
+
+		/// <summary>
+		/// “G‚ğì¬
+		/// </summary>
+		/// <param name="enemyPrefab">“G‚Ìí—Ş‚ğ¦‚·—ñ‹“’è”</param>
+		/// <returns>ì¬‚µ‚½“G‚Ö‚ÌQÆ</returns>
+		EnemyBase CreateEnemy(EnemyDataList.E_ENEMY_KIND enemyKind, Vector3 pos)
+		{
+			EnemyBase prefab = m_enemyDataList.GetEnemyPrefab(enemyKind);
+			EnemyBase enemy = Instantiate(prefab, pos, Quaternion.identity);    // “G‚ğì¬
+			enemy.transform.SetParent(this.transform);     // e‚ğCharacterManager‚Éİ’è
+			return enemy;
 		}
 	}
 }
