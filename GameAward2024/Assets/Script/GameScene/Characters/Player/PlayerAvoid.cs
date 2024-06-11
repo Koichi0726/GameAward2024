@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GameScene;
+using UnityEngine.InputSystem;
 
 public class PlayerAvoid : MonoBehaviour
 {
@@ -48,16 +49,21 @@ public class PlayerAvoid : MonoBehaviour
 		m_isAvoid = !(m_period.x == 0.0f && m_period.y == 0.0f);
 	}
 
-	public void OnAvoid()
+	public void OnAvoid(InputAction.CallbackContext context)
 	{
-		if (m_isAvoid) return;
-		if (!m_playerActionControler.IsMove()) return;
+		if (!context.started) return;
+		if (m_isAvoid)
+		{ Debug.Log("Šù‚É‚µ‚Ä‚é"); return; }
+		if (!m_playerActionControler.IsMove())
+		{ Debug.Log("“®‚¢‚Ä‚¢‚È‚¢"); return; }
 
 		//--- ‰ñ”ğ‚·‚é•ûŒü‚ğŒvZ
 		Vector2 dir = m_paramCoefficient.m_moveDirect;
 		m_period.x = m_playerData.AVOID_START_VALUE * dir.x;
 		m_period.y = m_playerData.AVOID_START_VALUE * dir.y;
 		m_period /= m_paramCoefficient.m_moveSpeed;
+
+		Debug.Log("¬Œ÷");
 
 		m_isAvoid = true;	// ‰ñ”ğƒtƒ‰ƒO‚ğ—§‚Ä‚é
 	}
