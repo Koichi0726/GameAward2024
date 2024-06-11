@@ -372,7 +372,7 @@
                     "name": "",
                     "id": "4985ca5b-5a6b-472a-abf6-e4fb30024efc",
                     "path": "<Keyboard>/space",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "",
                     "action": "Avoid",
