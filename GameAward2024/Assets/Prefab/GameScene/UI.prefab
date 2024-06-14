@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7afe03db378e64983bd7a740c5182f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerGaugeController: {fileID: 222131686034606334}
+  m_playerGaugeController: {fileID: 0}
   m_timeGaugeController: {fileID: 6916838901627840735}
 --- !u!1001 &3734410809871626228
 PrefabInstance:
@@ -158,7 +158,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1305961006646811333, guid: 5bc5ca115f1ac56489410299b4f92fb1, type: 3}
       propertyPath: m_Name
-      value: PlayerGauge
+      value: OverheatGauge
       objectReference: {fileID: 0}
     - target: {fileID: 1860332821882366543, guid: 5bc5ca115f1ac56489410299b4f92fb1, type: 3}
       propertyPath: m_RootOrder
@@ -210,17 +210,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bc5ca115f1ac56489410299b4f92fb1, type: 3}
---- !u!114 &222131686034606334 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3514603555043763978, guid: 5bc5ca115f1ac56489410299b4f92fb1, type: 3}
-  m_PrefabInstance: {fileID: 3734410809871626228}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9fd965a362e1d7428d670b906cffdc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1032850404289680972 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4433267308441958840, guid: 5bc5ca115f1ac56489410299b4f92fb1, type: 3}
