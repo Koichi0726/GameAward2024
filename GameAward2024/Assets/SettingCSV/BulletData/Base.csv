@@ -1,8 +1,11 @@
-消滅までの時間,m_destroyTime,10
+//--- プレイヤーへの効果に関する数値,,
+効果継続時間,m_remainingDuration,10
 ゲージ加算値,m_addGaugeValue,0
 ゲージ減算値,m_subGaugeValue,0
 ゲージ上昇速度,m_gaugeUpSpeed,1
 ゲージ降下速度,m_gaugeDownSpeed,1
 プレイヤーの移動向き,m_moveDirect,1 1
 プレイヤーの移動速度,m_moveSpeed,1
-効果継続時間,m_remainingDuration,10
+,,
+//--- 弾の数値,,
+消滅までの時間,m_destroyTime,10
