@@ -19,7 +19,7 @@ namespace MechaOctopus
 			//--- ©•ª‚ÆƒvƒŒƒCƒ„[‚ÌTransform‚ğæ“¾
 			CharacterManager characterManager = ManagerContainer.instance.characterManager;
 			m_playerTrans = characterManager.playerTrans;
-			m_enemyTrans = animator.transform;
+            m_enemyTrans = characterManager.enemyTrans;
 		}
 
 		// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
