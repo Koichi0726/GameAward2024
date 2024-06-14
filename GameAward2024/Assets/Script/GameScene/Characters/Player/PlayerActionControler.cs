@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using GameScene;
 
 public class PlayerActionControler : MonoBehaviour
@@ -71,8 +72,6 @@ public class PlayerActionControler : MonoBehaviour
 
 		// ”’l‚ğ’´‚¦‚½‚è‰º‰ñ‚Á‚½‚Ì•â³ˆ—
 		m_actionValue = Mathf.Clamp(m_actionValue, 0.0f, MAX_GAUGE_VALUE);
-
-        Debug.Log(IsMove());
     }
 
     /// <summary>
@@ -90,6 +89,6 @@ public class PlayerActionControler : MonoBehaviour
 	/// <returns>ˆÚ“®ƒtƒ‰ƒO</returns>
 	public bool IsMove()
 	{
-		return m_action != PlayerData.E_PLAYER_ACTION.STOP ? true : false;
+		return Convert.ToBoolean((int)m_action);
 	}
 }
