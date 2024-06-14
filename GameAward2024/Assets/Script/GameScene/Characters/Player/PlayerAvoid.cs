@@ -52,18 +52,14 @@ public class PlayerAvoid : MonoBehaviour
 	public void OnAvoid(InputAction.CallbackContext context)
 	{
 		if (!context.started) return;
-		if (m_isAvoid)
-		{ Debug.Log("Šù‚É‚µ‚Ä‚é"); return; }
-		if (!m_playerActionControler.IsMove())
-		{ Debug.Log("“®‚¢‚Ä‚¢‚È‚¢"); return; }
+		if (m_isAvoid) return;
+		if (!m_playerActionControler.IsMove()) return;
 
 		//--- ‰ñ”ğ‚·‚é•ûŒü‚ğŒvZ
 		Vector2 dir = m_paramCoefficient.m_moveDirect;
 		m_period.x = m_playerData.AVOID_START_VALUE * dir.x;
 		m_period.y = m_playerData.AVOID_START_VALUE * dir.y;
 		m_period /= m_paramCoefficient.m_moveSpeed;
-
-		Debug.Log("¬Œ÷");
 
 		m_isAvoid = true;	// ‰ñ”ğƒtƒ‰ƒO‚ğ—§‚Ä‚é
 	}
