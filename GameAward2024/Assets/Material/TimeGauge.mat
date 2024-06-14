@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CircleGauge
+  m_Name: TimeGauge
   m_Shader: {fileID: 4800000, guid: 5db6a0c8f44623c4dba5d74c41476e35, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -89,7 +89,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnvironmentReflections: 1
-    - _GaugeValue: 0.93741053
+    - _GaugeValue: 0.9768039
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
