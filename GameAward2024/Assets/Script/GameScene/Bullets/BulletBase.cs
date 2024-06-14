@@ -21,8 +21,6 @@ public class BulletBase : MonoBehaviour
 
     protected virtual void Update()
     {
-		Debug.Log("向き：" + m_buffDebuffData.m_paramCoefficient.m_moveDirect);
-
 		//--- 消滅するまでの時間をカウント
 		if (m_destroyTime < 0.0f)
 		{
