@@ -5,11 +5,11 @@ using GameScene;
 
 public class TrackingBullet : BulletBase
 { 
-    float m_bulletSpeed;				// 弾の速度
-    float m_trackTimer;					// 追尾の制限時間
-    private Vector3 m_direction;		// 弾の方向
-    private Transform m_playerTrans;	// プレイヤーの位置
-    private Rigidbody m_rigidbody;
+    float m_bulletSpeed;		// 弾の速度
+    float m_trackTimer;			// 追尾の制限時間
+    Vector3 m_direction;		// 弾の方向
+    Transform m_playerTrans;	// プレイヤーの位置
+    Rigidbody m_rigidbody;
 
     protected override void Start()
     {
