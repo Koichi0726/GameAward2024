@@ -14,7 +14,8 @@ public class PlayerData : ScriptableObject
 	//--- プレイヤーアクションの列挙型
 	public enum E_PLAYER_ACTION
 	{
-		MOVE = 0,     //移動
+		STOP = 0,
+		MOVE,     //移動
 		DASH,         //走る
 		AVOID,        //回避
 		MAX,
