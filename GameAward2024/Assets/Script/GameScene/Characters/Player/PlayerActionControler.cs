@@ -13,11 +13,14 @@ public class PlayerActionControler : MonoBehaviour
 	// ゲージの増減を管理する変数
 	PlayerParamCoefficient m_paramCoefficient;
 
-	// プレイヤーがなんの動作をしたかを保存するリスト
+	// プレイヤーの動きの履歴を保存するリスト
 	List<PlayerData.E_PLAYER_ACTION> m_actionList = new List<PlayerData.E_PLAYER_ACTION>();
 
-	// プレイヤーゲージに反映させる数値を保持する
-	public float m_actionValue { get; private set; }	// 0-100で管理する
+    // プレイヤーの現在の行動
+    PlayerData.E_PLAYER_ACTION m_action;
+
+    // プレイヤーゲージに反映させる数値を保持する
+    public float m_actionValue { get; private set; }	// 0-100で管理する
 
     void Start()
     {
@@ -25,6 +28,7 @@ public class PlayerActionControler : MonoBehaviour
 		CharacterManager characterManager = ManagerContainer.instance.characterManager;
         m_playerData = characterManager.playerData;
 		m_paramCoefficient = characterManager.buffDebuffHandler.m_paramCoefficient;
+        m_action = PlayerData.E_PLAYER_ACTION.STOP;
 
 		m_actionValue = m_playerData.START_GAUGE_VALUE;     //ゲージの数値初期化
     }
@@ -34,6 +38,7 @@ public class PlayerActionControler : MonoBehaviour
         if (m_actionList.Count == 0)
         {//フレーム間でアクションを起こしていない ＝ 停止している
             m_paramCoefficient.m_subGaugeValue += m_playerData.STOP_GAUGE_VALUE;        //停止している時
+            m_action = PlayerData.E_PLAYER_ACTION.STOP;
         }
         else
         {//フレーム間でアクションを起こしている
@@ -54,6 +59,7 @@ public class PlayerActionControler : MonoBehaviour
                     default:
                         break;
                 }
+                m_action = m_actionList[0];
                 //処理済みのアクションを削除
                 m_actionList.RemoveAt(0);
             }
@@ -65,6 +71,8 @@ public class PlayerActionControler : MonoBehaviour
 
 		// 数値を超えたり下回った時の補正処理
 		m_actionValue = Mathf.Clamp(m_actionValue, 0.0f, MAX_GAUGE_VALUE);
+
+        Debug.Log(IsMove());
     }
 
     /// <summary>
@@ -82,7 +90,6 @@ public class PlayerActionControler : MonoBehaviour
 	/// <returns>移動フラグ</returns>
 	public bool IsMove()
 	{
-		return m_actionList.Contains(PlayerData.E_PLAYER_ACTION.MOVE) ||
-				m_actionList.Contains(PlayerData.E_PLAYER_ACTION.DASH);
+		return m_action != PlayerData.E_PLAYER_ACTION.STOP ? true : false;
 	}
 }
