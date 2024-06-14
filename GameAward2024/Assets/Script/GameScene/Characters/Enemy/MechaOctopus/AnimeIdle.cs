@@ -10,6 +10,7 @@ namespace MechaOctopus
 		float m_deltatime;
 		Transform m_playerTrans;
 		Transform m_enemyTrans;
+		MechaOctopusEnemy m_mechaOctopus;
 
 		// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,6 +21,9 @@ namespace MechaOctopus
 			CharacterManager characterManager = ManagerContainer.instance.characterManager;
 			m_playerTrans = characterManager.playerTrans;
             m_enemyTrans = characterManager.enemyTrans;
+
+			// 敵のデータを取得
+			m_mechaOctopus = characterManager.enemyData as MechaOctopusEnemy;
 		}
 
 		// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -28,11 +32,9 @@ namespace MechaOctopus
 			// プレイヤーの方を向く
 			m_enemyTrans.LookAt(m_playerTrans.position, m_enemyTrans.up);
 
-			// 3秒経過後にアタックに切り替える
-			if (m_deltatime >= 3.0f)
-			{
+			// アタックに切り替える
+			if (m_deltatime >= m_mechaOctopus.SHOT_INTERVAL)
 				animator.SetBool("IsAttack", true);
-			}
 
 			//経過時間を更新する
 			m_deltatime += Time.deltaTime;
