@@ -16,14 +16,15 @@ public class BulletDataList : ScriptableObject
 
 	readonly string[] CSV_FILE_PATH =
 	{
-		"SettingCSV/EnemyData/MechaOctopus.csv",
+		// TODO:csvを読み込む為のファイルパスを追加
+		"SettingCSV/BulletData/TrackingBullet.csv",
 	};
 
 	[SerializeField]
 	BulletBase[] m_bulletPrefabList = new BulletBase[(int)E_BULLET_KIND.MAX];
 	[SerializeField]
 	TextAsset[] m_csvTexts = new TextAsset[(int)E_BULLET_KIND.MAX];
-	CSVReader[] m_csvReaders = Enumerable.Repeat<CSVReader>(new CSVReader(), (int)E_BULLET_KIND.MAX).ToArray();
+	CSVReader[] m_csvReaders = Enumerable.Repeat(new CSVReader(), (int)E_BULLET_KIND.MAX).ToArray();
 
 	/// <summary>
 	/// 指定の弾のプレハブを取得
