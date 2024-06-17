@@ -20,7 +20,7 @@ public class FadeController : MonoBehaviour
 
 	readonly Color MIN_ALPHA_COLOR = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 	readonly Color MAX_ALPHA_COLOR = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-	const float FADE_TIME = 2.0f;
+	const float FADE_TIME = 1.0f;
 
 	public static FadeController instance = null;
 
