@@ -10,14 +10,16 @@ public class SceneData : ScriptableObject
 		TITLE_SCENE,
 		STAGE_SELECT_SCENE,
 		GAME_SCENE,
-		RESULT_SCENE,
+		GAME_CLEAR_SCENE,
+		GAME_OVER_SCENE,
 	}
 
 	readonly string[] SCENE_NAMES = {
 		"TitleScene",
 		"StageSelectScene",
 		"GameScene",
-		"ResultScene",
+		"GameClearScene",
+		"GameOverScene",
 	};
 
 	public string GetSceneName(E_SCENE_KIND sceneKind)

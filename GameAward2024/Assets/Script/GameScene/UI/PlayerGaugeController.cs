@@ -26,4 +26,13 @@ public class PlayerGaugeController : MonoBehaviour
 		// マテリアルに適応
 		m_gaugeMaterial.SetFloat("_GaugeValue", m_gaugeValue);
 	}
+
+	/// <summary>
+	/// ゲージの値が0or1か判定
+	/// </summary>
+	/// <returns>0or1判定フラグ</returns>
+	public bool IsOutOfGaugeValue()
+	{
+		return (m_gaugeValue <= 0.0f || m_gaugeValue >= 1.0f);
+	}
 }
