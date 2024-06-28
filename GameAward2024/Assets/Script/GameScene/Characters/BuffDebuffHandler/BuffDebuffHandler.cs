@@ -8,30 +8,20 @@ using GameScene;
 
 public class PlayerParamCoefficient // プレイヤーに関わる係数
 {
-	public float m_addGaugeValue = 0.0f;    // ゲージに加算する変数
-	public float m_subGaugeValue = 0.0f;    // ゲージに減算する変数
-	public float m_gaugeUpSpeed = 1.0f;     // ゲージの増加スピード
-	public float m_gaugeDownSpeed = 1.0f;   // ゲージの減少スピード
 	public Vector2 m_moveDirect
 		= new Vector2(1.0f, 1.0f);			// 移動方向の係数
 	public float m_moveSpeed = 1.0f;		// 移動速度の係数
 
 	public void Init()
 	{
-		m_addGaugeValue = m_subGaugeValue = 0.0f;
-		m_gaugeUpSpeed = m_gaugeDownSpeed = 1.0f;
-		m_moveDirect = new Vector2(1.0f, 1.0f);
-		m_moveSpeed = 1.0f;
+		m_moveDirect	= new Vector2(1.0f, 1.0f);
+		m_moveSpeed		= 1.0f;
 	}
 
 	public void InsertData(PlayerParamCoefficient insertData)
 	{
-		m_addGaugeValue		+= insertData.m_addGaugeValue;
-		m_subGaugeValue		+= insertData.m_subGaugeValue;
-		m_gaugeUpSpeed		*= insertData.m_gaugeUpSpeed;
-		m_gaugeDownSpeed	*= insertData.m_gaugeDownSpeed;
-		m_moveDirect		*= insertData.m_moveDirect;
-		m_moveSpeed			*= insertData.m_moveSpeed;
+		m_moveDirect	*= insertData.m_moveDirect;
+		m_moveSpeed		*= insertData.m_moveSpeed;
 	}
 }
 
