@@ -7,8 +7,11 @@ public class EnemyBase : MonoBehaviour
 {
 	protected EnemyDataList.E_ENEMY_KIND m_enemyKind;
 	EnemyDataList m_enemyDataList;
-	List<BulletDataList.E_BULLET_KIND> m_shotBulletKinds = new List<BulletDataList.E_BULLET_KIND>();   // Œ‚‚Â’e‚Ìƒf[ƒ^
-	public List<BulletDataList.E_BULLET_KIND> shotBulletKinds => m_shotBulletKinds;
+	float m_limitTime;
+	public float limitTime => m_limitTime;
+	float m_hp;
+	public float hp => m_hp;
+	public float m_maxHp { get; private set; }
 
 	protected virtual void Start()
 	{
@@ -17,6 +20,7 @@ public class EnemyBase : MonoBehaviour
 		m_enemyDataList.Load(m_enemyKind);
 		var data = m_enemyDataList.GetData(m_enemyKind);
 		SetData(data);
+		m_maxHp = m_hp;
 	}
 
 	protected virtual void Update()
@@ -32,6 +36,26 @@ public class EnemyBase : MonoBehaviour
 	protected virtual void SetData(Dictionary<string, CSVParamData> data)
 	{
 		//--- ’l‚Ì‹zo‚µ
-		data[nameof(m_shotBulletKinds)].TryGetData(out m_shotBulletKinds);
+		data[nameof(m_limitTime)].TryGetData(out m_limitTime);
+		data[nameof(m_hp		)].TryGetData(out m_hp);
+	}
+
+	/// <summary>
+	/// “G‚ÌHP‚ğŒ¸Z
+	/// </summary>
+	/// <param name="damage">ƒ_ƒ[ƒW—Ê</param>
+	public void SubHp(float damage)
+	{
+		m_hp -= damage;
+		m_hp = Mathf.Clamp(m_hp, 0.0f, m_maxHp);
+	}
+
+	/// <summary>
+	/// €–S‚µ‚Ä‚¢‚é‚©‚ğ”»’è
+	/// </summary>
+	/// <returns>€–Sƒtƒ‰ƒO</returns>
+	public bool IsDead()
+	{
+		return m_hp <= 0.0f;
 	}
 }

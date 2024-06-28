@@ -11,6 +11,7 @@ namespace MechaOctopus
 		Transform m_playerTrans;
 		Transform m_enemyTrans;
 		MechaOctopusEnemy m_mechaOctopus;
+		GameTimer m_gameTimer;
 
 		// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 		override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,6 +25,8 @@ namespace MechaOctopus
 
 			// 敵のデータを取得
 			m_mechaOctopus = characterManager.enemyData as MechaOctopusEnemy;
+
+			m_gameTimer = ManagerContainer.instance.gameManager.gameTimer;
 		}
 
 		// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -32,6 +35,8 @@ namespace MechaOctopus
 			// プレイヤーの方を向く
 			m_enemyTrans.LookAt(m_playerTrans.position, m_enemyTrans.up);
 
+			if (!m_gameTimer.m_isStart) return;
+
 			// アタックに切り替える
 			if (m_deltatime >= m_mechaOctopus.SHOT_INTERVAL)
 				animator.SetBool("IsAttack", true);
@@ -39,23 +44,5 @@ namespace MechaOctopus
 			//経過時間を更新する
 			m_deltatime += Time.deltaTime;
 		}
-
-		// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-		//override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-		//{
-		//    
-		//}
-
-		// OnStateMove is called right after Animator.OnAnimatorMove()
-		//override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-		//{
-		//    // Implement code that processes and affects root motion
-		//}
-
-		// OnStateIK is called right after Animator.OnAnimatorIK()
-		//override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-		//{
-		//    // Implement code that sets up animation IK (inverse kinematics)
-		//}
 	}
 }

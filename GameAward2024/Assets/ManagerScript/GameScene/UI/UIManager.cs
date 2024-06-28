@@ -7,11 +7,18 @@ namespace GameScene
 	public class UIManager : ManagerBase
 	{
 		[SerializeField]
-		PlayerGaugeController m_playerGaugeController;
+		PlayerHpGaugeController m_playerGaugeController;
 		/// <summary>
 		/// PlayerGaugeController‚ðŽæ“¾
 		/// </summary>
-		public PlayerGaugeController playerGaugeController => m_playerGaugeController;
+		public PlayerHpGaugeController playerGaugeController => m_playerGaugeController;
+
+		[SerializeField]
+		EnemyHpGaugeController m_enemyGaugeController;
+		/// <summary>
+		/// EnemyHpGaugeController‚ðŽæ“¾
+		/// </summary>
+		public EnemyHpGaugeController enemyGaugeController => m_enemyGaugeController;
 
 		[SerializeField]
 		TimeGaugeController m_timeGaugeController;

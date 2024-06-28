@@ -10,14 +10,26 @@ public class BulletDataList : ScriptableObject
 	{
 		// TODO:弾の配列にアクセスする為の列挙定数を追加
 		NONE = -1,
+		NORMAL,
+		ACCELERATE,
+		SIN_WAVE,
 		TRACKING,
+		RIPPLE,
+		SPIRAL,
+		DEBRI,
 		MAX
 	}
 
 	readonly string[] CSV_FILE_PATH =
 	{
 		// TODO:csvを読み込む為のファイルパスを追加
+		"SettingCSV/BulletData/NormalBullet.csv",
+		"SettingCSV/BulletData/AccelerateBullet.csv",
+		"SettingCSV/BulletData/SinWaveBullet.csv",
 		"SettingCSV/BulletData/TrackingBullet.csv",
+		"SettingCSV/BulletData/RippleBullet.csv",
+		"SettingCSV/BulletData/SpiralBullet.csv",
+		"SettingCSV/BulletData/DebriBullet.csv",
 	};
 
 	[SerializeField]

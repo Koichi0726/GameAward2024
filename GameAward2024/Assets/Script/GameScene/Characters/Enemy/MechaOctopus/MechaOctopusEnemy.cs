@@ -14,11 +14,6 @@ public class MechaOctopusEnemy : EnemyBase
 		base.Start();
     }
 
-	protected override void Update()
-    {
-		base.Update();
-    }
-
 	protected override void SetData(Dictionary<string, CSVParamData> data)
 	{
 		base.SetData(data);

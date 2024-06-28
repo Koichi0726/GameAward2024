@@ -5,51 +5,49 @@ using GameScene;
 
 public class TrackingBullet : BulletBase
 { 
-    float m_bulletSpeed;		// 弾の速度
-    float m_trackTimer;			// 追尾の制限時間
-    Vector3 m_direction;		// 弾の方向
-    Transform m_playerTrans;	// プレイヤーの位置
-    Rigidbody m_rigidbody;
+	float m_period;			// 着弾までの時間
+	float m_limitAccel;		// 加速度の上限値
+	Vector3 m_velocity;
 
     protected override void Start()
     {
 		m_bulletKind = BulletDataList.E_BULLET_KIND.TRACKING;
 
         base.Start();
+	}
 
-        //プレイヤーのトランスフォーム取得
-        CharacterManager characterManager = 
-            ManagerContainer.instance.characterManager;
-        m_playerTrans = characterManager.playerTrans;
+	protected override void OnChangeTarget(E_TARGET_KIND targetKind)
+	{
+		m_velocity = (m_target.position - transform.position).normalized;
+	}
 
-        m_rigidbody = GetComponent<Rigidbody>();
-    }
-	
     protected override void Update()
-    {
-        base.Update();
+	{
+		base.Update();
 
-        // プレイヤー座標更新
-        Vector3 playerPos = m_playerTrans.position;
+		Vector3 pos = transform.position;		// 弾の座標
+		Vector3 accel = Vector3.zero;           // 弾の加速度
+		Vector3 diff = m_target.position - pos; // ターゲットとの位置の差分
 
-        // 追尾タイマーを進める
-        m_trackTimer -= Time.deltaTime;
+		//--- 加速度を計算
+		accel = (diff - m_velocity * m_period) * 2.0f / Mathf.Pow(m_period, 2.0f);
+		if (accel.magnitude > m_limitAccel)
+			accel = accel.normalized * m_limitAccel;
 
-        if(m_trackTimer >= 0)
-        {// プレイヤーへの方向を計算
-            m_direction = (playerPos - transform.position).normalized;
-        }
+		m_period -= Time.deltaTime;
 
-        // 弾に力を加える
-        m_rigidbody.velocity = m_direction * m_bulletSpeed;
-    }
+		//--- 座標を更新
+		m_velocity += accel * Time.deltaTime;
+		pos += m_velocity * Time.deltaTime;
+		transform.position = pos;
+	}
 
 	protected override void SetData(Dictionary<string, CSVParamData> data)
 	{
 		base.SetData(data);
 
 		//--- 値の吸出し
-		data[nameof(m_bulletSpeed	)].TryGetData(out m_bulletSpeed);
-		data[nameof(m_trackTimer	)].TryGetData(out m_trackTimer);
+		data[nameof(m_period	)].TryGetData(out m_period);
+		data[nameof(m_limitAccel)].TryGetData(out m_limitAccel);
 	}
 }

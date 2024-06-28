@@ -9,7 +9,7 @@ namespace GameScene
 		[SerializeField]
 		PlayerData m_playerData;
 		/// <summary>
-		/// プレイヤーのデータを取得
+		/// プレイヤーの設定値データを取得
 		/// </summary>
 		public PlayerData playerData => m_playerData;
 
@@ -21,11 +21,11 @@ namespace GameScene
 		public Transform playerTrans => m_playerTrans;
 
 		[SerializeField]
-		PlayerActionControler m_playerActionController;
+		PlayerControler m_playerController;
 		/// <summary>
-		/// PlayerActionControllerを取得
+		/// PlayerControllerを取得
 		/// </summary>
-		public PlayerActionControler playerActionController => m_playerActionController;
+		public PlayerControler playerController => m_playerController;
 
 		[SerializeField]
 		EnemyDataList m_enemyDataList;

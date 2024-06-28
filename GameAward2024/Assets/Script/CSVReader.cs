@@ -224,23 +224,4 @@ public class CSVParamData
 
 		return true;
 	}
-
-	public bool TryGetData(out List<BulletDataList.E_BULLET_KIND> output)
-	{
-		output = new List<BulletDataList.E_BULLET_KIND>();
-
-		string[] str = m_data.Split(PARAM_LIST_SPLIT);
-		if (str.Length < 1) return false;
-
-		//--- ƒŠƒXƒg‚É’l‚ð’Ç‰Á‚µ‚Ä‚¢‚­
-		foreach (string data in str)
-		{
-			int value = 0;
-			bool isFail = !int.TryParse(data, out value);
-			if (isFail) return false;
-			output.Add((BulletDataList.E_BULLET_KIND)value);
-		}
-
-		return true;
-	}
 }
