@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerData: {fileID: 11400000, guid: 40a373d6d4a740141b7122da162549fd, type: 2}
   m_playerTrans: {fileID: 8960592889384489394}
-  m_playerActionController: {fileID: 6736290066318504091}
+  m_playerController: {fileID: 6736290066318504091}
   m_enemyDataList: {fileID: 11400000, guid: 10796bcbd15aa56438e41579aae410e9, type: 2}
   m_buffDebuffHandler: {fileID: 7458265321389384658}
 --- !u!1001 &771920626581423
