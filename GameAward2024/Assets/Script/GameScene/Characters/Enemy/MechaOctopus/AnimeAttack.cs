@@ -7,7 +7,7 @@ namespace MechaOctopus
 {
 	public class AnimeAttack : StateMachineBehaviour
 	{
-		readonly Vector3 MUZZLE_OFFSET = new Vector3(0.0f, 1.25f, 4.5f);
+		const int MUZZLE_NUM = 0;
 
 		Transform m_playerTrans;
 		Transform m_enemyTrans;
@@ -22,10 +22,7 @@ namespace MechaOctopus
 			// “G‚ÌŠî‘bƒf[ƒ^‚ğæ“¾
 			EnemyBase enemy = characterManager.enemyData;
 
-			//--- eŒû‚ÌˆÊ’u‚ğŒvZ
-			Vector3 muzzlePos = m_enemyTrans.position + MUZZLE_OFFSET;
-			muzzlePos = m_enemyTrans.rotation * muzzlePos;
-
+			//--- Œ‚‚Â’e‚Ìí—Ş‚ğŒˆ’è
 			BulletDataList.E_BULLET_KIND bulletKind;
 			if (Random.Range(0, 3) == 0)
 				bulletKind = BulletDataList.E_BULLET_KIND.SIN_WAVE;
@@ -33,6 +30,7 @@ namespace MechaOctopus
 				bulletKind = BulletDataList.E_BULLET_KIND.RIPPLE;
 
 			//--- ’e‚Ì”­Ë
+			Vector3 muzzlePos = characterManager.enemyData.GetMuzzleTrans(MUZZLE_NUM).position;
 			BulletManager bulletManager = ManagerContainer.instance.bulletManger;
 			bulletManager.CreateBullet(
 				bulletKind, muzzlePos, m_enemyTrans.rotation);
