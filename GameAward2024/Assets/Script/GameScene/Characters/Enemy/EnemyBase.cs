@@ -6,6 +6,8 @@ using GameScene;
 public class EnemyBase : MonoBehaviour
 {
 	protected EnemyDataList.E_ENEMY_KIND m_enemyKind;
+	[SerializeField]
+	protected List<Transform> m_muzzleTransList =  new List<Transform>();
 	EnemyDataList m_enemyDataList;
 	float m_limitTime;
 	public float limitTime => m_limitTime;
@@ -57,5 +59,13 @@ public class EnemyBase : MonoBehaviour
 	public bool IsDead()
 	{
 		return m_hp <= 0.0f;
+	}
+
+	public Transform GetMuzzleTrans(int mussleNum)
+	{
+		if (mussleNum < 0) return null;
+		if (mussleNum >= m_muzzleTransList.Count) return null;
+
+		return m_muzzleTransList[mussleNum];
 	}
 }
