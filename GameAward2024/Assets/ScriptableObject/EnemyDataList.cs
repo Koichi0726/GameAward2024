@@ -11,6 +11,8 @@ public class EnemyDataList : ScriptableObject
 		// TODO:敵の配列にアクセスする為の列挙定数を追加
 		NONE = -1,
 		MECHA_OCTOPUS,
+		ECHO_DESTROYER,
+		COIL_CRUSHER,
 		MAX
 	}
 
@@ -18,12 +20,17 @@ public class EnemyDataList : ScriptableObject
 	{
 		// TODO:csvを読み込む為のファイルパスを追加
 		"SettingCSV/EnemyData/MechaOctopus.csv",
+		"SettingCSV/EnemyData/EchoDestroyer.csv",
+		"SettingCSV/EnemyData/CoilCrusher.csv",
 	};
 
 	[SerializeField]
 	EnemyBase[] m_enemyPrefabList = new EnemyBase[(int)E_ENEMY_KIND.MAX];
 	[SerializeField]
 	TextAsset[] m_csvTexts = new TextAsset[(int)E_ENEMY_KIND.MAX];
+	[SerializeField]
+	Texture[] m_stageImage = new Texture[(int)E_ENEMY_KIND.MAX];
+
 	CSVReader[] m_csvReaders = Enumerable.Repeat(new CSVReader(), (int)E_ENEMY_KIND.MAX).ToArray();
 
 	/// <summary>
@@ -37,7 +44,7 @@ public class EnemyDataList : ScriptableObject
 	}
 
 	/// <summary>
-	/// 指定の敵のデータを読み込み(EnemyBaseで呼び出す)
+	/// 指定の敵のデータを読み込み(EnemyBase内で呼び出す)
 	/// </summary>
 	/// <param name="enemyKind">敵の種類を示す列挙定数</param>
 	public void Load(E_ENEMY_KIND enemyKind)
@@ -51,11 +58,20 @@ public class EnemyDataList : ScriptableObject
 	}
 
 	/// <summary>
-	/// 指定の敵のデータを取得(EnemyBaseで呼び出す)
+	/// 指定の敵のデータを取得(EnemyBase内で呼び出す)
 	/// </summary>
 	/// <param name="enemyKind">敵の種類を示す列挙定数</param>
 	public Dictionary<string, CSVParamData> GetData(E_ENEMY_KIND enemyKind)
 	{
 		return m_csvReaders[(int)enemyKind].m_csvDatas;
+	}
+
+	/// <summary>
+	/// 指定の敵のステージ画像を取得
+	/// </summary>
+	/// <param name="enemyKind">敵の種類を示す列挙定数</param>
+	public Texture GetStageImage(E_ENEMY_KIND enemyKind)
+	{
+		return m_stageImage[(int)enemyKind];
 	}
 }

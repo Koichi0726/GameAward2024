@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: BulletDataList
   m_EditorClassIdentifier: 
   m_bulletPrefabList:
+  - {fileID: 248188632634272958, guid: fcce9c4bafadfb84197783a8098ae650, type: 3}
+  - {fileID: 462853830470346221, guid: 5e878b0db839e1444ac622f714cb75ba, type: 3}
+  - {fileID: -4193257188325119839, guid: 92b0b4dab2e9c32429320471ea62eded, type: 3}
   - {fileID: 2328010291997373508, guid: 23a169dda33322b488c3aa622f2993ef, type: 3}
+  - {fileID: 1430973722809197171, guid: f79a711f62c47084699d89ff460b220c, type: 3}
+  - {fileID: 8175139829332851937, guid: 8e77ccedfd4d84e40ac0759bb5655d9f, type: 3}
+  - {fileID: 3819634232601629006, guid: 01211447fdcd505409a042da28c62208, type: 3}
   m_csvTexts:
+  - {fileID: 4900000, guid: 55af954bab0fc6e40bc7309560a375af, type: 3}
+  - {fileID: 4900000, guid: 120319a6a23d3664782d2e353cd1dadf, type: 3}
+  - {fileID: 4900000, guid: 6900da3865f3073468b54cb211ad8c51, type: 3}
   - {fileID: 4900000, guid: 2f3ad94e195feb040bfca803d552fa44, type: 3}
+  - {fileID: 4900000, guid: d8e5bff6400d51049801da923e4c7788, type: 3}
+  - {fileID: 4900000, guid: 272277143a373034f8c2e4b6c0329837, type: 3}
+  - {fileID: 4900000, guid: 8397062c406220d4aab22478a1daa4a9, type: 3}

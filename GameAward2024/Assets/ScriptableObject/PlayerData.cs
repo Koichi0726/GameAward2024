@@ -11,27 +11,11 @@ public class PlayerData : ScriptableObject
 	/// </summary>
 	const string CSV_FILE_PATH = "SettingCSV/PlayerData/Player.csv";
 
-	//--- プレイヤーアクションの列挙型
-	public enum E_PLAYER_ACTION
-	{
-		STOP = 0,
-		MOVE,     //移動
-		DASH,         //走る
-		AVOID,        //回避
-		MAX,
-	}
-
-	//--------------------
-	// 初期化用パラメータ
-
-	float m_startGaugeValue = 60.0f;
+	float m_maxHp = 100.0f;
 	/// <summary>
-	/// ゲージの初期値
+	/// HPの最大値
 	/// </summary>
-	public float START_GAUGE_VALUE => m_startGaugeValue;
-
-	//--------------------
-	// 移動用パラメータ
+	public float MAX_HP => m_maxHp;
 
 	float m_verticalMoveSpeed = 0.1f;
 	/// <summary>
@@ -69,33 +53,6 @@ public class PlayerData : ScriptableObject
 	/// </summary>
 	public float AVOID_RIMIT_VALUE => m_avoidRimitValue;
 
-	//--------------------
-	// ゲージの値の変化量
-
-	float m_stopGaugeValue = 0.3f;
-	/// <summary>
-	/// 停止時の変化量
-	/// </summary>
-	public float STOP_GAUGE_VALUE => m_stopGaugeValue;
-
-	float m_moveGaugeValue = 0.1f;
-	/// <summary>
-	/// 移動時の変化量
-	/// </summary>
-	public float MOVE_GAUGE_VALUE => m_moveGaugeValue;
-
-	float m_dashGaugeValue = 0.2f;
-	/// <summary>
-	/// 走る時の変化量
-	/// </summary>
-	public float DASH_GAUGE_VALUE => m_dashGaugeValue;
-
-	float m_avoidGaugeValue = 0.5f;
-	/// <summary>
-	/// 回避時の変化量
-	/// </summary>
-	public float AVOID_GAUGE_VALUE => m_avoidGaugeValue;
-
 	[SerializeField]
 	TextAsset m_csvText;
 	CSVReader m_csvReader = new CSVReader();
@@ -115,16 +72,12 @@ public class PlayerData : ScriptableObject
 		var paramDatas = m_csvReader.m_csvDatas;
 
 		//--- 値の吸出し
-		paramDatas[nameof(m_startGaugeValue			)].TryGetData(out m_startGaugeValue);
+		paramDatas[nameof(m_maxHp			)].TryGetData(out m_maxHp);
 		paramDatas[nameof(m_verticalMoveSpeed		)].TryGetData(out m_verticalMoveSpeed);
 		paramDatas[nameof(m_horizontalMoveSpeed		)].TryGetData(out m_horizontalMoveSpeed);
 		paramDatas[nameof(m_dashMoveSpeedMultiplier	)].TryGetData(out m_dashMoveSpeedMultiplier);
 		paramDatas[nameof(m_avoidAnceMultiplier		)].TryGetData(out m_avoidAnceMultiplier);
 		paramDatas[nameof(m_avoidStartValue			)].TryGetData(out m_avoidStartValue);
 		paramDatas[nameof(m_avoidRimitValue			)].TryGetData(out m_avoidRimitValue);
-		paramDatas[nameof(m_stopGaugeValue			)].TryGetData(out m_stopGaugeValue);
-		paramDatas[nameof(m_moveGaugeValue			)].TryGetData(out m_moveGaugeValue);
-		paramDatas[nameof(m_dashGaugeValue			)].TryGetData(out m_dashGaugeValue);
-		paramDatas[nameof(m_avoidGaugeValue			)].TryGetData(out m_avoidGaugeValue);
 	}
 }

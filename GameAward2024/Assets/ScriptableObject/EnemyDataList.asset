@@ -14,5 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enemyPrefabList:
   - {fileID: 6260771168108725486, guid: fe45721ebbac73a428e5bc983e7efb97, type: 3}
+  - {fileID: 2633550844224284140, guid: 0c7dfa0148cdc7e469f57624e4816862, type: 3}
+  - {fileID: 231333802304515571, guid: d95ee3d877695df4fbc37994e810063f, type: 3}
   m_csvTexts:
   - {fileID: 4900000, guid: 16d3e54de906d2940829203954fa8c33, type: 3}
+  - {fileID: 4900000, guid: 9187b8b8aa51aa44fa4b0f6be85e0fc6, type: 3}
+  - {fileID: 4900000, guid: 447f043e9367dd949b45fcbc6bbe1ec5, type: 3}
+  m_stageImage:
+  - {fileID: 2800000, guid: 836c32149710e6240adfff0197b3e99f, type: 3}
+  - {fileID: 2800000, guid: 76cdb4c4066829a45aaed888ce85accb, type: 3}
+  - {fileID: 2800000, guid: 76cdb4c4066829a45aaed888ce85accb, type: 3}
