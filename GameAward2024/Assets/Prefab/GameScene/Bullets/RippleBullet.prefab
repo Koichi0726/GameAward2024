@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 5098363401850942448}
   - component: {fileID: 6019341691245081879}
   - component: {fileID: 1614344317719092821}
-  - component: {fileID: 483715366959147356}
+  - component: {fileID: 2774159199726878206}
   - component: {fileID: -6136604418084445190}
-  - component: {fileID: 2328010291997373508}
+  - component: {fileID: 1430973722809197171}
   m_Layer: 9
-  m_Name: TrackingBullet
+  m_Name: RippleBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,7 +43,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8005834901349947289}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8803937527578110353, guid: df302a1ecc91a1643beaf56177aa8748, type: 3}
 --- !u!23 &1614344317719092821
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1c7472866006fb44dac40d09472cb38f, type: 2}
+  - {fileID: 2100000, guid: cfcb3c7cc16582247a44cb225b5e3ed4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,8 +86,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &483715366959147356
-SphereCollider:
+--- !u!64 &2774159199726878206
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,9 +96,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8803937527578110353, guid: df302a1ecc91a1643beaf56177aa8748, type: 3}
 --- !u!54 &-6136604418084445190
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115,7 +116,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2328010291997373508
+--- !u!114 &1430973722809197171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +125,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8005834901349947289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf63acb37c13f6443970552ec38ba78a, type: 3}
+  m_Script: {fileID: 11500000, guid: 0148208a23d845b42bf04089c33fa618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

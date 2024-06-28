@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1614344317719092821}
   - component: {fileID: 483715366959147356}
   - component: {fileID: -6136604418084445190}
-  - component: {fileID: 2328010291997373508}
+  - component: {fileID: 3819634232601629006}
   m_Layer: 9
-  m_Name: TrackingBullet
+  m_Name: DebriBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1c7472866006fb44dac40d09472cb38f, type: 2}
+  - {fileID: 2100000, guid: e3703ae3b3e39f6478dd65b6aef4bfb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2328010291997373508
+--- !u!114 &3819634232601629006
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,6 +124,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8005834901349947289}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf63acb37c13f6443970552ec38ba78a, type: 3}
+  m_Script: {fileID: 11500000, guid: a818237bffbb3284a963fd803ffab6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
