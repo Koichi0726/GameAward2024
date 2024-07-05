@@ -8,4 +8,5 @@
 Á–Å‚Ü‚Å‚ÌŠÔ,m_destroyTime,10
 ’e‚Ì‘¬“x,m_speed,10
 ˆê‰ñ“]‚É‚©‚©‚éŠÔ,m_rotTime,1
-‰ñ“]‚Ì”¼Œa,m_spiralRad,0.75
+‰ñ“]‚Ì”¼Œa,m_radScaleSpeed,0.15
+”¼Œa‚ÌŠg‘å‘¬“x,m_maxSpiralRad,1.2
