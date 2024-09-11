@@ -1,2 +1,3 @@
 ステージの制限時間,m_limitTime,100
 敵のHP,m_hp,100
+攻撃間隔,m_shotInterval,1
