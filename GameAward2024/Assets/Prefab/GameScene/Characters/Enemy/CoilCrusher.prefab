@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4352513619405496495}
   - component: {fileID: 231333802304515571}
-  m_Layer: 0
+  - component: {fileID: 6400450109461417599}
+  m_Layer: 7
   m_Name: CoilCrusher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +49,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_muzzleTransList:
   - {fileID: 3744485970038886345}
+--- !u!135 &6400450109461417599
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585070971237076793}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3729148166701916959
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3744485970038886345}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: muzzle_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,6 +100,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4352513619405496495}
     m_Modifications:
+    - target: {fileID: -9185357849302093862, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -9064114903961122858, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -146,14 +168,38 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7563668028952418831, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -5316154588096471242, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
       propertyPath: m_Name
       value: CoilCrusher
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322467667154320060, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721040067398589212, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6610904938715150233, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 5e507dc6e924f5b43a5dd03ae71bab72, type: 2}
+    - target: {fileID: 7496351195609331813, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8aa5bf3b70a9db48be60cc33e782231, type: 3}
 --- !u!4 &6207839204427401180 stripped
